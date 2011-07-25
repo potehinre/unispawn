@@ -4,23 +4,19 @@
 
 parse_result(Result) ->
     case Result of
-	[H|T]->
-	    case H of
-		[{Name,{_,_,Body}}|_T] ->
-		     io:format("Worker ~p received body ~p ~n",[Name,Body]);
-		[{Name,{error,Reason}}|_T] ->
-		    io:format("Worker ~p phailed",[Name])
-	    end,
-	    parse_result(T);
-	[] -> io:write("end")
+	[{Name,{_,_,Body}}|_T] ->
+	    io:format("Worker ~p received body ~p ~n",[Name,Body]);
+	[{Name,{error,Reason}}|_T] ->
+	    io:format("Worker ~p phailed with reason ~p ~n",[Name,Reason])
     end.
 
 start() ->
     inets:start(),
-    Urls=[{"mail","http://www.mail.sru"},{"user","http://www.google.com"}],
+    Urls=[{"mail","http://www.mail.ru"},{"user","http://www.google.com"}],
     {ok,Dict} = download(Urls),
-    Result=collect(Dict),
-    parse_result(Result),
+    Results=collect(Dict),
+    [parse_result(Result) || Result<-Results],
+    io:format("Completed"),
     inets:stop().
 
 %Cтартует асинхронных запрашивателей для заданных урлов
