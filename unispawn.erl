@@ -1,24 +1,41 @@
 -module(unispawn).
--export([start/0,req_async/1]).
+-export([start/1,stop/0,req_async/1,start_download/0]).
 %Сервер забирающий json с бекэндов и отдающий его пользователю
 
 parse_result(Result) ->
     case Result of
-	[{Name,{_,_,Body}}|_T] ->
-	    io:format("Worker ~p received body ~n",[Name]);
-	[{Name,{error,Reason}}|_T] ->
+	[{Name,{_,_,Body}}|_] ->
+	    ["\"",Name,"\":",Body];
+	[{Name,{error,Reason}}|_] ->
 	    io:format("Worker ~p phailed with reason ~p ~n",[Name,Reason])
     end.
 
-start() ->
+start(Port) ->
     inets:start(),
-    Urls=[{"news","http://www.sports.ru/stat/export/wapsports/news.json?category_id=238"},
-          {"comments","http://www.sports.ru/stat/export/wapsports/news_comments.json?id=112146357"}],
+    misultin:start_link([{port,Port},{loop,fun(Req) -> handle_http(Req) end}]).
+
+stop() ->
+    misultin:stop(),
+    inets:stop().
+
+handle_http(Req) ->
+    handle(Req:get(method),Req:resource([lowercase,urlencode]),Req).
+
+handle('GET',[],Req) ->
+    Results=start_download(),
+    Req:ok(Results);
+
+handle('GET',["favicon.ico"],Req) ->
+    Path=["favicon.ico"],
+    Req:respond(404,[{"Content-Type","text/html"}],["File favicon /",Path,"not found"]).
+
+start_download() ->
+    Urls=[{"news","http://www.sports.ru/stat/export/wapsports/news.json?category_id=238&count=1"},
+          {"comments","http://www.sports.ru/stat/export/wapsports/news_comments.json?id=112146357&count=1"}],
     {ok,Dict} = download(Urls),
     Results=collect(Dict),
-    [parse_result(Result) || Result<-Results],
-    io:format("Completed ~n"),
-    inets:stop().
+    [parse_result(Result) || Result<-Results].
+
 
 %Cтартует асинхронных запрашивателей для заданных урлов
 %%Получает список вида [{Name,Url}...] и возвращает словарь вида dict(Ref:{Name,Result})
@@ -31,7 +48,7 @@ collect(Dict) ->
     collect_aux(Dict,[]).
 	   
 req_async(Url) ->
-  http:request(get,{Url,[]},[],[{sync,false}]).
+  httpc:request(get,{Url,[]},[],[{sync,false}]).
 
 download_aux(Urls,Dict) ->
     case Urls of
