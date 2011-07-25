@@ -5,18 +5,19 @@
 parse_result(Result) ->
     case Result of
 	[{Name,{_,_,Body}}|_T] ->
-	    io:format("Worker ~p received body ~p ~n",[Name,Body]);
+	    io:format("Worker ~p received body ~n",[Name]);
 	[{Name,{error,Reason}}|_T] ->
 	    io:format("Worker ~p phailed with reason ~p ~n",[Name,Reason])
     end.
 
 start() ->
     inets:start(),
-    Urls=[{"mail","http://www.mail.ru"},{"user","http://www.google.com"}],
+    Urls=[{"news","http://www.sports.ru/stat/export/wapsports/news.json?category_id=238"},
+          {"comments","http://www.sports.ru/stat/export/wapsports/news_comments.json?id=112146357"}],
     {ok,Dict} = download(Urls),
     Results=collect(Dict),
     [parse_result(Result) || Result<-Results],
-    io:format("Completed"),
+    io:format("Completed ~n"),
     inets:stop().
 
 %Cтартует асинхронных запрашивателей для заданных урлов
