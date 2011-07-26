@@ -1,5 +1,6 @@
 -module(unispawn).
 -export([start/1,stop/0,req_async/1,start_download/0]).
+-define(DOWNLOAD_TIMEOUT,20000).
 %Сервер забирающий json с бекэндов и отдающий его пользователю
 
 parse_result(Result) ->
@@ -31,7 +32,9 @@ handle('GET',["favicon.ico"],Req) ->
 
 start_download() ->
     Urls=[{"news","http://www.sports.ru/stat/export/wapsports/news.json?category_id=238&count=1"},
-          {"comments","http://www.sports.ru/stat/export/wapsports/news_comments.json?id=112146357&count=1"}],
+          {"comments","http://www.sports.ru/stat/export/wapsports/news_comments.json?id=112146357&count=1"},
+	  {"blogs","http://www.sports.ru/stat/export/wapsports/blogs.json?category_id=23"},
+          {"conferences","http://www.sports.ru/stat/export/wapsports/conferences.json?category_id=23"}],
     {ok,Dict} = download(Urls),
     Results=collect(Dict),
     Parsed=[parse_result(Result) || Result<-Results],
@@ -65,12 +68,12 @@ collect_aux(Dict,ResultList) ->
     Size=dict:size(Dict),
     if Size>0 ->
 	    receive
-		{http,{RequestId,_Body}}->
+		{http,{RequestId,Body}}->
 		    [{Name,Url}]=dict:fetch(RequestId,Dict),
 		    io:format("i received content from ~p ~n",[{Name,Url}]),
 		    NewDict=dict:erase(RequestId,Dict),
-		    collect_aux(NewDict,[[{Name,_Body}]|ResultList])
-	    after 20000 ->
+		    collect_aux(NewDict,[[{Name,Body}]|ResultList])
+	    after ?DOWNLOAD_TIMEOUT ->
 		    io:format("Its fucking timeout")
 	    end;
        Size=<0 -> ResultList
