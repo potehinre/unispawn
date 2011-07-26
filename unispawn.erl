@@ -5,10 +5,11 @@
 
 parse_result(Result) ->
     case Result of
-	[{Name,{_,_,Body}}|_] ->
-	    ["\"",Name,"\":",Body];
-	[{Name,{error,Reason}}|_] ->
-	    io:format("Worker ~p phailed with reason ~p ~n",[Name,Reason])
+	{Name,{ok,Body}} ->
+	    ["\"",Name,"\":{\"data\":",Body,"}"];
+	{Name,{error,Reason}} ->
+	    io:format("Worker ~p phailed with reason ~p ~n",[Name,Reason]),
+	    ["\"",Name,"\":{\"error\":\"",atom_to_list(Reason),"\"}"]
     end.
 
 start(Port) ->
@@ -33,18 +34,19 @@ handle('GET',["favicon.ico"],Req) ->
 start_download() ->
     Urls=[{"news","http://www.sports.ru/stat/export/wapsports/news.json?category_id=238&count=1"},
           {"comments","http://www.sports.ru/stat/export/wapsports/news_comments.json?id=112146357&count=1"},
-	  {"blogs","http://www.sports.ru/stat/export/wapsports/blogs.json?category_id=23"},
-          {"conferences","http://www.sports.ru/stat/export/wapsports/conferences.json?category_id=23"}],
-    {ok,Dict} = download(Urls),
-    Results=collect(Dict),
+	  {"blogs","http://www.sports.sru/stat/export/wapsports/blogs.json?category_id=23"},
+          {"conferences","http://www.sports.sru/stat/export/wapsports/conferences.json?category_id=23"}],
+    {ok,Dict,DownloadErrors} = download(Urls),
+    Results=collect(Dict)++DownloadErrors,
     Parsed=[parse_result(Result) || Result<-Results],
+    io:format("Results are ~p",[Parsed]),
     "{"++(string:join(Parsed,","))++"}".
 
 
 %Cтартует асинхронных запрашивателей для заданных урлов
 %%Получает список вида [{Name,Url}...] и возвращает словарь вида dict(Ref:{Name,Result})
 download(Urls) ->
-    download_aux(Urls,dict:new()).
+    download_aux(Urls,dict:new(),[]).
 
 %%Ожидает запрашивателей и возвращает результат
 %%Получает словать вида dict(Ref:{Name,Result})
@@ -54,25 +56,35 @@ collect(Dict) ->
 req_async(Url) ->
   httpc:request(get,{Url,[]},[],[{sync,false}]).
 
-download_aux(Urls,Dict) ->
+download_aux(Urls,Dict,Errors) ->
     case Urls of
 	[{Name,Url}|T] ->
-	    {ok,RequestId} = req_async(Url),
-	    io:format("Requesting url ~p for name ~p with id ~p ~n",[Url,Name,RequestId]),
-	    NewDict=dict:append(RequestId,{Name,Url},Dict),
-	    download_aux(T,NewDict);
-	[]-> {ok,Dict}
+	    case req_async(Url) of
+		{ok,RequestId} -> 
+		    io:format("Requesting url ~p for name ~p with id ~p ~n",[Url,Name,RequestId]),
+		    NewDict=dict:append(RequestId,{Name,Url},Dict),
+		    download_aux(T,NewDict,Errors);
+		{error,Reason} -> 
+		    io:format("Error occured while requesing ~p for name ~p",[Url,Name]),
+		    NewErrors=[{Name,{error,Reason}}|Errors],
+		    download_aux(T,Dict,NewErrors)
+	    end;
+	[]-> {ok,Dict,Errors}
     end.
 
 collect_aux(Dict,ResultList) ->
     Size=dict:size(Dict),
     if Size>0 ->
 	    receive
-		{http,{RequestId,Body}}->
+		{http,{RequestId,ReqResult}}->
 		    [{Name,Url}]=dict:fetch(RequestId,Dict),
-		    io:format("i received content from ~p ~n",[{Name,Url}]),
 		    NewDict=dict:erase(RequestId,Dict),
-		    collect_aux(NewDict,[[{Name,Body}]|ResultList])
+		    Result=case ReqResult of
+			       {error,Reason} ->{error,Reason};
+			       {_,_,Body} -> 
+				   {ok,Body}
+			   end,
+		    collect_aux(NewDict,[{Name,Result}|ResultList])
 	    after ?DOWNLOAD_TIMEOUT ->
 		    io:format("Its fucking timeout")
 	    end;
