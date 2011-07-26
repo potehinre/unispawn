@@ -34,7 +34,8 @@ start_download() ->
           {"comments","http://www.sports.ru/stat/export/wapsports/news_comments.json?id=112146357&count=1"}],
     {ok,Dict} = download(Urls),
     Results=collect(Dict),
-    [parse_result(Result) || Result<-Results].
+    Parsed=[parse_result(Result) || Result<-Results],
+    "{"++(string:join(Parsed,","))++"}".
 
 
 %Cтартует асинхронных запрашивателей для заданных урлов
