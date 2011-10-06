@@ -1,0 +1,31 @@
+import gevent
+from gevent import monkey
+import random
+monkey.patch_all()
+import httplib2
+import time
+
+urls={"news":"http://www.sports.ru/stat/export/wapsports/news.json?category_id=238&count=1",
+      "comments":"http://www.sports.ru/stat/export/wapsports/news_comments.json?id=112146357&count=1",
+      "blogs":"http://www.sports.sru/stat/export/wapsports/blogs.json?category_id=23",
+      "conferences":"http://www.sports.sru/stat/export/wapsports/conferences.json?category_id=23"}
+
+def get_content(urlname,url):
+    try:
+        htt = httplib2.Http(timeout=3000)
+        response,content = htt.request(url)
+        return (urlname,content)
+    except Exception,ex:
+        return (urlname,('error',ex.message))
+
+def to_json(result):
+    if type(result[1]) is tuple:
+        return """"%s":{"error":"%s"}"""%(result[0],result[1][1])
+    else:
+        return """"%s":{"data":%s}"""%(result[0],result[1])
+
+def collect(urls):
+    jobs = [gevent.spawn(get_content,urlname,url) for urlname,url in urls.items()]
+    gevent.joinall(jobs,timeout=3000)
+    result ='{'+','.join([to_json(job.value) for job in jobs])+'}'
+    return result

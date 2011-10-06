@@ -1,0 +1,17 @@
+import jinja2,cjson,httplib2
+import gevent_aggregator
+
+from flask import Flask
+app = Flask(__name__)
+
+@app.route("/news")
+def news():
+    content = gevent_aggregator.collect(gevent_aggregator.urls)
+    context = cjson.decode(content)
+    env = jinja2.Environment(loader=jinja2.FileSystemLoader("."))
+    template = env.get_template("news.html")
+    return template.render(context)
+    
+
+if __name__ == "__main__":
+    app.run(debug=True)

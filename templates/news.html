@@ -1,0 +1,48 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN">
+<html lang="en">
+<head>
+    <title>My Webpage</title>
+</head>
+<body>
+    <h1>Новости</h1>
+    {% if news.data %}
+	<ul>
+	    {% for news in news.data.news %}
+			<li>{{ news.title }}:{{ news.content }}</a></li>
+	    {% endfor %}
+	</ul>	
+    {% else %}
+      	<h4 style="color:red">Ашипка</h4>
+    {% endif %}
+    <h2>Комменты</h2>
+    {% if comments.data %}
+	<ul>
+	    {% for comment in comments.data.comments %}
+			<li>{{ comment.title }}:{{ comment.content }}</a></li>
+	    {% endfor %}
+	</ul>	
+    {% else %}
+      	<h4 style="color:red">Ошибка:{{comments.error}}</h4>
+    {% endif %}
+    <h2>Блоги</h2>
+    {% if blogs.data %}
+	<ul>
+	    {% for blog in blogs.data.blogs %}
+			<li>{{ blog.title }}:{{ blog.content }}</a></li>
+	    {% endfor %}
+	</ul>	
+    {% else %}
+      	<h3 style="color:red">Ошибка:{{blogs.error}}</h3>
+    {% endif %}
+    <h2>Конференции</h2>
+    {% if conferences.data %}
+	<ul>
+	    {% for conferences in conferences.data.conferences %}
+			<li>{{ conferences.title }}:{{ conferences.content }}</a></li>
+	    {% endfor %}
+	</ul>	
+    {% else %}
+      	<h3 style="color:red">Ошибка:{{ conferences.error }}</h3>
+    {% endif %}
+</body>
+</html>

@@ -1,0 +1,17 @@
+import jinja2,cjson,httplib2
+
+from flask import Flask
+app = Flask(__name__)
+
+@app.route("/news")
+def news():
+    htt=httplib2.Http(timeout=3000)
+    response,content = htt.request('http://localhost:3333')
+    context = cjson.decode(content)
+    env = jinja2.Environment(loader=jinja2.FileSystemLoader("/home/potehinre/unispawn/templates/"))
+    template = env.get_template("news.html")
+    return template.render(context)
+    
+
+if __name__ == "__main__":
+    app.run(debug=True)
