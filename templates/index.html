@@ -1747,12 +1747,12 @@ user_geo.registerAllGeoHTMLSelectHandlers();
 				</div>
 				<div class="news">
 				{% if main_news.data %}
-					{% for news in main_news.data.mainnews %}
-					    <p><span>{{news.posted_time}}</span> 
-					    <a href="/hockey/{{news.id}}.html" title="{{news.title}}" class="txt">{{news.title}}</a> 
-					    (<a href="/hockey/{{news.id}}.html?comments=1#comments" title="Комментарии к новости">{{news.comment_count}}</a>)<span>|</span> 
-                        <a href="/hockey/" title="Хоккей">хоккей</a></p>
-					{% endfor %}
+					    {% for news in main_news.data.mainnews %}
+					        <p><span>{{news.posted_time}}</span> 
+					        <a href="/hockey/{{news.id}}.html" title="{{news.title}}" class="txt">{{news.title|safe}}</a> 
+					        (<a href="/hockey/{{news.id}}.html?comments=1#comments" title="Комментарии к новости">{{news.comment_count}}</a>)<span>|</span> 
+                            <a href="/hockey/" title="Хоккей">хоккей</a></p>
+					    {% endfor %}
 				{% else %}
 					<p>Ошибка</p>
 				{% endif %}
@@ -1887,71 +1887,85 @@ function process_my_team_block() {
 					<p><a href="/news/" title="Новости">новости</a> <span>|</span> <a href="/football/" title="Футбол">футбол</a></p><a href="/news/football/?link=all" title="Все" class="arhive">все <img src="/i/all-arrow-green.gif" class="all-arrow"></a>
 				</div>
 				<div class="news">
-					<p><span>13:02</span> <a href="/football/126582676.html" title="Мубарак Буссуфа: &#171;Хотелось бы, чтобы болельщики с пониманием относились к каждому результату клуба&#187;" class="txt">Мубарак Буссуфа: &#171;Хотелось бы, чтобы болельщики с пониманием относились к каждому результату клуба&#187;</a> (<a href="/football/126582676.html?comments=1#comments" title="Комментарии к новости">7</a>)</p>
-					<p><span>12:54</span> <a href="/football/126581799.html" title="Cпортивный арбитражный суд отклонил апелляцию Бин Хаммама" class="txt">Cпортивный арбитражный суд отклонил апелляцию Бин Хаммама</a> (<a href="/football/126581799.html?comments=1#comments" title="Комментарии к новости">1</a>)</p>
-					<p><span>12:47</span> <a href="/football/126581050.html" title="Подозреваемые в нападении на фанатов &#171;Зенита&#187; задержаны на 48 часов" class="txt">Подозреваемые в нападении на фанатов &#171;Зенита&#187; задержаны на 48 часов</a> (<a href="/football/126581050.html?comments=1#comments" title="Комментарии к новости">8</a>)</p>
-					<p><span>12:40</span> <a href="/football/126580278.html" title="Стив Макларен: &#171;Клуб перестал соответствовать моим амбициям&#187;" class="txt">Стив Макларен: &#171;Клуб перестал соответствовать моим амбициям&#187;</a> (<a href="/football/126580278.html?comments=1#comments" title="Комментарии к новости">5</a>)</p>
-					<p><span>12:32</span> <a href="/football/126578778.html" title="Алекс Фергюсон: &#171;Перерыв на матчи сборных позволит восстановиться травмированным&#187;" class="txt">Алекс Фергюсон: &#171;Перерыв на матчи сборных позволит восстановиться травмированным&#187;</a> (<a href="/football/126578778.html?comments=1#comments" title="Комментарии к новости">1</a>)</p>
+				{% if football_news.data %}
+					    {% for news in football_news.data.news %}
+                            {% include 'news.html' %}
+					    {% endfor %}
+				{% else %}
+					<p>Ошибка</p>
+				{% endif %}
 				</div>
 				<div class="title">
 					<p><a href="/news/" title="Новости">новости</a> <span>|</span> <a href="/hockey/" title="Хоккей">хоккей</a></p><a href="/news/hockey/?link=all" title="Все" class="arhive">все <img src="/i/all-arrow-green.gif" class="all-arrow"></a>
 				</div>
 				<div class="news">
-					<p><span>12:54</span> <a href="/hockey/126584039.html" title="Дмитрий Кугрышев: &#171;Только привыкаю к умной игре, которую показывает ЦСКА&#187;" class="txt">Дмитрий Кугрышев: &#171;Только привыкаю к умной игре, которую показывает ЦСКА&#187;</a> (<a href="/hockey/126584039.html?comments=1#comments" title="Комментарии к новости">0</a>)</p>
-					<p><span>12:42</span> <a href="/hockey/126582569.html" title="Евгений Малкин: &#171;Раньше часто ленился&#187;" class="txt">Евгений Малкин: &#171;Раньше часто ленился&#187;</a> (<a href="/hockey/126582569.html?comments=1#comments" title="Комментарии к новости">0</a>)</p>
-					<p><span>12:18</span> <a href="/hockey/126578033.html" title="Илья Брызгалов: &#171;Думал, что видел в хоккее все&#187;" class="txt">Илья Брызгалов: &#171;Думал, что видел в хоккее все&#187;</a> (<a href="/hockey/126578033.html?comments=1#comments" title="Комментарии к новости">8</a>)</p>
-					<p><span>12:07</span> <a href="/hockey/126576470.html" title="Станислав Чистов: &#171;Этих канадцев из &#171;Витязя&#187; надо просто гнать отсюда!&#187;" class="txt">Станислав Чистов: &#171;Этих канадцев из &#171;Витязя&#187; надо просто гнать отсюда!&#187;</a> (<a href="/hockey/126576470.html?comments=1#comments" title="Комментарии к новости">2</a>)</p>
-					<p><span>11:56</span> <a href="/hockey/126574182.html" title="Мэтт Дэлтон: &#171;Было бы здорово, если бы Радулов перешел в &#171;Витязь&#187;" class="txt">Мэтт Дэлтон: &#171;Было бы здорово, если бы Радулов перешел в &#171;Витязь&#187;</a> (<a href="/hockey/126574182.html?comments=1#comments" title="Комментарии к новости">0</a>)</p>
+				{% if hockey_news.data %}
+				    {% for news in hockey_news.data.news %}
+					    {% include 'news.html' %}
+				    {% endfor %}
+				{% else %}
+					<p>Ошибка</p>
+				{% endif %}
 				</div>
 				<div class="title">
 					<p><a href="/news/" title="Новости">новости</a> <span>|</span> <a href="/basketball/" title="Баскетбол">баскетбол</a></p><a href="/news/basketball/?link=all" title="Все" class="arhive">все <img src="/i/all-arrow-green.gif" class="all-arrow"></a>
 				</div>
 				<div class="news">
-					<p><span>12:11</span> <a href="/basketball/126575107.html" title="Тони Паркер: &laquo;Хочу поиграть с Данканом еще два-три сезона&raquo;" class="txt">Тони Паркер: &laquo;Хочу поиграть с Данканом еще два-три сезона&raquo;</a> (<a href="/basketball/126575107.html?comments=1#comments" title="Комментарии к новости">0</a>)</p>
-					<p><span>12:05</span> <a href="/basketball/126574184.html" title="&laquo;Црвена Звезда&raquo; интересуется Мэттом Болдином" class="txt">&laquo;Црвена Звезда&raquo; интересуется Мэттом Болдином</a> (<a href="/basketball/126574184.html?comments=1#comments" title="Комментарии к новости">0</a>)</p>
-					<p><span>11:58</span> <a href="/basketball/126573397.html" title="НБА. Нил Олши &ndash; кандидат на пост генерального менеджера &laquo;Портленда&raquo;" class="txt">НБА. Нил Олши &ndash; кандидат на пост генерального менеджера &laquo;Портленда&raquo;</a> (<a href="/basketball/126573397.html?comments=1#comments" title="Комментарии к новости">1</a>)</p>
-					<p><span>11:45</span> <a href="/basketball/126570319.html" title="Богут завтра подпишет контракт с австралийским клубом" class="txt">Богут завтра подпишет контракт с австралийским клубом</a> (<a href="/basketball/126570319.html?comments=1#comments" title="Комментарии к новости">0</a>)</p>
-					<p><span>11:10</span> <a href="/basketball/126566576.html" title="Эвери Брэдли близок к подписанию контракта с &laquo;Хапоэлем&raquo;" class="txt">Эвери Брэдли близок к подписанию контракта с &laquo;Хапоэлем&raquo;</a> (<a href="/basketball/126566576.html?comments=1#comments" title="Комментарии к новости">0</a>)</p>
+				{% if basket_news.data %}
+				    {% for news in basket_news.data.news %}
+                        {% include 'news.html' %}
+				    {% endfor %}
+				{% else %}
+					<p>Ошибка</p>
+				{% endif %}
 				</div>
 				<div class="title">
 					<p><a href="/news/" title="Новости">новости</a> <span>|</span> <a href="/automoto/" title="Авто/мото">авто/мото</a></p><a href="/news/automoto/?link=all" title="Все" class="arhive">все <img src="/i/all-arrow-green.gif" class="all-arrow"></a>
 				</div>
 				<div class="news">
-					<p><span>12:59</span> <a href="/automoto/126582590.html" title="&#171;Ред Булл&#187; привезет с собой в Японию еду" class="txt">&#171;Ред Булл&#187; привезет с собой в Японию еду</a> (<a href="/automoto/126582590.html?comments=1#comments" title="Комментарии к новости">1</a>)</p>
-					<p><span>12:34</span> <a href="/automoto/126579512.html" title="Промоутер Гран-при Европы заявил, что Валенсия не собирается чередовать свой этап &#171;Ф-1&#187; с этапом в Барселоне" class="txt">Промоутер Гран-при Европы заявил, что Валенсия не собирается чередовать свой этап &#171;Ф-1&#187; с этапом в Барселоне</a> (<a href="/automoto/126579512.html?comments=1#comments" title="Комментарии к новости">0</a>)</p>
-					<p><span>12:20</span> <a href="/automoto/126577210.html" title="Бергер раскритиковал &#171;Мерседес&#187; за привлечение в команду Уиллиса и Косты" class="txt">Бергер раскритиковал &#171;Мерседес&#187; за привлечение в команду Уиллиса и Косты</a> (<a href="/automoto/126577210.html?comments=1#comments" title="Комментарии к новости">2</a>)</p>
-					<p><span>11:59</span> <a href="/automoto/126572656.html" title="Auto Bild Motorsport: В 2012 году Бьянки может стать резервным пилотом &#171;Форс-Индии&#187;" class="txt">Auto Bild Motorsport: В 2012 году Бьянки может стать резервным пилотом &#171;Форс-Индии&#187;</a> (<a href="/automoto/126572656.html?comments=1#comments" title="Комментарии к новости">2</a>)</p>
-					<p><span>11:48</span> <a href="/automoto/126571862.html" title="Дженсон Баттон: &#171;Для команды лучший способ завоевать титул &#8211; иметь в распоряжении пилотов номер один и номер два&#187;" class="txt">Дженсон Баттон: &#171;Для команды лучший способ завоевать титул &#8211; иметь в распоряжении пилотов номер один и номер два&#187;</a> (<a href="/automoto/126571862.html?comments=1#comments" title="Комментарии к новости">6</a>)</p>
+				{% if automoto_news.data %}
+				    {% for news in automoto_news.data.news %}
+                        {% include 'news.html' %}
+				    {% endfor %}
+				{% else %}
+					<p>Ошибка</p>
+				{% endif %}
 				</div>
 				<div class="title">
 					<p><a href="/news/" title="Новости">новости</a> <span>|</span> <a href="/boxing/" title="Бокс/MMA">бокс/mma</a></p><a href="/news/boxing/?link=all" title="Все" class="arhive">все <img src="/i/all-arrow-green.gif" class="all-arrow"></a>
 				</div>
 				<div class="news">
-					<p><span>13:00</span> <a href="/boxing/126428853.html" title="Чемпионат мира. 1/16 финала. Алоян, Мехонцев, Замковой, Соляников и Айрапетян вышли в следующий круг, тяжеловес Кузьмин проиграл" class="txt">Чемпионат мира. 1/16 финала. Алоян, Мехонцев, Замковой, Соляников и Айрапетян вышли в следующий круг, тяжеловес Кузьмин проиграл</a> (<a href="/boxing/126428853.html?comments=1#comments" title="Комментарии к новости">20</a>)</p>
-					<p><span>12:14</span> <a href="/boxing/126576519.html" title="Бату Хасиков проведет 5 ноября в Москве бой против Майка Замбидиса" class="photo"><img src="/i/ico/ico-news-photo.gif" width="25" height="9" alt="Бату Хасиков проведет 5 ноября в Москве бой против Майка Замбидиса" /></a> <a href="/boxing/126576519.html" title="Бату Хасиков проведет 5 ноября в Москве бой против Майка Замбидиса" class="txt">Бату Хасиков проведет 5 ноября в Москве бой против Майка Замбидиса</a> (<a href="/boxing/126576519.html?comments=1#comments" title="Комментарии к новости">0</a>)</p>
-					<p><span>11:52</span> <a href="/boxing/126575692.html" title="Евгений Судаков: &laquo;Наши тренеры только руками развели, не найдя вразумительных объяснений поражению Кузьмина. Все в шоке&#8230;&raquo;" class="txt">Евгений Судаков: &laquo;Наши тренеры только руками развели, не найдя вразумительных объяснений поражению Кузьмина. Все в шоке&#8230;&raquo;</a> (<a href="/boxing/126575692.html?comments=1#comments" title="Комментарии к новости">0</a>)</p>
-					<p><span>23:23</span> <a href="/boxing/126468100.html" title="Бой Абдусаламов &ndash; Барнетт" class="photo"><img src="/i/ico/ico-news-video.gif" width="31" height="9" alt="Бой Абдусаламов &ndash; Барнетт" /></a> <a href="/boxing/126468100.html" title="Бой Абдусаламов &ndash; Барнетт" class="txt">Бой Абдусаламов &ndash; Барнетт</a> (<a href="/boxing/126468100.html?comments=1#comments" title="Комментарии к новости">10</a>)</p>
-					<p><span>18:40</span> <a href="/boxing/126424050.html" title="UFC Live. Круз защитил титул в легчайшем весе, победив Джонсона, Штруве победил Бэрри и другие результаты " class="photo"><img src="/i/ico/ico-news-photo.gif" width="25" height="9" alt="UFC Live. Круз защитил титул в легчайшем весе, победив Джонсона, Штруве победил Бэрри и другие результаты " /></a> <a href="/boxing/126424050.html" title="UFC Live. Круз защитил титул в легчайшем весе, победив Джонсона, Штруве победил Бэрри и другие результаты " class="txt">UFC Live. Круз защитил титул в легчайшем весе, победив Джонсона, Штруве победил Бэрри и другие результаты </a> (<a href="/boxing/126424050.html?comments=1#comments" title="Комментарии к новости">0</a>)</p>
+				{% if boxing_news.data %}
+				    {% for news in boxing_news.data.news %}
+                        {% include 'news.html' %}
+				    {% endfor %}
+				{% else %}
+					<p>Ошибка</p>
+				{% endif %}
 				</div>
 				<div class="title">
 					<p><a href="/news/" title="Новости">новости</a> <span>|</span> <a href="/tennis/" title="Теннис">теннис</a></p><a href="/news/tennis/?link=all" title="Все" class="arhive">все <img src="/i/all-arrow-green.gif" class="all-arrow"></a>
 				</div>
 				<div class="news">
-					<p><span>12:35</span> <a href="/tennis/126578799.html" title="Светлана Кузнецова: &laquo;К концу года я стала играть лучше&raquo;" class="txt">Светлана Кузнецова: &laquo;К концу года я стала играть лучше&raquo;</a> (<a href="/tennis/126578799.html?comments=1#comments" title="Комментарии к новости">3</a>)</p>
-					<p><span>12:25</span> <a href="/tennis/126577256.html" title="Каролин Возняцки: &laquo;Буду биться за первое место до последней недели&raquo;" class="txt">Каролин Возняцки: &laquo;Буду биться за первое место до последней недели&raquo;</a> (<a href="/tennis/126577256.html?comments=1#comments" title="Комментарии к новости">3</a>)</p>
-					<p><span>12:14</span> <a href="/tennis/126575746.html" title="Янко Типсаревич: &laquo;Не стесняюсь спрашивать у Новака совета&raquo;" class="txt">Янко Типсаревич: &laquo;Не стесняюсь спрашивать у Новака совета&raquo;</a> (<a href="/tennis/126575746.html?comments=1#comments" title="Комментарии к новости">0</a>)</p>
-					<p><span>11:11</span> <a href="/tennis/126562153.html" title="Пекин (WTA). Пашек вышла в третий круг" class="txt">Пекин (WTA). Пашек вышла в третий круг</a> (<a href="/tennis/126562153.html?comments=1#comments" title="Комментарии к новости">0</a>)</p>
-					<p><span>11:00</span> <a href="/tennis/126564349.html" title="Саманта Стосур: &laquo;Я сопереживаю Ли На&raquo;" class="txt">Саманта Стосур: &laquo;Я сопереживаю Ли На&raquo;</a> (<a href="/tennis/126564349.html?comments=1#comments" title="Комментарии к новости">1</a>)</p>
+				{% if tennis_news.data %}
+				    {% for news in tennis_news.data.news %}
+                        {% include 'news.html' %}
+				    {% endfor %}
+				{% else %}
+					<p>Ошибка</p>
+				{% endif %}
 				</div>
 				<div class="title">
 					<p><a href="/news/" title="Новости">новости</a> <span>|</span> <a href="/biathlon/" title="Биатлон">биатлон</a></p><a href="/news/biathlon/?link=all" title="Все" class="arhive">все <img src="/i/all-arrow-green.gif" class="all-arrow"></a>
 				</div>
 				<div class="news">
-					<p><span>12:53</span> <a href="/biathlon/126581839.html" title="Александр Беланенко: &#171;Тренируюсь не для того, чтобы занимать места в шестом десятке&#187;" class="txt">Александр Беланенко: &#171;Тренируюсь не для того, чтобы занимать места в шестом десятке&#187;</a> (<a href="/biathlon/126581839.html?comments=1#comments" title="Комментарии к новости">0</a>)</p>
-					<p><span>12:37</span> <a href="/biathlon/126579572.html" title="Виктор Чурин: &#171;У Гараничева пока есть определенные пробелы в мастерстве&#187;" class="txt">Виктор Чурин: &#171;У Гараничева пока есть определенные пробелы в мастерстве&#187;</a> (<a href="/biathlon/126579572.html?comments=1#comments" title="Комментарии к новости">2</a>)</p>
-					<p><span>11:00</span> <a href="/biathlon/94502239.html" title="Календарь этапов Кубка мира-2011/2012" class="txt">Календарь этапов Кубка мира-2011/2012</a> (<a href="/biathlon/94502239.html?comments=1#comments" title="Комментарии к новости">50</a>)</p>
-					<p><span>23:21</span> <a href="/biathlon/126466616.html" title="В Хохфильцене прошла небольшая реконструкция стадиона " class="txt">В Хохфильцене прошла небольшая реконструкция стадиона </a> (<a href="/biathlon/126466616.html?comments=1#comments" title="Комментарии к новости">0</a>)</p>
-					<p><span>22:54</span> <a href="/biathlon/126460221.html" title="Анна-Мария Нильссон: &#171;Уверена, что на сборе в Рупольдинге встретим Пихлера&#187;" class="txt">Анна-Мария Нильссон: &#171;Уверена, что на сборе в Рупольдинге встретим Пихлера&#187;</a> (<a href="/biathlon/126460221.html?comments=1#comments" title="Комментарии к новости">9</a>)</p>
+				{% if biathlon_news.data %}
+				    {% for news in biathlon_news.data.news %}
+                        {% include 'news.html' %}
+				    {% endfor %}
+				{% else %}
+					<p>Ошибка</p>
+				{% endif %}
 				</div>
 				<div class="title">
 					<p><a href="/news/" title="Новости">новости</a> <span>|</span> <a href="/others/" title="Прочие">прочие</a></p><a href="/news/others/?link=all" title="Все" class="arhive">все <img src="/i/all-arrow-green.gif" class="all-arrow"></a>
