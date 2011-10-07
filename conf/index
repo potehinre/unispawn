@@ -8,5 +8,7 @@
 "tennis_news":"http://www.sports.ru/stat/export/wapsports/news.json?category_id=212&count=5",
 "biathlon_news":"http://www.sports.ru/stat/export/wapsports/news.json?category_id=225&count=5",
 "other_news":"http://www.sports.ru/stat/export/wapsports/news.json?category_id=256&count=5",
-"style_news":"http://www.sports.ru/stat/export/wapsports/news.json?category_id=111163733&count=5"
+"style_news":"http://www.sports.ru/stat/export/wapsports/news.json?category_id=111163733&count=5",
+"blogs":"http://www.sports.ru/stat/export/wapsports/blogs.json?count=13",
+"conferences":"http://www.sports.ru/stat/export/wapsports/conferences.json?count=5"
 }
