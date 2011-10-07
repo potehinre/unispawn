@@ -7,4 +7,6 @@
 "boxing_news":"http://www.sports.ru/stat/export/wapsports/news.json?category_id=213&count=5",
 "tennis_news":"http://www.sports.ru/stat/export/wapsports/news.json?category_id=212&count=5",
 "biathlon_news":"http://www.sports.ru/stat/export/wapsports/news.json?category_id=225&count=5",
+"other_news":"http://www.sports.ru/stat/export/wapsports/news.json?category_id=256&count=5",
+"style_news":"http://www.sports.ru/stat/export/wapsports/news.json?category_id=111163733&count=5"
 }

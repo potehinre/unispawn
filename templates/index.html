@@ -1748,10 +1748,7 @@ user_geo.registerAllGeoHTMLSelectHandlers();
 				<div class="news">
 				{% if main_news.data %}
 					    {% for news in main_news.data.mainnews %}
-					        <p><span>{{news.posted_time}}</span> 
-					        <a href="/hockey/{{news.id}}.html" title="{{news.title}}" class="txt">{{news.title|safe}}</a> 
-					        (<a href="/hockey/{{news.id}}.html?comments=1#comments" title="Комментарии к новости">{{news.comment_count}}</a>)<span>|</span> 
-                            <a href="/hockey/" title="Хоккей">хоккей</a></p>
+					        {% include "news.html" %}
 					    {% endfor %}
 				{% else %}
 					<p>Ошибка</p>
@@ -1971,21 +1968,25 @@ function process_my_team_block() {
 					<p><a href="/news/" title="Новости">новости</a> <span>|</span> <a href="/others/" title="Прочие">прочие</a></p><a href="/news/others/?link=all" title="Все" class="arhive">все <img src="/i/all-arrow-green.gif" class="all-arrow"></a>
 				</div>
 				<div class="news">
-					<p><span>12:58</span> <a href="/others/rugby/106887455.html" title="Календарь и расписание матчей Кубка мира-2011" class="txt">Календарь и расписание матчей Кубка мира-2011</a> (<a href="/others/rugby/106887455.html?comments=1#comments" title="Комментарии к новости">165</a>) <span>|</span> <a href="/others/rugby/" title="Регби">регби</a></p>
-					<p><span>12:20</span> <a href="/others/figure-skating/126578064.html" title="Алексей Мишин: &#171;На Japan Open случился первый звездный час Туктамышевой&#187;" class="txt">Алексей Мишин: &#171;На Japan Open случился первый звездный час Туктамышевой&#187;</a> (<a href="/others/figure-skating/126578064.html?comments=1#comments" title="Комментарии к новости">1</a>) <span>|</span> <a href="/others/figure-skating/" title="Фигурное катание">фигурное катание</a></p>
-					<p><span>11:58</span> <a href="/others/amfootball/126443444.html" title="НФЛ. 4-я неделя. &#171;Детройт&#187; обыграл &#171;Даллас&#187;, &#171;Джайнтс&#187; были сильнее &#171;Аризоны&#187; и другие матчи" class="txt">НФЛ. 4-я неделя. &#171;Детройт&#187; обыграл &#171;Даллас&#187;, &#171;Джайнтс&#187; были сильнее &#171;Аризоны&#187; и другие матчи</a> (<a href="/others/amfootball/126443444.html?comments=1#comments" title="Комментарии к новости">2</a>) <span>|</span> <a href="/others/amfootball/" title="Американский футбол">американский футбол</a></p>
-					<p><span>11:40</span> <a href="/others/rugby/126571116.html" title="Алексей Попов: &#171;После героического выступления России нельзя забывать о регби&#187;" class="txt">Алексей Попов: &#171;После героического выступления России нельзя забывать о регби&#187;</a> (<a href="/others/rugby/126571116.html?comments=1#comments" title="Комментарии к новости">5</a>) <span>|</span> <a href="/others/rugby/" title="Регби">регби</a></p>
-					<p><span>11:19</span> <a href="/others/baseball/126419096.html" title="MLB. Плей-офф. Полуфиналы лиг. &#171;Янкис&#187; уступили &#171;Детройту&#187;, &#171;Аризона&#187; проиграла &#171;Милуоки&#187;, &#171;Филадельфия&#187; &ndash; &#171;Сент-Луису&#187;" class="txt">MLB. Плей-офф. Полуфиналы лиг. &#171;Янкис&#187; уступили &#171;Детройту&#187;, &#171;Аризона&#187; проиграла &#171;Милуоки&#187;, &#171;Филадельфия&#187; &ndash; &#171;Сент-Луису&#187;</a> (<a href="/others/baseball/126419096.html?comments=1#comments" title="Комментарии к новости">0</a>) <span>|</span> <a href="/others/baseball/" title="Бейсбол">бейсбол</a></p>
+					{% if other_news.data %}
+                        {% for news in other_news.data.news %}
+                            {% include 'news.html' %}
+                        {% endfor %}
+                    {% else %}
+                        <p>Ошибка</p>
+                    {% endif %}
 				</div>
 				<div class="title">
 					<p><a href="/news/" title="Новости">новости</a> <span>|</span> <a href="/style/" title="Стиль">стиль</a></p><a href="/news/style/?link=all" title="Все" class="arhive">все <img src="/i/all-arrow-green.gif" class="all-arrow"></a>
 				</div>
 				<div class="news">
-					<p><span>17:10</span> <a href="/tennis/126338461.html" title="Уотсон впервые попала на обложку журнала" class="photo"><img src="/i/ico/ico-news-photo.gif" width="25" height="9" alt="Уотсон впервые попала на обложку журнала" /></a> <a href="/tennis/126338461.html" title="Уотсон впервые попала на обложку журнала" class="txt">Уотсон впервые попала на обложку журнала</a> (<a href="/tennis/126338461.html?comments=1#comments" title="Комментарии к новости">6</a>)</p>
-					<p><span>13:20</span> <a href="/biathlon/126373971.html" title="Ландертингер, Пинтер и другие австрийские биатлонисты испекли хлеб на спонсорском мероприятии" class="photo"><img src="/i/ico/ico-news-photo.gif" width="25" height="9" alt="Ландертингер, Пинтер и другие австрийские биатлонисты испекли хлеб на спонсорском мероприятии" /></a> <a href="/biathlon/126373971.html" title="Ландертингер, Пинтер и другие австрийские биатлонисты испекли хлеб на спонсорском мероприятии" class="txt">Ландертингер, Пинтер и другие австрийские биатлонисты испекли хлеб на спонсорском мероприятии</a> (<a href="/biathlon/126373971.html?comments=1#comments" title="Комментарии к новости">1</a>)</p>
-					<p><span>12:30</span> <a href="/others/athletics/126365354.html" title="Лю Сян занялся политикой" class="txt">Лю Сян занялся политикой</a> (<a href="/others/athletics/126365354.html?comments=1#comments" title="Комментарии к новости">0</a>)</p>
-					<p><span>21:59</span> <a href="/biathlon/126248088.html" title="Симоне Хаусвальд: &#171;Моя беременность проходит отлично&#187;" class="txt">Симоне Хаусвальд: &#171;Моя беременность проходит отлично&#187;</a> (<a href="/biathlon/126248088.html?comments=1#comments" title="Комментарии к новости">5</a>)</p>
-					<p><span>19:48</span> <a href="/others/cycle-racing/126227871.html" title="Николай Трусов: &#171;Когда-то сидел за одной партой со Светланой Кузнецовой&#187;" class="txt">Николай Трусов: &#171;Когда-то сидел за одной партой со Светланой Кузнецовой&#187;</a> (<a href="/others/cycle-racing/126227871.html?comments=1#comments" title="Комментарии к новости">0</a>)</p>
+                    {% if style_news.data %}
+                        {% for news in style_news.data.news %}
+                            {% include 'news.html' %}
+                        {% endfor %}
+                    {% else %}
+                        <p> Ошибка </p>
+                    {% endif %}
 				</div>
 			<div class="partner-rss">
 				<div class="title">
