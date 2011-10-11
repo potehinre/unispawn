@@ -34,7 +34,7 @@ handle('GET',["favicon.ico"],Req) ->
 start_download() ->
     Urls=[{"news","http://www.sports.ru/stat/export/wapsports/news.json?category_id=238&count=1"},
           {"comments","http://www.sports.ru/stat/export/wapsports/news_comments.json?id=112146357&count=1"},
-	  {"blogs","http://www.sports.sru/stat/export/wapsports/blogs.json?category_id=23"},
+	      {"blogs","http://www.sports.sru/stat/export/wapsports/blogs.json?category_id=23"},
           {"conferences","http://www.sports.sru/stat/export/wapsports/conferences.json?category_id=23"}],
     {ok,Dict,DownloadErrors} = download(Urls),
     Results=collect(Dict)++DownloadErrors,

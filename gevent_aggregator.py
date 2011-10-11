@@ -1,9 +1,9 @@
 import gevent
 from gevent import monkey
 import random
-monkey.patch_all()
 import httplib2
 import time
+monkey.patch_all()
 
 def get_content(urlname,url):
     try:
