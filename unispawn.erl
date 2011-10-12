@@ -32,10 +32,19 @@ handle('GET',["favicon.ico"],Req) ->
     Req:respond(404,[{"Content-Type","text/html"}],["File favicon /",Path,"not found"]).
 
 start_download() ->
-    Urls=[{"news","http://www.sports.ru/stat/export/wapsports/news.json?category_id=238&count=1"},
-          {"comments","http://www.sports.ru/stat/export/wapsports/news_comments.json?id=112146357&count=1"},
-	      {"blogs","http://www.sports.sru/stat/export/wapsports/blogs.json?category_id=23"},
-          {"conferences","http://www.sports.sru/stat/export/wapsports/conferences.json?category_id=23"}],
+    Urls=[{"main_news","http://www.sports.ru/stat/export/wapsports/mainnews.json?count=7"},
+          {"football_news","http://www.sports.ru/stat/export/wapsports/news.json?category_id=208&count=5"},
+          {"hockey_news","http://www.sports.ru/stat/export/wapsports/news.json?category_id=209&count=5"},
+          {"basket_news","http://www.sports.ru/stat/export/wapsports/news.json?category_id=210&count=5"},
+          {"automoto_news","http://www.sports.ru/stat/export/wapsports/news.json?category_id=227&count=5"},
+          {"boxing_news","http://www.sports.ru/stat/export/wapsports/news.json?category_id=213&count=5"},
+          {"tennis_news","http://www.sports.ru/stat/export/wapsports/news.json?category_id=212&count=5"},
+          {"biathlon_news","http://www.sports.ru/stat/export/wapsports/news.json?category_id=225&count=5"},
+          {"other_news","http://www.sports.ru/stat/export/wapsports/news.json?category_id=256&count=5"},
+          {"style_news","http://www.sports.ru/stat/export/wapsports/news.json?category_id=111163733&count=5"},
+          {"blogs","http://www.sports.ru/stat/export/wapsports/blogs.json?count=13"},
+          {"conferences","http://www.sports.ru/stat/export/wapsports/conferences.json?count=5"},
+          {"materials","http://www.sports.ru/stat/export/wapsports/materials.json?count=4"}],
     {ok,Dict,DownloadErrors} = download(Urls),
     Results=collect(Dict)++DownloadErrors,
     Parsed=[parse_result(Result) || Result<-Results],
