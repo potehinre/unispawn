@@ -1,0 +1,1377 @@
+{% extends "base.html" %}
+{% block middle %}
+    <div class="middle">
+	<div class="title-page">	
+            <h1>спорт сегодня <span>главное</span></h1>
+                <div class="important">
+                    <p><a href="/tags/1363803.html" title="премьер-лига">премьер-лига</a>&nbsp;| <a href="/tags/1044514.html" title="Зенит">Зенит</a>&nbsp;| <a href="/tags/1044511.html" title="Спартак">Спартак</a>&nbsp;| <a href="/tags/1694490.html" title="Анжи">Анжи</a>&nbsp;| <a href="/tags/1685212.html" title="результаты">результаты</a>&nbsp;| <a href="/tags/1044513.html" title="Локомотив">Локомотив</a>&nbsp;| <a href="/tags/1685224.html" title="болельщики">болельщики</a>&nbsp;| <a href="/tags/4127922.html" title="Николас&nbsp;Пареха">Николас&nbsp;Пареха</a>&nbsp;| <a href="/tags/" title="все теги">все теги</a></p>
+                </div>
+            <br class="clear" />
+        </div>
+
+		
+    <div id="stat_teaser" class="teaser">
+        <style>
+        .teaser { margin-bottom:20px; width:100%; }
+        .teaser .teaser-block-left {margin:0px; padding:0px; margin-bottom: 15px; width: 432px; border-left: 2px solid #e1e1e1; }
+        .teaser .teaser-block-right {margin:0px; padding:0px; margin-bottom: 15px; width: 432px; border-left: 2px solid #e1e1e1; border-right: 2px solid #e1e1e1; }
+        .teaser .teaser-block-center {margin:0px; padding:0px; margin-bottom: 15px; width: 866px; border-left: 2px solid #e1e1e1; border-right: 2px solid #e1e1e1; }
+        .teaser .empty-teaser-block {border-left: 2px solid #ffffff; }
+        .teaser-table { border: 0px solid #e1e1e1; width:100%; color: #9b9b9b; overflow:hidden; position:relative;}
+        .teaser-table td { font:1.1em Tahoma; text-align:center; padding: 4px 5px; border-right:1px solid #E1E1E1;}
+        .teaser-table td.ltd{border-left:1px solid #E1E1E1;}
+        .teaser-table td.rtd{border-right:0px;}
+        .teaser-table .dl {width: 1px; padding: 4px 5px 0px 5px; }
+        .teaser-table td.hr{background-color: #e1e1e1; height: 1px; padding: 0px;}
+        .teaser-table td.tvhr{height: 0px; padding: 0px;}
+        .teaser-table td.lcol { text-align:left; padding-left:5px;}
+        .teaser-table td.lcol.tight { padding-left:5px; }
+        .teaser-table td.lcol.white { padding-left:11px; }
+        .teaser-table td.rcol { text-align:right; padding-right:5px;}
+        .teaser-table td.score { font-weight:bold; color:#0063b5; }
+        .teaser-table td.grey { color:#afafaf; }
+        .teaser-table td.total { font:1em Tahoma; color:#afafaf; text-align:right; padding-right:3px; border-left:0; border-bottom:0; }
+        .teaser-table span.flag { padding-left:21px; }
+        .teaser-table img.flag { padding:1px 5px 0 0; border:0; position:absolute; margin:0; width:16px; height:12px; }
+        .teaser-table td.rcol img.flag { padding:1px 0 0 5px; border:0; position:absolute; margin:0; width:16px; height:12px; }
+        .teaser-table span.broadcast { padding-left:16px; }
+        .teaser-table img.broadcast { padding:1px 5px 0px 0px; border:0; position:absolute; margin:0; width:11px; height:12px; }
+        .teaser-table img.crn.nl { padding-top:3px; padding-bottom:4px; }
+        .f-left {float: left}
+        .f-right {float: right}
+        
+        .star_teaser { margin-bottom:5px; overflow:hidden; padding:0; position:relative; }
+        .star_teaser .star_teaser{background-color: #fff; padding: 0px; margin: 0px; }
+        .star_teaser .cn { background:transparent url(http://www.sports.ru/stat/skin/images/star.png) repeat scroll 0%; height:10px; left:-5px; position:absolute; top:-5px; width:10px; #font-size:1px !important;}
+        .star_teaser .cn.tr { margin-left:100%; }
+        .star_teaser .cn.bl { top:auto; bottom:-5px; }
+        .star_teaser .cn.br { top:auto; bottom:-5px; margin-left:100%;}
+        .star_teaser .gcn { background:transparent url(http://www.sports.ru/stat/skin/images/star_gray.png) repeat scroll 0%; height:6px; left:-3px; position:absolute; top:-3px; width:6px; #font-size:1px !important;}
+        .star_teaser .gcn.tr { margin-left:100%; }
+        .star_teaser .gcn.bl { top:auto; bottom:-3px; }
+        .star_teaser .gcn.br { top:auto; bottom:-3px; margin-left:100%;}
+        
+        
+        .gray_teaser { background-color:#e1e1e1; width:100%;  }
+        .gray_teaser p { color:#000000; float:left; font-family:Tahoma; font-size:1.1em; padding:3px 10px; }
+        .gray_teaser p a { color:#000000; }
+        .gray_teaser span.rlink { float:right; font-family:Tahoma; font-size:1.1em; padding-right:10px; padding-top:3px; }
+        .gray_teaser span.rimage { float:right; font-family:Tahoma; font-size:1.1em; padding:0px; position: absolute; right:0px;}
+        .gray_teaser span.rtext { float:right; font-family:Tahoma; font-size:1.1em; padding-top:3px; position: absolute; right:33px; color: #999;}
+        
+        .border_teaser {position: relative; background-color: #a9a9a9; height: 2px; margin: 0px; padding: 0px; width: 100%; float: left; #font-size:1px !important;}
+        
+        .header_teaser { position:relative; padding: 0px 11px 5px 12px; font-family:Tahoma; font-size:1.1em;}
+        .header_teaser p.right_header { position:absolute; top:0px; right:11px; }
+        
+        .team-match-link {color: #9B9B9B;}
+        .team-match-link:hover {text-decoration: none;}
+        .team-match-link .team-tag {color: #0565B2;}
+        .team-match-link .team-tag:hover {color: #0565B2; text-decoration: underline;}
+        </style>
+        <div>
+            <div class="header_teaser">
+                <p>
+                    <a href="/stat/football/center/">матч-центр</a>
+                </p>
+                <p class="right_header">
+                <img id="teaser_loader" src="/stat/skin/images/arrows.gif" width="16" height="16" alt="Загрузка..." class="loader" align="absmiddle" style="display:none;"/>
+                <a href="" onclick="return Teaser.roll();">свернуть</a>
+                </p>
+            </div>
+            <div class="gray_teaser star_teaser">
+            <div class="cn tl"></div>
+            <div class="cn tr"></div>
+            <p>
+            <a href="http://www.sports.ru/tags/1685230.html">Футбол. ФНЛ</a>
+            </p>
+            <span class="rtext">
+                <a href="http://www.sports.ru/tags/1685230.html?type=table" title="таблица">таблица</a> |
+                                
+                <a href="http://www.sports.ru/tags/1685230.html?type=calendar" title="календарь">календарь</a> |
+                <a href="http://www.sports.ru/tags/1685230.html?type=stat" title="статистика">статистика</a>
+            </span>
+            <span class="rimage">
+                <div id="1685230_spanoff">
+                <a href="" onclick="return Teaser.switchOff(1685230, 1);"><img src="/stat/skin/images/teaser_minus.gif"></a>
+                </div>
+                <div id="1685230_spanon" style="display:none">
+                <a href="" onclick="return Teaser.switchOn(1685230, 1);"><img src="/stat/skin/images/teaser_plus.gif"></a>
+                </div>
+            </span>
+            <br class="clear">
+            <div class="teaser-block-left f-left star_teaser" id="1685230_teaser">
+            <table class="teaser-table" cellspacing="0" cellpadding="0">
+                <colgroup>
+                <col width="30" />
+                <col />
+                <col width="62" />
+                <col width="90" />
+                </colgroup>
+            <tr>
+                <td nowrap="nowrap">18:00</td>
+                <td class="lcol" nowrap="nowrap">
+                <nobr>
+                <a href="/stat/football/41/match/288461.html" class="team-match-link">
+                <img src="http://www.sports.ru/images/object_80.1206550372.png" class="flag" alt="Россия" title="Россия"><span class="flag"><span style="display:none;"> </span></span><span class="team-tag" >Черноморец</span>
+                &nbsp;&#8212;&nbsp;
+                <img src="http://www.sports.ru/images/object_80.1206550372.png" class="flag" alt="Россия" title="Россия"><span class="flag"><span style="display:none;"> </span></span><span class="team-tag" >КАМАЗ</span>
+                </a>
+                </nobr>
+                </td>
+                <td class="score" nowrap="nowrap">
+                <a id="match_teaser_288461" href="/stat/football/41/match/288461.html">
+                превью
+                </a>
+                </td>
+                <td class="rtd lcol">
+                <nobr><span id="match_status_288461">не начался</span></nobr>
+                </td>
+            </tr>
+            <tr><td colspan="7" class="hr" height="1"></td></tr>
+            <tr>
+                <td nowrap="nowrap">19:00</td>
+                <td class="lcol" nowrap="nowrap">
+                    <nobr>
+                        <a href="/stat/football/41/match/288462.html" class="team-match-link">
+                        <img src="http://www.sports.ru/images/object_80.1206550372.png" class="flag" alt="Россия" title="Россия"><span class="flag"><span style="display:none;"> </span></span><span class="team-tag" >ФК Химки</span>
+                        &nbsp;&#8212;&nbsp;
+                        <img src="http://www.sports.ru/images/object_80.1206550372.png" class="flag" alt="Россия" title="Россия"><span class="flag"><span style="display:none;"> </span></span><span class="team-tag" >Алания</span>
+                        </a>
+                    </nobr>
+                </td>
+                <td class="score" nowrap="nowrap">
+                    <a id="match_teaser_288462" href="/stat/football/41/match/288462.html">
+                    превью
+                    </a>
+                    </td>
+                <td class="rtd lcol">
+                    <nobr><span id="match_status_288462">не начался</span></nobr>
+                </td>
+            </tr>
+            </table>
+        </div>
+        <div class="teaser-block-right f-right star_teaser "  id="1685230_teaser_right">
+            <table class="teaser-table"  cellspacing="0" cellpadding="0">
+                <colgroup>
+                    <col width="30" />
+                    <col />
+                    <col width="62" />
+                    <col width="90" />
+                </colgroup>
+                <tr>
+                    <td nowrap="nowrap">18:30</td>
+                    <td class="lcol" nowrap="nowrap">
+                        <nobr>
+                            <a href="/stat/football/41/match/288458.html" class="team-match-link">
+                                <img src="http://www.sports.ru/images/object_80.1206550372.png" class="flag" alt="Россия" title="Россия"><span class="flag"><span style="display:none;"> </span></span><span class="team-tag" >Динамо Брянск</span>
+                                &nbsp;&#8212;&nbsp;
+                                <img src="http://www.sports.ru/images/object_80.1206550372.png" class="flag" alt="Россия" title="Россия"><span class="flag"><span style="display:none;"> </span></span><span class="team-tag" >Сибирь</span>
+                            </a>
+                        </nobr>
+                    </td>
+                    <td class="score" nowrap="nowrap">
+                        <a id="match_teaser_288458" href="/stat/football/41/match/288458.html">
+                        превью
+                        </a>
+                    </td>
+                    <td class="rtd lcol">
+                        <nobr><span id="match_status_288458">не начался</span></nobr>
+                    </td>
+                </tr>
+                <tr><td colspan="4" class="hr" height="2"></td></tr>
+                <tr>
+                    <td nowrap="nowrap">20:00</td>
+                    <td class="lcol" nowrap="nowrap">
+                        <nobr>
+                            <a href="/stat/football/41/match/288464.html" class="team-match-link">
+                                <img src="http://www.sports.ru/images/object_80.1206550372.png" class="flag" alt="Россия" title="Россия"><span class="flag"><span style="display:none;"> </span></span><span class="team-tag" >Балтика</span>
+                                &nbsp;&#8212;&nbsp;
+                                <img src="http://www.sports.ru/images/object_80.1206550372.png" class="flag" alt="Россия" title="Россия"><span class="flag"><span style="display:none;"> </span></span><span class="team-tag" >СКА-Энергия</span>
+                            </a>
+                        </nobr>
+                    </td>
+                    <td class="score" nowrap="nowrap">
+                        <a id="match_teaser_288464" href="/stat/football/41/match/288464.html">
+                        превью
+                        </a>
+                    </td>
+                    <td class="rtd lcol">
+                        <nobr><span id="match_status_288464">не начался</span></nobr>
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <div class="border_teaser"></div>
+        <div class="cn bl"></div>
+        <div class="cn br"></div>
+    </div>
+<div class="gray_teaser star_teaser">
+<div class="cn tl"></div>
+<div class="cn tr"></div>
+<p>
+<a href="http://www.sports.ru/tags/1364772.html">Футбол. Примера Испания</a>
+</p>
+<span class="rtext">
+<a href="http://www.sports.ru/tags/1364772.html?type=table" title="таблица">таблица</a> |
+		
+<a href="http://www.sports.ru/tags/1364772.html?type=calendar" title="календарь">календарь</a> |
+<a href="http://www.sports.ru/tags/1364772.html?type=stat" title="статистика">статистика</a>
+</span>
+<span class="rimage">
+<div id="1364772_spanoff">
+<a href="" onclick="return Teaser.switchOff(1364772, 1);"><img src="/stat/skin/images/teaser_minus.gif"></a>
+</div>
+<div id="1364772_spanon" style="display:none">
+<a href="" onclick="return Teaser.switchOn(1364772, 1);"><img src="/stat/skin/images/teaser_plus.gif"></a>
+</div>
+</span>
+<br class="clear">
+<div class="teaser-block-left f-left star_teaser" id="1364772_teaser">
+<table class="teaser-table" cellspacing="0" cellpadding="0">
+<colgroup>
+<col width="30" />
+<col />
+<col width="62" />
+<col width="90" />
+</colgroup>
+<tr>
+<td nowrap="nowrap">00:00</td>
+<td class="lcol" nowrap="nowrap">
+<nobr>
+<a href="/stat/football/49/match/383173.html" class="team-match-link">
+<img src="http://www.sports.ru/images/object_87.1206546589.png" class="flag" alt="Испания" title="Испания"><span class="flag"><span style="display:none;"> </span></span><span class="team-tag" >Эспаньол</span>
+&nbsp;&#8212;&nbsp;
+<img src="http://www.sports.ru/images/object_87.1206546589.png" class="flag" alt="Испания" title="Испания"><span class="flag"><span style="display:none;"> </span></span><span class="team-tag" >Реал Мадрид</span>
+</a>
+</nobr>
+</td>
+<td class="score" nowrap="nowrap">
+<a id="match_teaser_383173" href="/stat/football/49/match/383173.html">
+0 : 4
+</a>
+</td>
+<td class="rtd lcol">
+<nobr><img class="broadcast" src="/stat/skin/images/teaser-textonline.gif" width="11" height="12"><span class="broadcast"></span><span id="match_status_383173">завершен</span></nobr>
+</td>
+</tr>
+</table>
+</div>
+<div class="teaser-block-right f-right star_teaser empty-teaser-block"  id="1364772_teaser_right">
+<table class="teaser-table"  cellspacing="0" cellpadding="0">
+<colgroup>
+<col width="30" />
+<col />
+<col width="62" />
+<col width="90" />
+</colgroup>
+<tr><td class="rtd">&nbsp;</td></tr>
+</table>
+</div><div class="border_teaser"></div>
+<div class="cn bl"></div>
+<div class="cn br"></div>
+</div>
+<div class="gray_teaser star_teaser">
+<div class="cn tl"></div>
+<div class="cn tr"></div>
+<p>
+<a href="http://www.sports.ru/tags/1048214.html">Футбол. Высшая лига Португалия</a>
+</p>
+<span class="rtext">
+<a href="http://www.sports.ru/tags/1048214.html?type=table" title="таблица">таблица</a> |
+		
+<a href="http://www.sports.ru/tags/1048214.html?type=calendar" title="календарь">календарь</a> |
+<a href="http://www.sports.ru/tags/1048214.html?type=stat" title="статистика">статистика</a>
+</span>
+<span class="rimage">
+<div id="1048214_spanoff">
+<a href="" onclick="return Teaser.switchOff(1048214, 1);"><img src="/stat/skin/images/teaser_minus.gif"></a>
+</div>
+<div id="1048214_spanon" style="display:none">
+<a href="" onclick="return Teaser.switchOn(1048214, 1);"><img src="/stat/skin/images/teaser_plus.gif"></a>
+</div>
+</span>
+<br class="clear">
+<div class="teaser-block-left f-left star_teaser" id="1048214_teaser">
+<table class="teaser-table" cellspacing="0" cellpadding="0">
+<colgroup>
+<col width="30" />
+<col />
+<col width="62" />
+<col width="90" />
+</colgroup>
+<tr>
+<td nowrap="nowrap">23:15</td>
+<td class="lcol" nowrap="nowrap">
+<nobr>
+<a href="/stat/football/207/match/383715.html" class="team-match-link">
+<img src="http://www.sports.ru/images/object_91.1206550315.png" class="flag" alt="Португалия" title="Португалия"><span class="flag"><span style="display:none;"> </span></span><span class="team-tag" >Жил Висенте</span>
+&nbsp;&#8212;&nbsp;
+<img src="http://www.sports.ru/images/object_91.1206550315.png" class="flag" alt="Португалия" title="Португалия"><span class="flag"><span style="display:none;"> </span></span><span class="team-tag" >Бейра-Мар</span>
+</a>
+</nobr>
+</td>
+<td class="score" nowrap="nowrap">
+<a id="match_teaser_383715" href="/stat/football/207/match/383715.html">
+превью
+</a>
+</td>
+<td class="rtd lcol">
+<nobr><span id="match_status_383715">не начался</span></nobr>
+</td>
+</tr>
+</table>
+</div>
+<div class="teaser-block-right f-right star_teaser empty-teaser-block"  id="1048214_teaser_right">
+<table class="teaser-table"  cellspacing="0" cellpadding="0">
+<colgroup>
+<col width="30" />
+<col />
+<col width="62" />
+<col width="90" />
+</colgroup>
+<tr><td class="rtd">&nbsp;</td></tr>
+</table>
+</div><div class="border_teaser"></div>
+<div class="cn bl"></div>
+<div class="cn br"></div>
+</div>
+<div class="gray_teaser star_teaser">
+<div class="cn tl"></div>
+<div class="cn tr"></div>
+<p>
+<a href="http://www.sports.ru/tags/4084863.html">Хоккей. КХЛ</a>
+</p>
+<span class="rtext">
+<a href="http://www.sports.ru/tags/4084863.html?type=table" title="таблица">таблица</a> | 
+<a href="http://www.sports.ru/tags/4084863.html?type=calendar" title="календарь">календарь</a> |
+<a href="http://www.sports.ru/tags/4084863.html?type=stat" title="статистика">статистика</a>
+</span>
+<span class="rimage">
+<div id="4084863_spanoff">
+<a href="" onclick="return Teaser.switchOff(4084863, 1);"><img src="/stat/skin/images/teaser_minus.gif"></a>
+</div>
+<div id="4084863_spanon" style="display:none">
+<a href="" onclick="return Teaser.switchOn(4084863, 1);"><img src="/stat/skin/images/teaser_plus.gif"></a>
+</div>
+</span>
+<br class="clear">
+<div class="teaser-block-left f-left star_teaser" id="4084863_teaser">
+<table class="teaser-table" cellspacing="0" cellpadding="0">
+<colgroup>
+<col width="30" />
+<col />
+<col width="62" />
+<col width="90" />
+</colgroup>
+<tr>
+<td nowrap="nowrap">19:00</td>
+<td class="lcol" nowrap="nowrap">
+<nobr>
+<a href="/stat/hockey/107/match/385845.html" class="team-match-link">
+<img src="http://www.sports.ru/images/object_80.1206550372.png" class="flag" alt="Россия" title="Россия"><span class="flag"><span style="display:none;"> </span></span><span class="team-tag" >СКА</span>
+&nbsp;&#8212;&nbsp;
+<img src="http://www.sports.ru/images/object_97.1206548518.png" class="flag" alt="Латвия" title="Латвия"><span class="flag"><span style="display:none;"> </span></span><span class="team-tag" >Динамо Рига</span>
+</a>
+</nobr>
+</td>
+<td class="score" nowrap="nowrap">
+<a id="match_teaser_385845" href="/stat/hockey/107/match/385845.html">
+превью
+</a>
+</td>
+<td class="rtd lcol">
+<nobr><span id="match_status_385845">не начался</span></nobr>
+</td>
+</tr>
+</table>
+</div>
+<div class="teaser-block-right f-right star_teaser "  id="4084863_teaser_right">
+<table class="teaser-table"  cellspacing="0" cellpadding="0">
+<colgroup>
+<col width="30" />
+<col />
+<col width="62" />
+<col width="90" />
+</colgroup>
+<tr>
+<td nowrap="nowrap">19:30</td>
+<td class="lcol" nowrap="nowrap">
+<nobr>
+<a href="/stat/hockey/107/match/385835.html" class="team-match-link">
+<img src="http://www.sports.ru/images/object_80.1206550372.png" class="flag" alt="Россия" title="Россия"><span class="flag"><span style="display:none;"> </span></span><span class="team-tag" >ОХК Динамо</span>
+&nbsp;&#8212;&nbsp;
+<img src="http://www.sports.ru/images/object_80.1206550372.png" class="flag" alt="Россия" title="Россия"><span class="flag"><span style="display:none;"> </span></span><span class="team-tag" >Спартак</span>
+</a>
+</nobr>
+</td>
+<td class="score" nowrap="nowrap">
+<a id="match_teaser_385835" href="/stat/hockey/107/match/385835.html">
+превью
+</a>
+</td>
+<td class="rtd lcol">
+<nobr><img class="broadcast" src="/stat/skin/images/teaser-textonline.gif" width="11" height="12"><span class="broadcast"></span><span id="match_status_385835">не начался</span></nobr>
+</td>
+</tr>
+</table>
+</div><div class="border_teaser"></div>
+<div class="cn bl"></div>
+<div class="cn br"></div>
+</div>
+</div>
+</div>
+		<script type="text/javascript">var section = 0; var subsection = 0;</script>
+		<script src="/stat/skin/js/teaser-new.js?243"></script>
+
+    <div class="left">
+        			<div class="left">
+				<div class="title">
+					<p>главные новости</p>
+					<p class="lnk"><a href="/rss/topnews.xml" title="RSS"><img src="/i/ico/ico-feed-green.gif" width="13" height="13" alt="RSS" title="RSS" class="ico" /> RSS</a><span>|</span><a href="/topnews/?link=all" title="Все">все <img src="/i/all-arrow-green.gif" class="all-arrow"></a><br class="clear" /></p>
+				</div>
+				<div class="news">
+				{% if main_news.data %}
+					    {% for news in main_news.data.mainnews %}
+					        {% include "news.html" %}
+					    {% endfor %}
+				{% else %}
+					<p>Ошибка</p>
+				{% endif %}
+				</div>
+<!--
+<div class="banner">
+	<a href="http://www.yandex.ru/?add=12744" target="_blank">
+		<img src="/i/banners/news/yandex/index.gif" alt="Добавить виджет главных новостей на Яндекс" label="Добавить виджет главных новостей на Яндекс" />
+	</a>
+</div>
+
+<div class="banner">
+	<a href="http://twitter.com/sportsru_main" target="_blank" >
+		<img src="/i/banners/news/twitter/index.gif" alt="Добавить ленту главных новостей в Twitter" label="Добавить ленту главных новостей в Twitter" />
+	</a>
+</div>
+-->
+<div class="banner">
+	<a href="http://vkontakte.ru/sportsru" target="_blank" >
+		<img src="/i/banners/news/vkontakte/index.gif" alt="Добавить группу" label="Добавить группу" />
+	</a>
+</div>
+<div class="banner">
+<!--AdFox START-->
+<!--sports.ru-->
+<!--Площадка: sports.ru / Главная / 215x110 левая колонка-->
+<!--Категория: <не задана>-->
+<!--Тип баннера: 215x110js-->
+<script type="text/javascript">
+<!--
+if (typeof(pr) == 'undefined') { var pr = Math.floor(Math.random() * 1000000); }
+if (typeof(document.referrer) != 'undefined') {
+  if (typeof(afReferrer) == 'undefined') {
+    afReferrer = escape(document.referrer);
+  }
+} else {
+  afReferrer = '';
+}
+var addate = new Date(); 
+document.write('<scr' + 'ipt type="text/javascript" src="http://ads.adfox.ru/6902/prepareCode?p1=cers&amp;p2=ejgk&amp;pct=a&amp;pfc=a&amp;pfb=a&amp;pr=' + pr +'&amp;pt=b&amp;pd=' + addate.getDate() + '&amp;pw=' + addate.getDay() + '&amp;pv=' + addate.getHours() + '&amp;prr=' + afReferrer + '"><\/scr' + 'ipt>');
+// -->
+</script>
+<!--AdFox END-->
+</div>
+
+
+<script language="javascript">
+var cn_sid   = 'sid';
+// values
+Cookies.set_domain('.sports.ru');
+
+store_cookie_name.set('user', 'favteam_user');
+store_cookie_name.set('nouser', 'favteam0');
+var sid = Cookies.get( cn_sid );
+var rmsid = Cookies.get('rm_sid');
+if (sid) { store_cookie_type = 'user'; }
+
+var fav_team_id = Cookies.get( store_cookie_name.get(store_cookie_type) );
+
+document.observe("dom:loaded", function() {
+	if (fav_team_id === '0') { return; }
+
+	if (!fav_team_id && (store_cookie_type == 'user'))
+	{
+	// get settings from user profile
+
+		new Ajax.Request('/ajax/user/fav_team_news_getcfg.html', {
+			method: 'post',
+			onComplete: function(response) {
+				if (200 == response.status) {
+					var text = response.responseText || '{}';
+	
+					// TODO : process wrong format
+					var data = text.evalJSON();
+					tag_id = data.tag_id;
+
+					fav_team_id = tag_id;
+					Cookies.set( store_cookie_name.get(store_cookie_type), tag_id, 
+								 cookie_store_time.get(store_cookie_type) );
+				}
+
+				process_my_team_block();
+			}
+		});
+	}
+	else {
+		process_my_team_block();
+	}
+
+});
+
+function process_my_team_block() {
+	if (fav_team_id === '0') { return; }
+
+	if (fav_team_id) {
+	   getMyTeamNews(fav_team_id);
+	
+	   $('team_settings_block').hide();
+	   $('favTeamNews').show(); 
+	   return;
+	}
+
+	$('hide_favteam_block').show(); // show button
+
+	fetchTeamSettings();
+	$('favTeamNews').show();
+}
+</script>
+
+<div id="favTeamNews" class="fav_team" style="display:none;">
+	<div class="title">
+		<a name="partner_feeds"></a>
+		<p><div class="switch" onclick="toggleMyTeamCfg();" id="favTeamSwitch">новости моей команды</div></p>
+		<p class="lnk">
+		<a href="#" style="display:none;" id="favTeamSwitch2"
+					onclick="return toggleMyTeamCfg();" title="выбрать другую команду">изменить</a></p>
+
+		<p class="lnk" id="hide_favteam_block" style="display:none;" >
+		<a href="#" onclick="hideFavBlock(); return false;" title="закрыть блок" class="hidden">&times;</a>
+		</p>
+	</div>
+	
+	<div id="team_settings_block" class="team_settings">
+		<p class="info" id="helpText"></p>
+		<div id="team_config"></div>
+	</div>
+	
+	<div id="team_news" class="news" style="display:none;" ></div>
+</div>
+
+				<div class="title">
+					<p><a href="/news/" title="Новости">новости</a> <span>|</span> <a href="/football/" title="Футбол">футбол</a></p><a href="/news/football/?link=all" title="Все" class="arhive">все <img src="/i/all-arrow-green.gif" class="all-arrow"></a>
+				</div>
+				<div class="news">
+				{% if football_news.data %}
+					    {% for news in football_news.data.news %}
+                                                {% include 'news.html' %}
+					    {% endfor %}
+				{% else %}
+					<p>Ошибка</p>
+				{% endif %}
+				</div>
+				<div class="title">
+					<p><a href="/news/" title="Новости">новости</a> <span>|</span> <a href="/hockey/" title="Хоккей">хоккей</a></p><a href="/news/hockey/?link=all" title="Все" class="arhive">все <img src="/i/all-arrow-green.gif" class="all-arrow"></a>
+				</div>
+				<div class="news">
+				{% if hockey_news.data %}
+				    {% for news in hockey_news.data.news %}
+					    {% include 'news.html' %}
+				    {% endfor %}
+				{% else %}
+					<p>Ошибка</p>
+				{% endif %}
+				</div>
+				<div class="title">
+					<p><a href="/news/" title="Новости">новости</a> <span>|</span> <a href="/basketball/" title="Баскетбол">баскетбол</a></p><a href="/news/basketball/?link=all" title="Все" class="arhive">все <img src="/i/all-arrow-green.gif" class="all-arrow"></a>
+				</div>
+				<div class="news">
+				{% if basket_news.data %}
+				    {% for news in basket_news.data.news %}
+                                        {% include 'news.html' %}
+				    {% endfor %}
+				{% else %}
+					<p>Ошибка</p>
+				{% endif %}
+				</div>
+				<div class="title">
+					<p><a href="/news/" title="Новости">новости</a> <span>|</span> <a href="/automoto/" title="Авто/мото">авто/мото</a></p><a href="/news/automoto/?link=all" title="Все" class="arhive">все <img src="/i/all-arrow-green.gif" class="all-arrow"></a>
+				</div>
+				<div class="news">
+				{% if automoto_news.data %}
+				    {% for news in automoto_news.data.news %}
+                                        {% include 'news.html' %}
+				    {% endfor %}
+				{% else %}
+					<p>Ошибка</p>
+				{% endif %}
+				</div>
+				<div class="title">
+					<p><a href="/news/" title="Новости">новости</a> <span>|</span> <a href="/boxing/" title="Бокс/MMA">бокс/mma</a></p><a href="/news/boxing/?link=all" title="Все" class="arhive">все <img src="/i/all-arrow-green.gif" class="all-arrow"></a>
+				</div>
+				<div class="news">
+				{% if boxing_news.data %}
+				    {% for news in boxing_news.data.news %}
+                                        {% include 'news.html' %}
+				    {% endfor %}
+				{% else %}
+					<p>Ошибка</p>
+				{% endif %}
+				</div>
+				<div class="title">
+					<p><a href="/news/" title="Новости">новости</a> <span>|</span> <a href="/tennis/" title="Теннис">теннис</a></p><a href="/news/tennis/?link=all" title="Все" class="arhive">все <img src="/i/all-arrow-green.gif" class="all-arrow"></a>
+				</div>
+				<div class="news">
+				{% if tennis_news.data %}
+				    {% for news in tennis_news.data.news %}
+                                        {% include 'news.html' %}
+				    {% endfor %}
+				{% else %}
+					<p>Ошибка</p>
+				{% endif %}
+				</div>
+				<div class="title">
+					<p><a href="/news/" title="Новости">новости</a> <span>|</span> <a href="/biathlon/" title="Биатлон">биатлон</a></p><a href="/news/biathlon/?link=all" title="Все" class="arhive">все <img src="/i/all-arrow-green.gif" class="all-arrow"></a>
+				</div>
+				<div class="news">
+				{% if biathlon_news.data %}
+				    {% for news in biathlon_news.data.news %}
+                                        {% include 'news.html' %}
+				    {% endfor %}
+				{% else %}
+					<p>Ошибка</p>
+				{% endif %}
+				</div>
+				<div class="title">
+					<p><a href="/news/" title="Новости">новости</a> <span>|</span> <a href="/others/" title="Прочие">прочие</a></p><a href="/news/others/?link=all" title="Все" class="arhive">все <img src="/i/all-arrow-green.gif" class="all-arrow"></a>
+				</div>
+				<div class="news">
+				{% if other_news.data %}
+                                    {% for news in other_news.data.news %}
+                                        {% include 'news.html' %}
+                                    {% endfor %}
+                                {% else %}
+                                    <p>Ошибка</p>
+                                {% endif %}
+				</div>
+				<div class="title">
+					<p><a href="/news/" title="Новости">новости</a> <span>|</span> <a href="/style/" title="Стиль">стиль</a></p><a href="/news/style/?link=all" title="Все" class="arhive">все <img src="/i/all-arrow-green.gif" class="all-arrow"></a>
+				</div>
+				<div class="news">
+                                {% if style_news.data %}
+                                    {% for news in style_news.data.news %}
+                                        {% include 'news.html' %}
+                                    {% endfor %}
+                                {% else %}
+                                    <p> Ошибка </p>
+                                {% endif %}
+				</div>
+			<div class="partner-rss">
+				<div class="title">
+					<a name="partner_feeds"></a>
+					<p><div class="switch" onclick="toggleRSSPartnersBlock(this);">новости партнеров</div></p>
+				</div>
+				<div id="prss_settings" style="display:none;">
+					<form action="/ajax/user/store_partner_feeds.html" method="post">
+						<input type="hidden" name="back" value="/index.html" />
+						<div class="prss_settings">
+							<div class="row">
+								<input type="checkbox" class="chkbox" name="feed_id" value="10297668" id="feed_10297668" /><label for="feed_10297668">fc-arsenal.com</label>
+								<br class="clear" />
+							</div>
+							<div class="row">
+								<input type="checkbox" class="chkbox" name="feed_id" value="70842876" id="feed_70842876" /><label for="feed_70842876">merengues.ru</label>
+								<br class="clear" />
+							</div>
+							<div class="row">
+								<input type="checkbox" class="chkbox" name="feed_id" value="7955834" id="feed_7955834" /><label for="feed_7955834">realmadrid.ru</label>
+								<br class="clear" />
+							</div>
+							<div class="row">
+								<input type="checkbox" class="chkbox" name="feed_id" value="7955913" id="feed_7955913" /><label for="feed_7955913">liverpoolfc.ru</label>
+								<br class="clear" />
+							</div>
+							<div class="row">
+								<input type="checkbox" class="chkbox" name="feed_id" value="8306069" id="feed_8306069" /><label for="feed_8306069">barcamania.com</label>
+								<br class="clear" />
+							</div>
+							<div class="row">
+								<input type="checkbox" class="chkbox" name="feed_id" value="7955995" id="feed_7955995" /><label for="feed_7955995">fcdin.com</label>
+								<br class="clear" />
+							</div>
+							<div class="row">
+								<input type="checkbox" class="chkbox" name="feed_id" value="8670966" id="feed_8670966" /><label for="feed_8670966">as-roma.ru</label>
+								<br class="clear" />
+							</div>
+							<div class="row">
+								<input type="checkbox" class="chkbox" name="feed_id" value="12086836" id="feed_12086836" /><label for="feed_12086836">forzajuve.ru</label>
+								<br class="clear" />
+							</div>
+							<div class="row">
+								<input type="checkbox" class="chkbox" name="feed_id" value="22809714" id="feed_22809714" /><label for="feed_22809714">barcelona-fc.ru</label>
+								<br class="clear" />
+							</div>
+							<div class="row">
+								<input type="checkbox" class="chkbox" name="feed_id" value="55914701" id="feed_55914701" /><label for="feed_55914701">intermilano.ru</label>
+								<br class="clear" />
+							</div>
+							<div class="row">
+								<input type="checkbox" class="chkbox" name="feed_id" value="69882339" id="feed_69882339" /><label for="feed_69882339">acmilan.su</label>
+								<br class="clear" />
+							</div>
+							<div class="row">
+								<input type="checkbox" class="chkbox" name="feed_id" value="58109885" id="feed_58109885" /><label for="feed_58109885">dynamo.kiev.ua</label>
+								<br class="clear" />
+							</div>
+							<div class="row">
+								<input type="checkbox" class="chkbox" name="feed_id" value="70358697" id="feed_70358697" /><label for="feed_70358697">real-madrid.ru </label>
+								<br class="clear" />
+							</div>
+							<div class="row">
+								<input type="checkbox" class="chkbox" name="feed_id" value="70426938" id="feed_70426938" /><label for="feed_70426938">fckuban.ru</label>
+								<br class="clear" />
+							</div>
+							<div class="row">
+								<input type="checkbox" class="chkbox" name="feed_id" value="71331554" id="feed_71331554" /><label for="feed_71331554">online.amkar.ru</label>
+								<br class="clear" />
+							</div>
+							<div class="row">
+								<input type="checkbox" class="chkbox" name="feed_id" value="74249769" id="feed_74249769" /><label for="feed_74249769">redevils.ru</label>
+								<br class="clear" />
+							</div>
+							<div class="row">
+								<input type="checkbox" class="chkbox" name="feed_id" value="102291454" id="feed_102291454" /><label for="feed_102291454">www.fckrasnodar.ru</label>
+								<br class="clear" />
+							</div>
+						</div>
+						<div class="button"><input type="submit" value="сохранить изменения"></div>
+					</form>
+				</div>
+				<div id="prss_news" class="news">
+					<p class="date">3 октября <span>|</span> понедельник</p>
+					<p><span>13:07</span> <a href="http://redevils.ru/7643-skoulz-ne-opredelilsya-s-buduschim.html" title="Скоулз: Не определился с будущим" class="photo" target="_blank"><img src="/i/ico/ico-news-rss.gif" width="9" height="9" alt="Скоулз: Не определился с будущим" /></a> <a href="http://redevils.ru/7643-skoulz-ne-opredelilsya-s-buduschim.html" title="Скоулз: Не определился с будущим" class="txt" target="_blank">Скоулз: Не определился с будущим</a> <span>|</span> <a href="http://redevils.ru/news/rss.xml" title="redevils.ru" target="_blank">redevils.ru</a></p>
+					<p><span>12:26</span> <a href="http://www.barcamania.com/news/9107.html" title="Абидаль: 7-10 дней на больничном" class="photo" target="_blank"><img src="/i/ico/ico-news-rss.gif" width="9" height="9" alt="Абидаль: 7-10 дней на больничном" /></a> <a href="http://www.barcamania.com/news/9107.html" title="Абидаль: 7-10 дней на больничном" class="txt" target="_blank">Абидаль: 7-10 дней на больничном</a> <span>|</span> <a href="http://www.barcamania.com/rss/" title="barcamania.com" target="_blank">barcamania.com</a></p>
+					<p><span>11:57</span> <a href="http://fc-amkar.org/news/?id=26971" title="Амкаровцы в сборных" class="photo" target="_blank"><img src="/i/ico/ico-news-rss.gif" width="9" height="9" alt="Амкаровцы в сборных" /></a> <a href="http://fc-amkar.org/news/?id=26971" title="Амкаровцы в сборных" class="txt" target="_blank">Амкаровцы в сборных</a> <span>|</span> <a href="http://www.amkar.org/rss.php" title="online.amkar.ru" target="_blank">online.amkar.ru</a></p>
+					<p><span>11:18</span> <a href="http://intermilano.ru/news/primavera/20869-stramachioni-pobeda-bez-rascheta.html" title="Примавера: Интер побеждает Асколи" class="photo" target="_blank"><img src="/i/ico/ico-news-rss.gif" width="9" height="9" alt="Примавера: Интер побеждает Асколи" /></a> <a href="http://intermilano.ru/news/primavera/20869-stramachioni-pobeda-bez-rascheta.html" title="Примавера: Интер побеждает Асколи" class="txt" target="_blank">Примавера: Интер побеждает Асколи</a> <span>|</span> <a href="http://intermilano.ru" title="intermilano.ru" target="_blank">intermilano.ru</a></p>
+					<p><span>11:07</span> <a href="http://www.merengues.ru/main/3447-maurisio-pochettino-ya-razocharovan.html" title="Маурисио Почеттино: &quot;Я разочарован&quot;" class="photo" target="_blank"><img src="/i/ico/ico-news-rss.gif" width="9" height="9" alt="Маурисио Почеттино: &quot;Я разочарован&quot;" /></a> <a href="http://www.merengues.ru/main/3447-maurisio-pochettino-ya-razocharovan.html" title="Маурисио Почеттино: &quot;Я разочарован&quot;" class="txt" target="_blank">Маурисио Почеттино: &quot;Я разочарован&quot;</a> <span>|</span> <a href="http://merengues.ru/rss.xml" title="merengues.ru" target="_blank">merengues.ru</a></p>
+					<p>Остальные новости партнеров читайте в <a href="/my/news/">ленте ваших новостей</a></p>
+
+				</div>
+			</div>
+
+			</div>
+
+        
+				<div class="center">
+                {% for material in materials.data.materials %}
+                    {% include "material.html" %}
+                {% endfor %}
+<div class="banner">
+<!--AdFox START-->
+<!--sports.ru-->
+<!--Площадка: sports.ru / Главная / 395х180-->
+<!--Категория: <не задана>-->
+<!--Баннер: #417443-->
+<!--Тип баннера: 395x180js-->
+<script type="text/javascript">
+<!--
+if (typeof(pr) == 'undefined') { var pr = Math.floor(Math.random() * 1000000); }
+if (typeof(document.referrer) != 'undefined') {
+  if (typeof(afReferrer) == 'undefined') {
+    afReferrer = escape(document.referrer);
+  }
+} else {
+  afReferrer = '';
+}
+var addate = new Date(); 
+document.write('<scr' + 'ipt type="text/javascript" src="http://ads.adfox.ru/6902/prepareCode?p1=cfem&amp;p2=ejhr&amp;pct=a&amp;pfc=jbpe&amp;pfb=xtnn&amp;pr=' + pr +'&amp;pt=b&amp;pd=' + addate.getDate() + '&amp;pw=' + addate.getDay() + '&amp;pv=' + addate.getHours() + '&amp;prr=' + afReferrer + '"><\/scr' + 'ipt>');
+// -->
+</script>
+<!--AdFox END-->
+<img src="/i/alcohol-warning.jpg" />
+</div>
+
+	<div class="public">
+		<div class="date"><span style="padding-left:5px;float: right;">
+		<a id="addFavorite" onClick="return InOutFavorite( this, 126530627, 'Sports::Message', '2011-10-03 11:15:00' )" target="_blank"><img src="/i/ico/ico-fav-star-empty.png" alt="в избранное" lable="добавить/удалить избранное" /></a>
+</span>
+3 октября 11:15		</div>
+	<div class="text">
+		<a href="/tribuna/blogs/khryaeva/240985.html" title="">			<img src="/images/object_4.1317625987.46849.jpg" alt="НХЛ, Айлендерс, Евгений Набоков" width="110" height="110" class="flo-right" />
+		</a>
+		<h2><a href="/tribuna/blogs/khryaeva/240985.html" title="Евгений Набоков: &#171;Прошлый сезон получился кувырком, но жизнь продолжается&#187;">Евгений Набоков: &#171;Прошлый сезон получился кувырком, но жизнь продолжается&#187;</a></h2>
+		<p>После тренировки голкипер &#171;Нью-Йорк Айлендерс&#187; и сборной России Евгений Набоков ответил на некоторые вопросы, а на некоторые отвечать отказался. Главное, что можно вынести из общения с Евгением, &#8211; он полон сил и энтузиазма, чтобы доказать всем нам, что его рано списывать со счетов. И еще, знайте, &#8211; двое детей отнимают кучу времени. Во всяком случае, так говорит Набоков в интервью автору блога &#171;Turn on the bright lights&#187; Ирине Хряевой.</p>
+	</div>
+					<div class="themes">
+						<p>комментарии: <a href="/tribuna/blogs/khryaeva/240985.html?comments=1#comments">7</a>		<p>теги: 		<a href="/tags/1046611.html">Айлендерс</a> | 
+		<a href="/tags/1365701.html">Евгений Набоков</a>
+	</p>
+
+
+						</p>
+					</div>
+
+
+
+				</div>
+<div class="public">
+	<div id="redactors-choice">
+		<div id="posts" class="tabs twoTabs">
+			<ul id="posts-menu">
+				<li class="ttl dark-grey active">
+					<div class="inner">
+						<p><a onclick="toggleBSIndex('posts', 'choice', this); return false;" href="#">выбор пользователей</a></p>
+						<p class="lnk"><a title="все" href="/tribuna/">все <img class="all-arrow" src="/i/all-arrow-blue.gif"></a><br class="clear"></p>
+					</div>
+				</li>
+			
+				<li class="ttl dark-grey last">
+					<div class="inner">
+						<p><a onclick="toggleBSIndex('posts', 'new', this); return false;" href="#">новые записи в блогах</a></p>
+						<p class="lnk"><a title="все" href="/tribuna/new.html">все <img class="all-arrow" src="/i/all-arrow-blue.gif"></a><br class="clear"></p>
+					</div>
+				</li>
+				<br class="clear" />
+			</ul>
+		<div id="posts-choice">
+			<table cellspacing="0">
+				<tr>
+					<td class="time stroke" align="center" valign="top">
+						03:29
+					</td>
+					<td class="stroke">
+						<strong><a href="/tribuna/blogs/ronaldo7/240976.html">10 машин Криштиану Роналду</a></strong> (44)<br />
+						в блоге <a href="/tribuna/blogs/ronaldo7/">Криштиану Роналду</a>
+					</td>
+				</tr>
+				<tr>
+					<td class="time stroke" align="center" valign="top">
+						02:06
+					</td>
+					<td class="stroke">
+						<strong><a href="/tribuna/blogs/televizor3/240966.html">Красивый гол Гонсало Игуаина!</a></strong> (11)<br />
+						в блоге <a href="/tribuna/blogs/televizor3/">Телевизор 3.0</a>
+					</td>
+				</tr>
+				<tr>
+					<td class="time stroke" align="center" valign="top">
+						01:41
+					</td>
+					<td class="stroke">
+						<strong><a href="/tribuna/blogs/spartakblog/240963.html">Вредители</a></strong> (36)<br />
+						в блоге <a href="/tribuna/blogs/spartakblog/">Блог болельщиков Спартака</a>
+					</td>
+				</tr>
+				<tr>
+					<td class="time stroke" align="center" valign="top">
+						01:21
+					</td>
+					<td class="stroke">
+						<strong><a href="/tribuna/blogs/televizor3/240960.html">Street work in Glasgow</a></strong> (12)<br />
+						в блоге <a href="/tribuna/blogs/televizor3/">Телевизор 3.0</a>
+					</td>
+				</tr>
+				<tr>
+					<td class="time stroke" align="center" valign="top">
+						01:20
+					</td>
+					<td class="stroke">
+						<strong><a href="/tribuna/blogs/televizor3/240959.html">Дубль Маркизио в ворота Милана!</a></strong> (12)<br />
+						в блоге <a href="/tribuna/blogs/televizor3/">Телевизор 3.0</a>
+					</td>
+				</tr>
+				<tr>
+					<td class="time stroke" align="center" valign="top">
+						01:09
+					</td>
+					<td class="stroke">
+						<strong><a href="/tribuna/blogs/dud/240954.html">Шапкозакидательство</a></strong> (45)<br />
+						в блоге <a href="/tribuna/blogs/dud/">Заводной апельсин</a>
+					</td>
+				</tr>
+				<tr>
+					<td class="time stroke" align="center" valign="top">
+						2 октября<br />
+					</td>
+					<td class="stroke">
+						<strong><a href="/tribuna/blogs/mama4h/240927.html">Перфоманс болельщиков Спартака</a></strong> (39)<br />
+						в блоге <a href="/tribuna/blogs/mama4h/">Вы это видели?</a>
+					</td>
+				</tr>
+				<tr>
+					<td class="time stroke" align="center" valign="top">
+						2 октября<br />
+					</td>
+					<td class="stroke">
+						<strong><a href="/tribuna/blogs/televizor3/240885.html">Сумасшедший гол Уолкера в ворота &#171;Арсенала&#187;</a></strong> (24)<br />
+						в блоге <a href="/tribuna/blogs/televizor3/">Телевизор 3.0</a>
+					</td>
+				</tr>
+				<tr>
+					<td class="time stroke" align="center" valign="top">
+						2 октября<br />
+					</td>
+					<td class="stroke">
+						<strong><a href="/tribuna/blogs/icetv/240883.html">Хрюша, болеющий за &#171;Спартак&#187;</a></strong> (10)<br />
+						в блоге <a href="/tribuna/blogs/icetv/">Айс-ТВ</a>
+					</td>
+				</tr>
+				<tr>
+					<td class="time" align="center" valign="top">
+						2 октября<br />
+					</td>
+					<td>
+						<strong><a href="/tribuna/blogs/televizor3/240881.html">7 лучших голов уик-энда</a></strong> (20)<br />
+						в блоге <a href="/tribuna/blogs/televizor3/">Телевизор 3.0</a>
+					</td>
+				</tr>
+			</table>
+		</div>
+
+		<div id="posts-new" class="hidden">
+			<table cellspacing="0">
+				<tr>
+					<td class="time stroke" align="center" valign="top">
+						13:14
+					</td>
+					<td class="stroke">
+						<strong><a href="/tribuna/blogs/glebis/241060.html">Габулов: качество поля не позволило показать более качественный футбол</a></strong> (0)<br />
+						в блоге <a href="/tribuna/blogs/glebis/">ЦСКА - Онлайн</a>
+					</td>
+				</tr>
+				<tr>
+					<td class="time stroke" align="center" valign="top">
+						13:13
+					</td>
+					<td class="stroke">
+						<strong><a href="/tribuna/blogs/glebis/241059.html">Игнашевич: А о проблеме в команде вам кто рассказал? Ловчев или Бубнов?</a></strong> (0)<br />
+						в блоге <a href="/tribuna/blogs/glebis/">ЦСКА - Онлайн</a>
+					</td>
+				</tr>
+				<tr>
+					<td class="time stroke" align="center" valign="top">
+						13:13
+					</td>
+					<td class="stroke">
+						<strong><a href="/tribuna/blogs/footman90/241058.html">Неманья Видич - 15</a></strong> (0)<br />
+						в блоге <a href="/tribuna/blogs/footman90/">Про футболистов МЮ</a>
+					</td>
+				</tr>
+				<tr>
+					<td class="time stroke" align="center" valign="top">
+						13:09
+					</td>
+					<td class="stroke">
+						<strong><a href="/tribuna/blogs/bawariya/241057.html">Баварцы празднуют пребывание на первой строчке. Фотопост</a></strong> (0)<br />
+						в блоге <a href="/tribuna/blogs/bawariya/">Бавария</a>
+					</td>
+				</tr>
+				<tr>
+					<td class="time stroke" align="center" valign="top">
+						13:08
+					</td>
+					<td class="stroke">
+						<strong><a href="/tribuna/blogs/totalfootforecast/241056.html">Итоги 1/32 Кубка Первенства &#8470;3</a></strong> (0)<br />
+						в блоге <a href="/tribuna/blogs/totalfootforecast/">Футбольные прогнозы</a>
+					</td>
+				</tr>
+				<tr>
+					<td class="time stroke" align="center" valign="top">
+						13:03
+					</td>
+					<td class="stroke">
+						<strong><a href="/tribuna/blogs/sportcalculator/241055.html">Мидтьюлланд - Хорсенс, онлайн, превью, прогноз</a></strong> (0)<br />
+						в блоге <a href="/tribuna/blogs/sportcalculator/">Спортивный калькулятор</a>
+					</td>
+				</tr>
+				<tr>
+					<td class="time stroke" align="center" valign="top">
+						12:58
+					</td>
+					<td class="stroke">
+						<strong><a href="/tribuna/blogs/f1history/241054.html">Intro</a></strong> (0)<br />
+						в блоге <a href="/tribuna/blogs/f1history/">История Формулы-1</a>
+					</td>
+				</tr>
+				<tr>
+					<td class="time stroke" align="center" valign="top">
+						12:52
+					</td>
+					<td class="stroke">
+						<strong><a href="/tribuna/blogs/parallel/241053.html">Результаты за Пекин!</a></strong> (0)<br />
+						в блоге <a href="/tribuna/blogs/parallel/">Теннис большой - это хорошо</a>
+					</td>
+				</tr>
+				<tr>
+					<td class="time stroke" align="center" valign="top">
+						12:50
+					</td>
+					<td class="stroke">
+						<strong><a href="/tribuna/blogs/dima87/241052.html">Понедельник</a></strong> (0)<br />
+						в блоге <a href="/tribuna/blogs/dima87/">Заводной мандаринчик</a>
+					</td>
+				</tr>
+				<tr>
+					<td class="time" align="center" valign="top">
+						12:49
+					</td>
+					<td>
+						<strong><a href="/tribuna/blogs/russianteam/241051.html">Смена</a></strong> (0)<br />
+						в блоге <a href="/tribuna/blogs/russianteam/">Надежды нации</a>
+					</td>
+				</tr>
+			</table>
+		</div>
+
+		</div>
+	</div>
+</div>
+
+<div class="title">
+	<p><a href="/photogallery/">фотогалереи</a></p>
+	<p class="lnk"><a href="/photogallery/">все <img src="/i/all-arrow-green.gif" class="all-arrow"></a></p>
+</div>
+<div class="photo-journal">
+	<div class="photo-journal2">
+		<h2><a href="/photogallery/126451547.html">Евротур. Лучшие кадры воскресенья</a></h2>
+		<p id="photojournal">
+			<a href="/photogallery/126451547.html?photo_id=126452306" title=""><img src="/images/object_26.1317577642.jpg" alt="Челси, Фрэнк Лэмпард, Болтон, премьер-лига Англия" title="" width="70" height="70" /></a>
+			<a href="/photogallery/126451547.html?photo_id=126452355" title=""><img src="/images/object_57.1317577736.jpg" alt="Челси, Фрэнк Лэмпард, Болтон, премьер-лига Англия" title="" width="70" height="70" /></a>
+			<a href="/photogallery/126451547.html?photo_id=126452397" title=""><img src="/images/object_5.1317577811.jpg" alt="Челси, Болтон, премьер-лига Англия, Дэниэл Старридж" title="" width="70" height="70" /></a>
+			<a href="/photogallery/126451547.html?photo_id=126453099" title="" class="last"><img src="/images/object_24.1317577922.jpg" alt="Рафаэл ван дер Варт, премьер-лига Англия, Арсенал, Тоттенхэм" title="" width="70" height="70" /></a>
+			<a href="/photogallery/126451547.html?photo_id=126453147" title=""><img src="/images/object_96.1317578019.jpg" alt="Микель Артета, премьер-лига Англия, Арсенал, Тоттенхэм, Лука Модрич" title="" width="70" height="70" /></a>
+			<a href="/photogallery/126451547.html?photo_id=126453190" title=""><img src="/images/object_62.1317578126.jpg" alt="Бакари Санья, Харри Реднапп, премьер-лига Англия, Тоттенхэм" title="" width="70" height="70" /></a>
+			<a href="/photogallery/126451547.html?photo_id=126453917" title=""><img src="/images/object_97.1317578299.jpg" alt="Эммануэль Адебайор, премьер-лига Англия, Арсенал, Тоттенхэм" title="" width="70" height="70" /></a>
+			<a href="/photogallery/126451547.html?photo_id=126454702" title="" class="last"><img src="/images/object_42.1317578518.jpg" alt="Бетис, примера Испания" title="" width="70" height="70" /></a>
+		</p>
+	</div>
+</div>
+
+	<div class="public">
+		<div class="date"><span style="padding-left:5px;float: right;">
+		<a id="addFavorite" onClick="return InOutFavorite( this, 126563641, 'Sports::Article', '2011-10-03 11:05:00' )" target="_blank"><img src="/i/ico/ico-fav-star-empty.png" alt="в избранное" lable="добавить/удалить избранное" /></a>
+</span>
+3 октября 11:05		</div>
+	<div class="text">
+		<a href="/football/126563641.html" title="">			<img src="/images/object_11.1317625714.28858.jpg" alt="премьер-лига Англия, Арсенал, Тоттенхэм" width="110" height="110" class="flo-right" />
+		</a>
+		<h2><a href="/football/126563641.html" title="Перемена мест">Перемена мест</a></h2>
+		<p>В очередном дерби &#171;Тоттенхэм&#187; с &#171;Арсеналом&#187; сыграли открытый матч, создали с десяток голевых моментов, впутали рефери в небольшой скандал и как минимум на месяц-другой изменили закостенелый миропорядок на севере английской столицы. Очередная победа удовлетворила притязания &#171;шпор&#187; на звание первых парней на районе. Очередное поражение болезненно подчеркнуло нынешний середняцкий статус &#171;Арсенала&#187;.</p>
+	</div>
+					<div class="themes">
+						<p>комментарии: <a href="/football/126563641.html?comments=1#comments">5</a>		<p>теги: 		<a href="/tags/1685202.html">Арсенал</a> | 
+		<a href="/tags/2682611.html">Тоттенхэм</a>
+	</p>
+
+
+						</p>
+					</div>
+
+
+
+				</div>
+	<div class="public">
+		<div class="date"><span style="padding-left:5px;float: right;">
+		<a id="addFavorite" onClick="return InOutFavorite( this, 126479110, 'Sports::Article', '2011-10-03 01:30:00' )" target="_blank"><img src="/i/ico/ico-fav-star-empty.png" alt="в избранное" lable="добавить/удалить избранное" /></a>
+</span>
+3 октября 01:30		</div>
+	<div class="text">
+		<a href="/football/126479110.html" title="">			<img src="/images/object_86.1317589886.95109.jpg" alt="премьер-лига, Спартак, Зенит" width="110" height="110" class="flo-right" />
+		</a>
+		<h2><a href="/football/126479110.html" title="Пареха на человечестве">Пареха на человечестве</a></h2>
+		<p>В матче с &#171;Зенитом&#187; &#171;Спартак&#187; провел целый тайм вдесятером и даже не проиграл. ОМОН готовился к беспорядкам, врачи &#171;Зенита&#187; бегали больше Вячеслава Малафеева, а Николас Пареха со злости швырял напульсник на землю. Репортаж Sports.ru из &#171;Лужников&#187;. </p>
+	</div>
+					<div class="themes">
+						<p>комментарии: <a href="/football/126479110.html?comments=1#comments">30</a>		<p>теги: 		<a href="/tags/1044511.html">Спартак</a> | 
+		<a href="/tags/1044514.html">Зенит</a>
+	</p>
+
+
+						</p>
+					</div>
+
+
+
+				</div>
+	<div class="public">
+		<div class="date"><span style="padding-left:5px;float: right;">
+		<a id="addFavorite" onClick="return InOutFavorite( this, 126430488, 'Sports::Article', '2011-10-03 00:41:00' )" target="_blank"><img src="/i/ico/ico-fav-star-empty.png" alt="в избранное" lable="добавить/удалить избранное" /></a>
+</span>
+3 октября 00:41		</div>
+	<div class="text">
+		<a href="/hockey/126430488.html" title="">			<img src="/images/object_1.1317576081.41305.jpg" alt="Ак Барс, Авангард, Салават Юлаев, Металлург Мг, Сибирь, ЦСКА, Нефтехимик, Витязь, Металлург Нк, Трактор, Амур, Автомобилист, Торпедо, Динамо Минск, Барыс, Атлант, Югра, Лев Попрад, результаты, КХЛ" width="110" height="110" class="flo-right" />
+		</a>
+		<h2><a href="/hockey/126430488.html" title="КХЛ. Главное. 1-2 октября">КХЛ. Главное. 1-2 октября</a></h2>
+		<p>Хоккейные выходные порадовали болельщиков не только отличными матчами, но и весьма неожиданными результатами. &#171;Ак Барс&#187; и &#171;Салават&#187; теряют очки в домашних встречах, Артемий Панарин прерывает безголевую серию чеховской команды, а Майкл Гарнетт становится единственным голкипером, оставившим ворота &#171;сухими&#187; &#8211; Sports.ru представляет обзор двух последних игровых дней чемпионата КХЛ.</p>
+	</div>
+					<div class="themes">
+						<p>комментарии: <a href="/hockey/126430488.html?comments=1#comments">4</a>		<p>теги: 		<a href="/tags/1046593.html">результаты</a> | 
+		<a href="/tags/4084863.html">КХЛ</a>
+	</p>
+
+
+						</p>
+					</div>
+
+
+
+				</div>
+				<div class="yellow">
+					<div class="title">дайджест слухов</div>
+					<div class="content">
+						<div class="photo">
+							<a href="/football/125992911.html" title=""><img src="/images/object_79.1317384034.5981.jpg" alt="" /></a>
+						</div>
+						<div class="text">
+							<a href="/football/125992911.html" title="">Павлюченко в  дортмундской &#171;Боруссии&#187;, ультиматум Семшова, финансовые аппетиты Самедова, Марио Гомес в обмен на Тевеса, воссоединение Марина с Мертезакером в &#171;Арсенале&#187;, Паццини на &#171;Сантьяго Бернабеу&#187; и другие слухи пятницы</a> (<a href="/football/125992911.html?comments=1#comments" title="Комментарии к слуху">21</a>)
+						</div>
+						<br class="clear" />
+					</div>
+				</div>
+
+	<div class="public">
+		<div class="date"><span style="padding-left:5px;float: right;">
+		<a id="addFavorite" onClick="return InOutFavorite( this, 126473690, 'Sports::Article', '2011-10-03 00:23:00' )" target="_blank"><img src="/i/ico/ico-fav-star-empty.png" alt="в избранное" lable="добавить/удалить избранное" /></a>
+</span>
+3 октября 00:23		</div>
+	<div class="text">
+		<a href="/football/126473690.html" title="">			<img src="/images/object_48.1317586978.85487.jpg" alt="Бавария, Вердер, Боруссия Дортмунд, Нюрнберг, Боруссия Менхенгладбах, Майнц-05, Мануэль Нойер, Эрен Дердийок, бундеслига Германия, Роберт Левандовски" width="110" height="110" class="flo-right" />
+		</a>
+		<h2><a href="/football/126473690.html" title="Верхи не могут">Верхи не могут</a></h2>
+		<p>&#171;Бавария&#187;, &#171;Вердер&#187; и гладбахская &#171;Боруссия&#187; набирают одно очко на троих, &#171;Герта&#187; громит набравший ход &#171;Кельн&#187;, а дортмундская &#171;Боруссия&#187; &#8211; тонущий &#171;Аугсбург&#187;. Роберт Левандовски делает хет-трик, Халид Буларуз отмечается голом впервые за 6,5 лет, а Эрен Дердийок забивает ударом через себя. Очередной тур немецкой бундеслиги весьма сурово обошелся с лидерами чемпионата. </p>
+	</div>
+					<div class="themes">
+						<p>комментарии: <a href="/football/126473690.html?comments=1#comments">8</a>		<p>теги: 		<a href="/tags/1363808.html">бундеслига Германия</a> | 
+		<a href="/tags/5899346.html">Роберт Левандовски</a>
+	</p>
+
+
+						</p>
+					</div>
+
+
+
+				</div>
+	<div class="public">
+		<div class="date"><span style="padding-left:5px;float: right;">
+		<a id="addFavorite" onClick="return InOutFavorite( this, 126451547, 'Sports::PhotoGallery', '2011-10-02 23:42:00' )" target="_blank"><img src="/i/ico/ico-fav-star-empty.png" alt="в избранное" lable="добавить/удалить избранное" /></a>
+</span>
+2 октября 23:42		</div>
+	<div class="text">
+		<a href="/photogallery/126451547.html" title="">			<img src="/images/object_33.1317586755.98044.jpg" alt="бундеслига Германия, серия А Италия, примера Испания, премьер-лига Англия, фото" width="110" height="110" class="flo-right" />
+		</a>
+		<h2><a href="/photogallery/126451547.html" title="Евротур. Лучшие кадры воскресенья">Евротур. Лучшие кадры воскресенья</a></h2>
+		<p>Кайл Уокер и товарищи празднуют победу в северолондонском дерби, Фрэнк Лэмпард забивает три гола &#171;Болтону&#187;, а &#171;Бетис&#187; уступает лидерство в чемпионате Испании. Самые красивые кадры воскресенья &#8211; в традиционной галерее Sports.ru.</p>
+	</div>
+					<div class="themes">
+						<p>комментарии: <a href="/photogallery/126451547.html?comments=1#comments">0</a>		<p>теги: 		<a href="/tags/1363805.html">премьер-лига Англия</a> | 
+		<a href="/tags/2813094.html">фото</a>
+	</p>
+
+
+						</p>
+					</div>
+
+
+
+				</div>
+	<div class="public">
+		<div class="date"><span style="padding-left:5px;float: right;">
+		<a id="addFavorite" onClick="return InOutFavorite( this, 126462657, 'Sports::Message', '2011-10-02 23:13:00' )" target="_blank"><img src="/i/ico/ico-fav-star-empty.png" alt="в избранное" lable="добавить/удалить избранное" /></a>
+</span>
+2 октября 23:13		</div>
+	<div class="text">
+		<a href="/tribuna/blogs/festival/240914.html" title="">			<img src="/images/object_40.1317582504.78402.png" alt="премьер-лига, судьи, Спартак, Зенит" width="110" height="110" class="flo-right" />
+		</a>
+		<h2><a href="/tribuna/blogs/festival/240914.html" title="За &#171;Спартак&#187;, за &#171;Зенит&#187;, все вместе против судейства">За &#171;Спартак&#187;, за &#171;Зенит&#187;, все вместе против судейства</a></h2>
+		<p>Спартаковские и зенитовские блогеры дружно посчитали, что именно их команда сегодня выглядела лучше, но потеряла очки. Так же дружно все выступили против судейства, но судья, по мнению каждой из сторон, помогал именно соперникам. А вы на чьей стороне?</p>
+	</div>
+					<div class="themes">
+						<p>комментарии: <a href="/tribuna/blogs/festival/240914.html?comments=1#comments">25</a>		<p>теги: 		<a href="/tags/1044511.html">Спартак</a> | 
+		<a href="/tags/1044514.html">Зенит</a>
+	</p>
+
+
+						</p>
+					</div>
+					<div class="materials">
+						<p>материалы по теме:</p>
+						<ul>
+							<li><a href="/football/126463503.html" class="txt">Александр Колобаев: &#171;Неспортивное поведение было более ярко выражено со стороны Парехи&#187;</a> (<a href="/football/126463503.html?comments=1#comments" title="66">66</a>) <span>| 2 октября 23:02</span></li>
+							<li><a href="/football/126453872.html" class="txt">Казьменко получил 8,3 балла за игру между &#171;Спартаком&#187; и &#171;Зенитом&#187;</a> (<a href="/football/126453872.html?comments=1#comments" title="59">59</a>) <span>| 2 октября 21:58</span></li>
+							<li><a href="/football/126424053.html" class="txt">Лучано Спаллетти: &laquo;Для &laquo;Спартака&raquo; победа над &laquo;Зенитом&raquo; &ndash; это как выграть чемпионат. А для нас чемпионство будет разыграно в мае&raquo;</a> (<a href="/football/126424053.html?comments=1#comments" title="296">296</a>) <span>| 2 октября 19:25</span></li>
+							<li><a href="/football/126424929.html" class="txt">Леонид Федун: &#171;Стоит нам повести в счете, как судья тут же включается в игру&#187;</a> (<a href="/football/126424929.html?comments=1#comments" title="88">88</a>) <span>| 2 октября 19:02</span></li>
+						</ul>
+					</div>
+
+
+
+				</div>
+	<div class="public">
+		<div class="date"><span style="padding-left:5px;float: right;">
+		<a id="addFavorite" onClick="return InOutFavorite( this, 126392438, 'Sports::Article', '2011-10-02 22:31:00' )" target="_blank"><img src="/i/ico/ico-fav-star-empty.png" alt="в избранное" lable="добавить/удалить избранное" /></a>
+</span>
+2 октября 22:31		</div>
+	<div class="text">
+		<a href="/football/126392438.html" title="">			<img src="/images/object_24.1317580102.51514.jpg" alt="Андрей Аршавин, Манчестер Юнайтед, Ливерпуль, Блэкберн, Ньюкасл, Уиган, Эвертон, Эндрю Джонсон, Астон Вилла, Манчестер Сити, Фулхэм, Стив Брюс, Сандерленд, Габриэль Агбонлахор, Вест Бромвич, Вулверхэмптон, Стив Кин, Джек Родуэлл, Марк Халси, Мартин Аткинсон, Кайл Уокер, премьер-лига Англия, Арсенал, Тоттенхэм" width="110" height="110" class="flo-right" />
+		</a>
+		<h2><a href="/football/126392438.html" title="Крутой Уокер">Крутой Уокер</a></h2>
+		<p>&#171;Тоттенхэм&#187; обыгрывает &#171;Арсенал&#187; в одном супердерби, а &#171;Ливерпуль&#187; &#171;Эвертон&#187; в другом. Фрэнк Лэмпард и Энди Джонсон делают хет-трики, Хонас, Уокер, Агбонлахор и Адам Джонсон забивают красивые голы, а лидируют по-прежнему два &#171;Манчестера&#187;. Событийный 7-й тур английской премьер-лиги уходит в историю, забирая с собой несколько грубых судейских ошибок.</p>
+	</div>
+					<div class="themes">
+						<p>комментарии: <a href="/football/126392438.html?comments=1#comments">37</a>		<p>теги: 		<a href="/tags/1363805.html">премьер-лига Англия</a> | 
+		<a href="/tags/1685202.html">Арсенал</a> | 
+		<a href="/tags/2682611.html">Тоттенхэм</a>
+	</p>
+
+
+						</p>
+					</div>
+					<div class="materials">
+						<p>материалы по теме:</p>
+						<ul>
+							<li><a href="http://www.sports.ru/tribuna/football/england/" class="txt">Английский футбол на Трибуне Sports.ru</a></li>
+							<li><a href="/football/126166471.html" class="txt">Чемпионат Англии. 7-й тур. &laquo;Тоттенхэм&raquo; выиграл у &laquo;Арсенала&raquo;, &laquo;Челси&raquo; в гостях разгромил &laquo;Болтон&raquo; и другие результаты</a> (<a href="/football/126166471.html?comments=1#comments" title="1131">1131</a>) <span>| 2 октября 21:18</span></li>
+						</ul>
+					</div>
+
+
+
+				</div>
+	<div class="public">
+		<div class="date"><span style="padding-left:5px;float: right;">
+		<a id="addFavorite" onClick="return InOutFavorite( this, 126447483, 'Sports::Message', '2011-10-02 21:50:00' )" target="_blank"><img src="/i/ico/ico-fav-star-empty.png" alt="в избранное" lable="добавить/удалить избранное" /></a>
+</span>
+2 октября 21:50		</div>
+	<div class="text">
+		<a href="/tribuna/blogs/televizor3/240881.html" title="">			<img src="/images/object_55.1317577436.15919.jpg" alt="Жулио Баптиста, Адам Джонсон, Игорь Смольников, Педро Леон, Иньиго Мартинес, видео, Эрен Дердийок" width="110" height="110" class="flo-right" />
+		</a>
+		<h2><a href="/tribuna/blogs/televizor3/240881.html" title="7 лучших голов уик-энда">7 лучших голов уик-энда</a></h2>
+		<p>Подходящий к концу уик-энд неожиданно превратился в хит-парад отчаянно красивых голов, многие из которых будут претендовать на звание лучших по итогам всего сезона. Адам Джонсон и Педро Леон расстреливают &laquo;девятки&raquo;, Иньиго Мартинес кладет со своей половины поля, а Жулио Баптиста и Эрен Дердийок забивают через себя. Подборка из 7 шикарных мячей &ndash; в блоге &laquo;Телевизор 3.0&raquo;.</p>
+	</div>
+					<div class="themes">
+						<p>комментарии: <a href="/tribuna/blogs/televizor3/240881.html?comments=1#comments">20</a>		<p>теги: 		<a href="/tags/1694562.html">видео</a> | 
+		<a href="/tags/4791926.html">Эрен Дердийок</a>
+	</p>
+
+
+						</p>
+					</div>
+
+
+
+				</div>
+
+<div class="paginator"><div class="paginator2"><p><span>2203</span></li> | <a href="?p=2202">2202</a> | <a href="?p=2201">2201</a> | <a href="?p=2200">2200</a> | <a href="?p=2199">2199</a> | <a href="?p=2198">2198</a> | <a href="?p=2197">2197</a> | <a href="?p=2196">2196</a> | <a href="?p=1">в начало</a></p></div></div>
+
+			</div>
+			<br class="clear" />
+    </div>
+
+		
+        <div class="right">
+        <div class="banner">
+<!--AdFox START-->
+<!--sports.ru-->
+<!--Площадка: sports.ru / * / *-->
+<!--Тип баннера: 240x400js-->
+<!--Расположение: <верх страницы>-->
+<script type="text/javascript">
+<!--
+if (typeof(pr) == 'undefined') { var pr = Math.floor(Math.random() * 1000000); }
+if (typeof(document.referrer) != 'undefined') {
+  if (typeof(afReferrer) == 'undefined') {
+    afReferrer = escape(document.referrer);
+  }
+} else {
+  afReferrer = '';
+}
+var addate = new Date(); 
+document.write('<scr' + 'ipt type="text/javascript" src="http://ads.adfox.ru/6902/prepareCode?pp=g&amp;ps=fsu&amp;p2=dbf&amp;pct=c&amp;plp=a&amp;pli=a&amp;pop=a&amp;pr=' + pr +'&amp;pt=b&amp;pd=' + addate.getDate() + '&amp;pw=' + addate.getDay() + '&amp;pv=' + addate.getHours() + '&amp;prr=' + afReferrer + '"><\/scr' + 'ipt>');
+// -->
+</script>
+<!--AdFox END-->
+</div>
+
+<div class="banner">
+<!--AdFox START-->
+<!--sports.ru-->
+<!--Площадка: sports.ru / * / *-->
+<!--Тип баннера: Classified 240x110-->
+<!--Расположение: <верх страницы>-->
+<script type="text/javascript">
+<!--
+if (typeof(pr) == 'undefined') { var pr = Math.floor(Math.random() * 1000000); }
+var addate = new Date();
+document.write('<iframe src="http://ads.adfox.ru/6902/getCode?pp=g&amp;ps=fsu&amp;p2=eied&amp;p3=b&amp;p4=a&amp;pct=a&amp;pr=' + pr + '&amp;pt=b&amp;pd=' + addate.getDate() + '&amp;pw=' + addate.getDay() + '&amp;pv=' + addate.getHours() + '&amp;" frameBorder="0" width="240" height="110" marginWidth="0" marginHeight="0" scrolling="no" style="border: 0px; margin: 0px; padding: 0px;"><a href="http://ads.adfox.ru/6902/goDefaultLink?pp=g&amp;ps=fsu&amp;p2=eied&amp;" target="_blank"><img src="http://ads.adfox.ru/6902/getDefaultImage?pp=g&amp;ps=fsu&amp;p2=eied" border="0" alt=""><\/a><\/iframe>');
+//-->
+
+</script>
+<noscript>
+<iframe src="http://ads.adfox.ru/6902/getCode?pp=g&amp;ps=fsu&amp;p2=eied&amp;p3=b&amp;p4=a&amp;pct=a&amp;pr=' + pr + '&amp;pt=b&amp;pd=' + addate.getDate() + '&amp;pw=' + addate.getDay() + '&amp;pv=' + addate.getHours() + '&amp;" frameBorder="0" width="240" height="110" marginWidth="0" marginHeight="0" scrolling="no" style="border: 0px; margin: 0px; padding: 0px;"><a href="http://ads.adfox.ru/6902/goDefaultLink?pp=g&amp;ps=fsu&amp;p2=eied&amp;" target="_blank"><img src="http://ads.adfox.ru/6902/getDefaultImage?pp=g&amp;ps=fsu&amp;p2=eied" border="0" alt=""></a></iframe>
+</noscript>
+<!--AdFox END-->
+</div>
+
+
+<div id="stat_gadget"></div>
+<link rel="stylesheet" href="/stat/skin/css/gadget.css?1" />
+<script src="/stat/skin/js/gadget-loader.js?3"></script>
+<script type="text/javascript">
+	updateGadget('stat_gadget', '/stat/gadget/', 0);
+</script>
+
+			<div class="title blue">
+				<p><a href="/tribuna/blogs/" title="блоги">блоги</a></p>
+				<p class="lnk"><a href="/tribuna/blogs/" title="все">все <img src="/i/all-arrow-blue.gif" class="all-arrow"></a><br class="clear"></p>
+			</div>
+			<div class="gray">
+                {% if blogs.data.blogs %}
+                    {% for blog in blogs.data.blogs %}
+                        {% include "blog.html" %}
+                    {% endfor %}
+                {% else %}
+                    <p>Ошибка</p>
+                {% endif %}
+			</div>
+
+			<div class="title">
+				<p><a href="/conference/" title="конференции">конференции</a></p>
+				<p class="lnk"><a href="/conference/" title="Все">все <img src="/i/all-arrow-green.gif" class="all-arrow"></a><br class="clear"></p>
+			</div>
+			<div class="gray">
+		{% if conferences.data.conferences %}
+                    {% for conference in conferences.data.conferences %}
+                        {% include "conference.html" %}
+                    {% endfor %}
+                {% else %}
+                    <p>Ошибка</p>
+                {% endif %}
+            </div>
+
+
+			<div class="title">
+				<p><a href="/polls/126455528.html" title="Опрос">опрос</a></p>
+				<p class="lnk"><a href="/polls/" title="Все">все <img src="/i/all-arrow-green.gif" class="all-arrow"></a></p>
+			</div>
+			<div class="gray">
+				<form action="/ajax/poll/poll_submit.html" method="post" target="answer_frame_126455528" name="PollAnswer">
+					<input type="hidden" name="poll_id" value="126455528">
+					<input type="hidden" name="left_column" value="0">
+					<div id="answers_list_126455528"></div>
+					<script>display_answers('126455528', 0);</script>
+				</form>
+				<iframe id="answer_frame_126455528" name="answer_frame_126455528" src="" style="border: 0pt none ; width: 0px; height: 0px;"></iframe>
+			</div>
+    </div>
+
+		<br class="clear">
+	</div>
+{% endblock %}
