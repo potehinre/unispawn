@@ -98,14 +98,22 @@ def index():
     }
     return construct_page(fake_urls,name)
 
-@app.route("/blogs/<id>")
-def blog(id):
-    name="cur_blog"
-    context={"id":id}
-    #content = async_collect(urls) 
-    #context = ujson_decode(content)
-    template = jinja_template(name,context)
-    return template
+@app.route("/tribuna/blogs/<name>/<id>")
+def blog(name, id):
+    result={}
+    post=ujson_decode(async_collect({"post":"http://www.sports.ru/stat/export/wapsports/blog_post.json?id=%s"% (id,)}))
+    result.update(post)
+    if post['post']['data']:
+	category_id=post['post']['data']['category_id']
+	urls={"posts":"http://www.sports.ru/stat/export/wapsports/blog_posts.json?blog_name=%s&count=10"%(name,),
+	      "blog_post_comments":"http://www.sports.ru/stat/export/wapsports/blog_post_comments.json?id=%s&count=10"%(id,),
+	      "category_blog_popular_posts":"http://www.sports.ru/stat/export/wapsports/category_blog_popular_posts.json?category_id=%s&count=10"%(category_id,),
+	      "materials":"http://www.sports.ru/stat/export/wapsports/materials.json?category_id=%s&count=5"%(category_id,)}
+	content=async_collect(urls)
+	other_info=ujson_decode(content)
+	result.update(other_info)
+	template=jinja_template("cur_blog",result)
+	return template
     
 
 if __name__ == "__main__":

@@ -1,4 +1,304 @@
 {% extends "base.html" %}
+{% block css %}
+    <link rel="stylesheet" type="text/css" href="{{url_for('static',filename='css/tribuna.css')}}" />
+    <link rel="stylesheet" type="text/css" href="{{url_for('static',filename='css/force_blocks.css')}}" />
+{% endblock %}
 {% block middle %}
-    Блоожек N {{id}}
+<div class="middle">
+    <div class="title-page rel-wrapper">
+        <div class="hdr">
+            <h1><a href="/tribuna/">трибуна</a> <span>блог</span></h1>
+            <br class="clear">
+        </div>
+    </div>
+    
+    <div class="left">
+        <noindex>
+            <div class="rel-wrapper" id="about-help" style="">
+                <a href="javascript:void(0)" id="about-help-close"></a>
+                <strong><a href="#">Если вам есть что сказать о спорте, скажите это на «Трибуне»!</a></strong>
+                <br><br>
+                <a href="#">«Трибуна»</a> – это крупнейшее русскоязычное сообщество спортивных болельщиков, 
+                первое социальное медиа о спорте, которое создают сами пользователи. 
+                Здесь вы можете <a href="/logon.html?url=/tribuna/blogs/add.html">создать блог</a>, 
+                <a href="/logon.html?url=/tribuna/forums/add.html">завести форум</a> или присоединиться к уже существующим, 
+                найти единомышленников, выиграть призы и 
+                <a href="http://www.sports.ru/tribuna/blogs/festival/137433.html">общаться со звездами спорта</a>. 
+                Если вы здесь впервые – выберите что-то интересное для себя в 
+                <a href="http://www.sports.ru/tribuna/blogs/?view=popular">рейтингах лучших блогов</a> 
+                и <a href="http://www.sports.ru/tribuna/forums/?view=mass">форумов</a>, 
+                а также <a href="http://www.sports.ru/tribuna/blogs/zhaglagdonks/115797.html">прочтите, как все устроено</a>.
+            </div>
+        </noindex>
+        <script> observe_help_block(1);</script>
+        
+        <div class="big-title">
+				<div class="avatar">
+					<a href="/tribuna/blogs/utkin/" title="Русский бомбардир"><img src="/storage/0000/2/7/2768128/1249329890.503764_78.jpg" width="48" height="48" alt="Русский бомбардир"></a>
+				</div>
+				<div class="info">
+					<h1><a href="/tribuna/blogs/utkin/">Русский бомбардир</a></h1>
+					<p>Осень в стиле диско</p>
+				</div>
+				<a onclick="return confirm('Добавить блог Русский бомбардир в ленту?');" href="/profile/blog_action.html?blog_id=495&amp;action=add&amp;url=/tribuna/blogs/utkin/246210.html" title="добавить в ленту" class="add"><img src="/i/bg/bg-btn-add-to-tape.gif"></a>
+				<br class="clear">
+	</div>
+        
+        <div class="inner-menu">
+				<ul>
+					<li><span><a href="/tribuna/blogs/utkin/" title="лента блога">лента блога</a></span> |</li>
+					<li><a href="/tribuna/blogs/utkin/about.html" title="о блоге и авторах">о блоге и авторах</a> |</li>
+					<li><a href="/tribuna/blogs/utkin/subscribers.html" title="добавили в ленту">добавили в ленту</a> |</li>
+					<li><a href="/docs/tribuna_manual.html" title="инструкция">инструкция</a></li>
+				</ul>
+				<br class="clear">
+	</div>
+        <h2>лента блога</h2>
+        
+        <div class="blog-lock">
+	    <p>Это закрытый блог. Если вы хотите стать его автором, отправьте просьбу основателю блога.</p>
+	    <p>Он рассмотрит ваше письмо и возможно вы получите права автора.</p>
+	    <a href="/tribuna/blogs/utkin/actions.html?action=request_for_author" onclick="return confirm('Отправить запрос на вступление в блог Русский бомбардир?');">Отправить запрос</a>
+	</div>
+        
+        <div class="ttl light-grey">
+            <div class="inner">
+		<span style="padding-left:5px;float: right;">
+                    <a id="addFavorite" onclick="return InOutFavorite( this, 246210, 'Sports::Blog::Post::Post', '2011-10-17 15:15:00' )" target="_blank"><img src="/i/ico/ico-fav-star-empty.png" alt="в избранное" lable="добавить/удалить избранное"></a>
+                </span>
+
+		<p class="lnk-blog"></p>
+		<p>17 октября 15:15 <span>|</span> автор: 
+                    <a href="/profile/2768128/"><strong>Василий Уткин</strong></a></p>
+                </div>
+        </div>
+        
+        <noscript>&lt;img src="/post_counter/id=246210" width="0" height="0" /&gt;</noscript>
+        
+        <div class="blog-content">
+            <h2>
+                    <a href="/tribuna/blogs/{{post.data.user_name}}/{{post.data.user_id}}.html">
+                            {{ post.data.title }}
+                    </a>
+            </h2>
+            {{ post.data.content | safe }}
+	</div>
+        
+        <script language="javascript">
+            document.write("<img src=\"/post_counter/?id=246210&" + Math.random() + "\" width=\"0\" height=\"0\">");
+        </script>
+        <div class="social-button-box">
+		<span class="button-line">
+                    <iframe src="http://www.facebook.com/widgets/like.php?href=http://www.sports.ru/tribuna/blogs/utkin/246210.html&amp;show_faces=false&amp;locale=ru_RU&amp;layout=button_count" scrolling="no" frameborder="0" style="border:none; width:150px; height:25px; float: left"></iframe>
+		</span>
+	</div>
+        
+        <div class="social-button-box">
+	<span class="button-line">
+            <script type="text/javascript">
+            
+            document.write(VK.Share.button({
+              url: 'http://sports.ru/tribuna/blogs/utkin/246210.html',
+              title: 'Дай ответ! Не дает ответа',
+              description: 'Нет, ну, какой эффект. Все цитируют, ссылаются - не на нас, конечно, что и правильно: на Бердыева. Полторы сотни каментов, в основном восторженных; практически в каждой публикации полемической экспертов после тура заход от бердыевских рассказов, и это ещё и дальше, наверное, пойдет, потому что главный газетный день споров - вторник.',
+              noparse: true
+            },
+            {
+              type: 'round', 
+              text: 'ВКонтакте'
+            }));
+
+            </script>
+            <table cellspacing="0" cellpadding="0" id="vkshare0" onmouseover="VK.Share.change(1, 0);" onmouseout="VK.Share.change(0, 0);" onmousedown="VK.Share.change(2, 0);" onmouseup="VK.Share.change(1, 0);" style="position: relative; width: auto; cursor: pointer; border: 0px;"><tbody><tr style="line-height: normal;"><td style="vertical-align: middle;"><a href="http://vkontakte.ru/share.php?url=http%3A%2F%2Fsports.ru%2Ftribuna%2Fblogs%2Futkin%2F246210.html" onmouseup="this._btn=event.button;this.blur();" onclick="return VK.Share.click(0, this);" style="text-decoration:none;"><div style="height: 21px; cursor:pointer; width: 2px; background: url(https://vk.com/images/btns.png) no-repeat -21px -42px;"></div></a></td><td style="vertical-align: middle;"><a href="http://vkontakte.ru/share.php?url=http%3A%2F%2Fsports.ru%2Ftribuna%2Fblogs%2Futkin%2F246210.html" onmouseup="this._btn=event.button;this.blur();" onclick="return VK.Share.click(0, this);" style="text-decoration:none;"><div style="border: 1px solid #3b6798; cursor:pointer; border-left: 0px;"><div style="border: 1px solid #5c82ab; border-left: 0px; border-top-color: #7e9cbc; background-color: #6d8fb3; color: #fff; text-shadow: 0px 1px #45688E; height: 15px; padding: 2px 4px 0px 6px; font-family: tahoma, arial; font-size: 10px;">ВКонтакте</div></div></a></td><td style="vertical-align: middle;"><a href="http://vkontakte.ru/share.php?url=http%3A%2F%2Fsports.ru%2Ftribuna%2Fblogs%2Futkin%2F246210.html" onmouseup="this._btn=event.button;this.blur();" onclick="return VK.Share.click(0, this);" style="text-decoration:none;"><div style="background-image: url(https://vk.com/images/btns.png); background-attachment: initial; background-origin: initial; background-clip: initial; background-color: initial; cursor: pointer; height: 21px; width: 29px; background-position: 0px -21px; background-repeat: no-repeat no-repeat; "></div></a></td><td style="vertical-align: middle;"><a href="http://vkontakte.ru/share.php?url=http%3A%2F%2Fsports.ru%2Ftribuna%2Fblogs%2Futkin%2F246210.html" onmouseup="this._btn=event.button;this.blur();" onclick="return VK.Share.click(0, this);" style="text-decoration:none;"><div style="border-top-style: solid; border-right-style: solid; border-bottom-style: solid; border-left-style: solid; border-top-color: rgb(162, 185, 211); border-right-color: rgb(162, 185, 211); border-bottom-color: rgb(162, 185, 211); border-left-color: rgb(162, 185, 211); border-top-width: 1px; border-right-width: 0px; border-bottom-width: 1px; border-left-width: 0px; cursor: pointer; background-color: rgb(222, 230, 241); color: rgb(0, 0, 0); height: 15px; padding-top: 2px; padding-right: 6px; padding-bottom: 0px; padding-left: 4px; font-size: 10px; font-weight: bold; font-family: tahoma, arial; display: block; ">1</div></a></td><td style="vertical-align: middle;"><a href="http://vkontakte.ru/share.php?url=http%3A%2F%2Fsports.ru%2Ftribuna%2Fblogs%2Futkin%2F246210.html" onmouseup="this._btn=event.button;this.blur();" onclick="return VK.Share.click(0, this);" style="text-decoration:none;"><div style="background-image: url(https://vk.com/images/btns.png); background-attachment: initial; background-origin: initial; background-clip: initial; background-color: initial; cursor: pointer; width: 2px; height: 21px; display: block; background-position: -27px -42px; background-repeat: initial initial; "></div></a></td></tr></tbody></table>
+	</span>
+	<span class="button-line">
+            <script type="text/javascript" src="https://apis.google.com/js/plusone.js"></script>
+            <div id="___plusone_0" style="height: 20px; width: 90px; display: inline-block; text-indent: 0px; margin-top: 0px; margin-right: 0px; margin-bottom: 0px; margin-left: 0px; padding-top: 0px; padding-right: 0px; padding-bottom: 0px; padding-left: 0px; background-image: initial; background-attachment: initial; background-origin: initial; background-clip: initial; background-color: transparent; border-top-style: none; border-right-style: none; border-bottom-style: none; border-left-style: none; float: none; line-height: normal; font-size: 1px; vertical-align: baseline; background-position: initial initial; background-repeat: initial initial; "><iframe allowtransparency="true" frameborder="0" hspace="0" id="I1_1318862841736" marginheight="0" marginwidth="0" name="I1_1318862841736" scrolling="no" src="https://plusone.google.com/u/0/_/+1/fastbutton?url=http%3A%2F%2Fwww.sports.ru%2Ftribuna%2Fblogs%2Futkin%2F246210.html&amp;size=medium&amp;count=true&amp;annotation=&amp;hl=en-US&amp;jsh=r%3Bgc%2F24479126-6666cb8c#id=I1_1318862841736&amp;parent=http%3A%2F%2Fwww.sports.ru&amp;rpctoken=387791169&amp;_methods=onPlusOne%2C_ready%2C_close%2C_open%2C_resizeMe" style="width: 90px; margin-top: 0px; margin-right: 0px; margin-bottom: 0px; margin-left: 0px; border-top-style: none; border-right-style: none; border-bottom-style: none; border-left-style: none; height: 20px; position: static; left: 0px; top: 0px; visibility: visible; " tabindex="-1" vspace="0" width="100%" title="+1"></iframe></div>
+	</span>
+	<span class="button-line retweet-but">
+            <script type="text/javascript" src="http://platform.twitter.com/widgets.js"></script>
+            <iframe src="http://platform.twitter.com/widgets/tweet_button.html#_=1318862841900&amp;count=horizontal&amp;id=twitter_tweet_button_0&amp;lang=en&amp;original_referer=http%3A%2F%2Fwww.sports.ru%2Ftribuna%2Fblogs%2Futkin%2F246210.html&amp;related=sportsru&amp;text=%D0%94%D0%B0%D0%B9%20%D0%BE%D1%82%D0%B2%D0%B5%D1%82!%20%D0%9D%D0%B5%20%D0%B4%D0%B0%D0%B5%D1%82%20%D0%BE%D1%82%D0%B2%D0%B5%D1%82%D0%B0&amp;url=http%3A%2F%2Fwww.sports.ru%2Ftribuna%2Fblogs%2Futkin%2F246210.html" allowtransparency="true" frameborder="0" scrolling="no" class="twitter-share-button twitter-count-horizontal" style="width: 110px; height: 20px; " title="Twitter For Websites: Tweet Button"></iframe>
+	</span>
+        <br class="clear">
+            
+        <div class="themes">
+	<p>
+		Рейтинг записи в блоге: 
+                <span class="r-tape" id="">
+                <!-- r-tape <span> start -->
+                <span class="r-info" style="display: none; left: 5px; " id="r_info">
+                    плюсов  - 98<br>
+                    минусов - 14
+                <i></i>
+                </span>
+                <span class="r-total r-green" id="r_out">+ 84</span>
+                    &nbsp;
+                  <a href="/rate/fuuu?type=post&amp;id=246210" class="signs r-minus" id="a_minus" onclick="return false;">&nbsp;</a>
+                  <a href="/rate/plus?type=post&amp;id=246210" class="signs r-plus" id="a_plus" onclick="return false;">&nbsp;</a> 
+                </span>
+                <span style="margin-left: 30px;" id="r_message"></span>
+
+                <script language="javascript">
+                create_rate_ahref_observers('');
+                </script>
+                <script language="javascript"> create_rate_mover_observers(); </script>
+
+
+
+	</p>
+                <p>комментарии: <a href="/tribuna/blogs/utkin/246210.html?comments=1#comments">107</a> | <a href="/tribuna/blogs/utkin/246210.html?comments=1#form">прокомментировать</a></p>
+			<p>теги: 		<a href="/tags/1044511.html">Спартак</a>
+		 | 
+		<a href="/tags/1044828.html">Рубин</a>
+		 | 
+		<a href="/tags/1363803.html">премьер-лига</a>
+		 | 
+		<a href="/tags/2795299.html">Валерий Карпин</a>
+		 | 
+		<a href="/tags/1046188.html">Курбан Бердыев</a>
+		 | 
+		<a href="/tags/3091108.html">Евгений Ловчев</a>
+		
+	</p>
+	</div>
+        
+        <div class="materials">
+	    <p>материалы по теме:</p>
+		<ul>
+                {% if materials.data %}
+                    {% for material in materials.data.materials %}
+                        <li><a href="/football/{{material.id}}.html" class="txt">{{material.title | safe}}</a> (<a href="/football/{{material.id}}.html?comments=1#comments" title="48">{{material.comment_count}}</a>) <span>| {{material.posted_time}}</span></li>
+                    {% endfor %}
+                {% else %}
+                    <p>Ошибка<p>
+                {% endif %}
+	    </ul>
+	</div>
+        
+        <div class="paginator"><div class="paginator2"><p><span>3</span> | <a href="246210.html?p=2">2</a> | <a href="246210.html?p=1">1</a></p></div></div>
+        
+        {% if blog_post_comments.data %}
+            {% for comment in blog_post_comments.data.blogpostcomments %}
+                {% include "comment.html" %}
+            {% endfor %}
+        {% else %}
+            <p>Ошибка<p>
+        {% endif %}
+    </div>
+    
+    <div class="right">
+        <div class="banner">
+        <!--AdFox START-->
+        <!--sports.ru-->
+        <!--Площадка: sports.ru / * / *-->
+        <!--Тип баннера: 240x400js-->
+        <!--Расположение: <верх страницы>-->
+        <script type="text/javascript">
+        <!--
+        if (typeof(pr) == 'undefined') { var pr = Math.floor(Math.random() * 1000000); }
+        if (typeof(document.referrer) != 'undefined') {
+          if (typeof(afReferrer) == 'undefined') {
+            afReferrer = escape(document.referrer);
+          }
+        } else {
+          afReferrer = '';
+        }
+        var addate = new Date(); 
+        document.write('<scr' + 'ipt type="text/javascript" src="http://ads.adfox.ru/6902/prepareCode?pp=g&amp;ps=fsu&amp;p2=dbf&amp;pct=c&amp;plp=a&amp;pli=a&amp;pop=a&amp;pr=' + pr +'&amp;pt=b&amp;pd=' + addate.getDate() + '&amp;pw=' + addate.getDay() + '&amp;pv=' + addate.getHours() + '&amp;prr=' + afReferrer + '"><\/scr' + 'ipt>');
+        // -->
+        </script><script type="text/javascript" src="http://ads.adfox.ru/6902/prepareCode?pp=g&amp;ps=fsu&amp;p2=dbf&amp;pct=c&amp;plp=a&amp;pli=a&amp;pop=a&amp;pr=412171&amp;pt=b&amp;pd=17&amp;pw=1&amp;pv=17&amp;prr=http%3A//www.sports.ru/tribuna/blogs/utkin/"></script>
+        <!--AdFox END-->
+        </div>
+
+        <div class="banner">
+            <!--AdFox START-->
+            <!--sports.ru-->
+            <!--Площадка: sports.ru / * / *-->
+            <!--Тип баннера: Classified 240x110-->
+            <!--Расположение: <верх страницы>-->
+            <script type="text/javascript">
+            <!--
+            if (typeof(pr) == 'undefined') { var pr = Math.floor(Math.random() * 1000000); }
+            var addate = new Date();
+            document.write('<iframe src="http://ads.adfox.ru/6902/getCode?pp=g&amp;ps=fsu&amp;p2=eied&amp;p3=b&amp;p4=a&amp;pct=a&amp;pr=' + pr + '&amp;pt=b&amp;pd=' + addate.getDate() + '&amp;pw=' + addate.getDay() + '&amp;pv=' + addate.getHours() + '&amp;" frameBorder="0" width="240" height="110" marginWidth="0" marginHeight="0" scrolling="no" style="border: 0px; margin: 0px; padding: 0px;"><a href="http://ads.adfox.ru/6902/goDefaultLink?pp=g&amp;ps=fsu&amp;p2=eied&amp;" target="_blank"><img src="http://ads.adfox.ru/6902/getDefaultImage?pp=g&amp;ps=fsu&amp;p2=eied" border="0" alt=""><\/a><\/iframe>');
+            //-->
+            
+            </script><iframe src="http://ads.adfox.ru/6902/getCode?pp=g&amp;ps=fsu&amp;p2=eied&amp;p3=b&amp;p4=a&amp;pct=a&amp;pr=412171&amp;pt=b&amp;pd=17&amp;pw=1&amp;pv=17&amp;" frameborder="0" width="0px" height="0px" marginwidth="0" marginheight="0" scrolling="no" style="border-top-width: 0px; border-right-width: 0px; border-bottom-width: 0px; border-left-width: 0px; border-style: initial; border-color: initial; margin-top: 0px; margin-right: 0px; margin-bottom: 0px; margin-left: 0px; padding-top: 0px; padding-right: 0px; padding-bottom: 0px; padding-left: 0px; display: none !important; visibility: hidden !important; opacity: 0 !important; ">&lt;a href="http://ads.adfox.ru/6902/goDefaultLink?pp=g&amp;amp;ps=fsu&amp;amp;p2=eied&amp;amp;" target="_blank"&gt;&lt;img src="http://ads.adfox.ru/6902/getDefaultImage?pp=g&amp;amp;ps=fsu&amp;amp;p2=eied" border="0" alt=""&gt;&lt;/a&gt;</iframe>
+            <noscript>
+            &lt;iframe src="http://ads.adfox.ru/6902/getCode?pp=g&amp;amp;ps=fsu&amp;amp;p2=eied&amp;amp;p3=b&amp;amp;p4=a&amp;amp;pct=a&amp;amp;pr=' + pr + '&amp;amp;pt=b&amp;amp;pd=' + addate.getDate() + '&amp;amp;pw=' + addate.getDay() + '&amp;amp;pv=' + addate.getHours() + '&amp;amp;" frameBorder="0" width="240" height="110" marginWidth="0" marginHeight="0" scrolling="no" style="border: 0px; margin: 0px; padding: 0px;"&gt;&lt;a href="http://ads.adfox.ru/6902/goDefaultLink?pp=g&amp;amp;ps=fsu&amp;amp;p2=eied&amp;amp;" target="_blank"&gt;&lt;img src="http://ads.adfox.ru/6902/getDefaultImage?pp=g&amp;amp;ps=fsu&amp;amp;p2=eied" border="0" alt=""&gt;&lt;/a&gt;&lt;/iframe&gt;
+            </noscript>
+            <!--AdFox END-->
+        </div>
+
+
+	<div class="ttl green">
+            <div class="inner">
+                <p>последние записи в блоге</p>
+            </div>
+        </div>
+        
+	<div class="news">
+            {% if posts.data %}
+                {% for post in posts.data.blogposts %}
+                    <p>
+                        <span>{{post.posted_time}}</span>
+                        <a title="{{post.blog_title}}" href="/tribuna/blogs/{{post.blog_name}}/{{post.id}}">{{post.title}}</a>
+                        (<a href="/tribuna/blogs/{{post.blog_name}}/{{post.id}}?comments=1#comments">{{post.comment_count}}</a>)
+                    </p>
+                {% endfor %}
+            {% else %}
+                <p>Ошибка</p>
+            {% endif %}
+	</div>
+
+	<div class="ttl green">
+            <div class="inner">
+	    <p>новости по теме блога</p>
+	    <p class="lnk">
+		<a title="Все" href="/news/">все <img src="/i/all-arrow-green.gif" alt="" class="arrow"></a>
+		<br class="clear">
+	    </p>
+            </div>
+        </div>
+	<div class="news">
+            {% if posts.data %}
+                {% for post in category_blog_popular_posts.data.posts %}
+                    <p>
+                        <span>{{post.posted_time}}</span>
+                        <a title="{{post.blog_title}}" href="/tribuna/blogs/{{post.blog_name}}/{{post.id}}">{{post.blog_title}}</a>
+                        (<a href="/tribuna/blogs/{{post.blog_name}}/{{post.id}}?comments=1#comments">{{post.comment_count}}</a>)
+                    </p>
+                {% endfor %}
+            {% else %}
+                <p>Ошибка</p>
+            {% endif %}
+	</div>
+
+	<div class="ttl blue">
+            <div class="inner">
+		<p>дружественные сайты</p>
+                <p class="lnk">
+			<a title="все" href="/tribuna/football/partners/">все <img class="arrow" src="/i/all-arrow-blue.gif" alt="все"></a>
+			<br class="clear">
+		</p>
+            </div>
+        </div>
+        
+	<div class="grey">
+            <div class="inner">
+		<div class="block">
+		    <div class="text-short">
+			<p><a title="«Реал Мадрид» в России" href="http://merengues.ru" target="_blank">«Реал Мадрид» в России</a><br>
+			<span><a href="http://merengues.ru" target="_blank">merengues.ru</a></span></p>
+                    </div>
+                    <div class="image">
+                        <a href="http://merengues.ru" target="_blank"></a><a title="«Реал Мадрид» в России" href="http://merengues.ru"><img src="/images/object_67.1295693524,27454.png" alt="«Реал Мадрид» в России" width="88" height="31"></a>
+                    </div>
+                    <br class="clear">
+                </div>
+	    </div>
+        </div>
+	</div>
+    </div>
+</div>
 {% endblock %}
