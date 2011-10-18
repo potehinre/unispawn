@@ -20,9 +20,9 @@ def get_content(urlname,url):
 
 def to_json(result):
     if type(result[1]) is tuple:
-        return """"%s":{"error":"%s"}"""%(result[0],result[1][1])
+        return """ {"%s":{"error":"%s"}} """%(result[0],result[1][1])
     else:
-        return """"%s":{"data":%s}"""%(result[0],result[1])
+        return """ {"%s":{"data":%s}} """%(result[0],result[1])
 
 def sync_collect(urls):
     jobs = [get_content(urlname,url) for urlname,url in urls.items()]
@@ -36,8 +36,8 @@ def collect(urls):
     return result
 
 urls = {"post":"http://www.sports.ru/stat/export/wapsports/blog_post.json?id=%s"% (246616,),
-        "news":"http://www.sports.ru/stat/export/wapsports/category_blog_popular_posts.json?category_id=$post.category_id&count=10",
-        "news2":"http://www.sports.ru/stat/export/wapsports/category_blog_popular_posts.json?category_id=$post.category_id&count=10"}
+        "news":"http://www.sports.ru/stat/export/wapsports/category_blog_popular_posts.json?category_id=$post.category_id&count=1",
+        "news2":"http://www.sports.ru/stat/export/wapsports/category_blog_popular_posts.json?category_id=$post.category_id&count=1"}
 
 
 class DepAggregator(object):
@@ -51,6 +51,7 @@ class DepAggregator(object):
             self.dag[name] = {}
             self.dag[name]['url'] = url
             self.dag[name]['deps'] = {}
+            self.dag[name]['result'] = None
             
             matches = re.findall(self.regex, url)
             for match in matches:
@@ -63,37 +64,59 @@ class DepAggregator(object):
                     self.dag[name]['deps'][dep] = [var]
             deps = self.dag[name]['deps']
             self.dag[name]['greenlet'] = gevent.Greenlet(self._get_content,name,url,deps)
+            
+    def _store_result(self,urlname,result):
+        json = to_json(result)
+        res = ujson.decode(json)
+        self.dag[urlname]['result'] = res
     
     def _get_content(self,urlname,url,deps):
         #Если есть зависимости , сначала ждем их
-        print urlname,' greenlet started'
-        if deps:
-            dep_greenlets = [self.dag[name]['greenlet'] for name in self.dag[urlname]['deps'].keys()]
-            print ' joining deps ',deps,urlname
-            gevent.joinall(dep_greenlets)
-            print ' joined deps ',deps,urlname
+        generated_url=url
         try:
+            if deps:
+                dep_greenlets = [self.dag[name]['greenlet'] for name in self.dag[urlname]['deps'].keys()]
+                gevent.joinall(dep_greenlets)
+                print ' joined deps ',deps,urlname
+                
+                #Затем проверяем во всех ли зависимостях есть данные
+                for dep_name,variables in deps.items():
+                    result = self.dag[dep_name]['result']
+                    root = result.keys()[0]
+                    if (result is None) or (not result[root].has_key('data')):
+                        raise ValueError,"Dependency failed"
+                    for variable in variables:
+                        value = str(result[root]['data'][variable])
+                        to_replace = "$%s.%s"%(dep_name,variable)
+                        generated_url = generated_url.replace(to_replace,value)
+                        
+            #Запрашиваем сгенеренный урл
             htt = httplib2.Http(timeout=3000)
-            response,content = htt.request(url)
-            print 'Requested',url
-            return (urlname,content)
+            response,content = htt.request(generated_url)
+            result = (urlname,content)
+            self._store_result(urlname,result)
         except Exception,ex:
-            return (urlname,('error',ex.message))
+            result = (urlname, ('error', ex.message))
+            self._store_result(urlname,result)
             
     def collect(self):
+        #Запускаем гринлеты
         greenlets = [self.dag[name]['greenlet'] for name in self.dag.keys()]
         for greenlet in greenlets:
             greenlet.start()
+            
+        #Ждем пока все завершится
         gevent.joinall(greenlets)
-        #gevent.joinall(greenlets)
-        #values = [greenlet.value for greenlet in greenlets]
-        #return values
         
-    
-    def get_dag(self):
-        return self.dag
+        #Выгребаем результаты из словаря
+        results = {}
+        for name, parameters in self.dag.items():
+            results.update(parameters['result'])
+        return results
 
 if __name__ == '__main__':
     aggr = DepAggregator(urls)
-    aggr.collect()
+    result = aggr.collect()
+    print "Result is:",result
+    
     
