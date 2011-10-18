@@ -35,7 +35,9 @@ def collect(urls):
     result ='{'+','.join([to_json(job.value) for job in jobs])+'}'
     return result
 
-urls = {'posts':'http://for.ru/post','news':'http://for.ru/news/$post.id/$post.name'}
+urls = {"post":"http://www.sports.ru/stat/export/wapsports/blog_post.json?id=%s"% (246616,),
+        "news":"http://www.sports.ru/stat/export/wapsports/category_blog_popular_posts.json?category_id=$post.category_id&count=10",
+        "news2":"http://www.sports.ru/stat/export/wapsports/category_blog_popular_posts.json?category_id=$post.category_id&count=10"}
 
 
 class DepAggregator(object):
@@ -61,28 +63,31 @@ class DepAggregator(object):
                     self.dag[name]['deps'][dep] = [var]
             deps = self.dag[name]['deps']
             self.dag[name]['greenlet'] = gevent.Greenlet(self._get_content,name,url,deps)
-
     
-    def _get_content(self,name,url,deps):
+    def _get_content(self,urlname,url,deps):
         #Если есть зависимости , сначала ждем их
+        print urlname,' greenlet started'
         if deps:
-            dep_greenlets = [self.dag[name]['greenlet'] for name in self.dag[name][deps]]
-            print name,' is joining '
+            dep_greenlets = [self.dag[name]['greenlet'] for name in self.dag[urlname]['deps'].keys()]
+            print ' joining deps ',deps,urlname
             gevent.joinall(dep_greenlets)
+            print ' joined deps ',deps,urlname
         try:
-            before = time.time()
             htt = httplib2.Http(timeout=3000)
             response,content = htt.request(url)
-            print "Request ",urlname," is ",time.time() - before
+            print 'Requested',url
             return (urlname,content)
         except Exception,ex:
             return (urlname,('error',ex.message))
             
-    def collect():
+    def collect(self):
         greenlets = [self.dag[name]['greenlet'] for name in self.dag.keys()]
+        for greenlet in greenlets:
+            greenlet.start()
         gevent.joinall(greenlets)
-        values = [greenlet.value for greenlet in greeenlets]
-        return values
+        #gevent.joinall(greenlets)
+        #values = [greenlet.value for greenlet in greenlets]
+        #return values
         
     
     def get_dag(self):
@@ -90,4 +95,5 @@ class DepAggregator(object):
 
 if __name__ == '__main__':
     aggr = DepAggregator(urls)
-    print aggr.get_dag()
+    aggr.collect()
+    
