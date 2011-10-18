@@ -40,7 +40,7 @@ urls = {"post":"http://www.sports.ru/stat/export/wapsports/blog_post.json?id=%s"
         "news2":"http://www.sports.ru/stat/export/wapsports/category_blog_popular_posts.json?category_id=$post.category_id&count=1"}
 
 
-class DepAggregator(object):
+class DependencyAggregator(object):
     regex = re.compile("\$[a-z\._]+")
     def __init__(self,urls):
         #dag - ациклический граф
@@ -77,7 +77,7 @@ class DepAggregator(object):
             if deps:
                 dep_greenlets = [self.dag[name]['greenlet'] for name in self.dag[urlname]['deps'].keys()]
                 gevent.joinall(dep_greenlets)
-                print ' joined deps ',deps,urlname
+                print 'joined deps',deps,urlname
                 
                 #Затем проверяем во всех ли зависимостях есть данные
                 for dep_name,variables in deps.items():
@@ -92,6 +92,7 @@ class DepAggregator(object):
                         
             #Запрашиваем сгенеренный урл
             htt = httplib2.Http(timeout=3000)
+            print 'requested:',generated_url
             response,content = htt.request(generated_url)
             result = (urlname,content)
             self._store_result(urlname,result)
@@ -113,9 +114,24 @@ class DepAggregator(object):
         for name, parameters in self.dag.items():
             results.update(parameters['result'])
         return results
-
+    
 if __name__ == '__main__':
-    aggr = DepAggregator(urls)
+    fake_urls= {
+        "main_news":"http://localhost:100/main_news.json",
+        "football_news":"http://localhost:100/football_news.json",
+        "hockey_news":"http://localhost:100/hockey_news.json",
+        "basket_news":"http://localhost:100/basket_news.json",
+        "automoto_news":"http://localhost:100/automoto_news.json",
+        "boxing_news":"http://localhost:100/boxing_news.json",
+        "tennis_news":"http://localhost:100/tennis_news.json",
+        "biathlon_news":"http://localhost:100/biathlon_news.json",
+        "other_news":"http://localhost:100/other_news.json",
+        "style_news":"http://localhost:100/style_news.json",
+        "blogs":"http://localhost:100/blogs.json",
+        "conferences":"http://localhost:100/conferences.json",
+        "materials":"http://localhost:100/materials.json"
+    }
+    aggr = DependencyAggregator(fake_urls)
     result = aggr.collect()
     print "Result is:",result
     
