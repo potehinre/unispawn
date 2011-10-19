@@ -59,10 +59,23 @@ def favicon():
 	abort(404)
 	
 def construct_page(urls,name):
-    content = async_collect(urls) 
-    context = ujson_decode(content)
+    before = time.time()
+    aggr = gevent_aggregator.DependencyAggregator(urls)
+    print "Aggregator creating:",time.time() - before
+    before = time.time()
+    context = aggr.collect()
+    print "Collecting:",time.time() - before
     template = jinja_template(name,context)
     return template
+
+@app.route("/tribuna/<name>/<id>")
+def blog(name, id):
+    urls={"post":"http://www.sports.ru/stat/export/wapsports/blog_post.json?id=%s"% (id,),
+	  "posts":"http://www.sports.ru/stat/export/wapsports/blog_posts.json?blog_name=%s&count=10"%(name,),
+	  "blog_post_comments":"http://www.sports.ru/stat/export/wapsports/blog_post_comments.json?id=%s&count=10"%(id,),
+	  "category_blog_popular_posts":"http://www.sports.ru/stat/export/wapsports/category_blog_popular_posts.json?category_id={{post.category_id}}&count=10",
+	  "materials":"http://www.sports.ru/stat/export/wapsports/materials.json?category_id={{post.category_id}}&count=5"}
+    return construct_page(urls,"cur_blog")
 
 @app.route("/")
 def index():
@@ -97,27 +110,10 @@ def index():
         "materials":"http://localhost:100/materials.json"
     }
     return construct_page(fake_urls,name)
-
-@app.route("/tribuna/blogs/<name>/<id>")
-def blog(name, id):
-    result={}
-    post=ujson_decode(async_collect({"post":"http://www.sports.ru/stat/export/wapsports/blog_post.json?id=%s"% (id,)}))
-    result.update(post)
-    if post['post']['data']:
-	category_id=post['post']['data']['category_id']
-	urls={"posts":"http://www.sports.ru/stat/export/wapsports/blog_posts.json?blog_name=%s&count=10"%(name,),
-	      "blog_post_comments":"http://www.sports.ru/stat/export/wapsports/blog_post_comments.json?id=%s&count=10"%(id,),
-	      "category_blog_popular_posts":"http://www.sports.ru/stat/export/wapsports/category_blog_popular_posts.json?category_id=%s&count=10"%(category_id,),
-	      "materials":"http://www.sports.ru/stat/export/wapsports/materials.json?category_id=%s&count=5"%(category_id,)}
-	content=async_collect(urls)
-	other_info=ujson_decode(content)
-	result.update(other_info)
-	template=jinja_template("cur_blog",result)
-	return template
     
 
 if __name__ == "__main__":
-    #http_server = WSGIServer(('',5000),app)
-    #http_server.serve_forever()
-    app.debug = True
-    app.run()
+    http_server = WSGIServer(('',5000),app)
+    http_server.serve_forever()
+    #app.debug = True
+    #app.run()
