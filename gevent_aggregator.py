@@ -35,13 +35,13 @@ def collect(urls):
     result ='{'+','.join([to_json(job.value) for job in jobs])+'}'
     return result
 
-urls = {"post":"http://www.sports.ru/stat/export/wapsports/blog_post.json?id=%s"% (246616,),
-        "news":"http://www.sports.ru/stat/export/wapsports/category_blog_popular_posts.json?category_id=$post.category_id&count=1",
-        "news2":"http://www.sports.ru/stat/export/wapsports/category_blog_popular_posts.json?category_id=$post.category_id&count=1"}
+urls = {"post":"http://www.sports.sru/stat/export/wapsports/blog_post.json?id=%s"% (246616,),
+        "news":"http://www.sports.ru/stat/export/wapsports/category_blog_popular_posts.json?category_id={{post.category_id}}&count=1",
+        "news2":"http://www.sports.ru/stat/export/wapsports/category_blog_popular_posts.json?category_id={{post.category_id}}&count=1"}
 
 
 class DependencyAggregator(object):
-    regex = re.compile("\$[a-z\._]+")
+    regex = re.compile("\{\{\s*(.+?)\s*\}\}")
     def __init__(self,urls):
         #dag - ациклический граф
         self.dag = {}
@@ -54,10 +54,9 @@ class DependencyAggregator(object):
             self.dag[name]['result'] = None
             
             matches = re.findall(self.regex, url)
+            print 'matches',matches
             for match in matches:
-                splitted = match.split('.')
-                var = splitted[1]
-                dep = splitted[0][1:]
+                dep, var = match.split('.')
                 try:
                     self.dag[name]['deps'][dep].append(var)
                 except KeyError:
@@ -87,9 +86,8 @@ class DependencyAggregator(object):
                         raise ValueError,"Dependency failed"
                     for variable in variables:
                         value = str(result[root]['data'][variable])
-                        to_replace = "$%s.%s"%(dep_name,variable)
-                        generated_url = generated_url.replace(to_replace,value)
-                        
+                        to_replace = "\{\{\s*%s.%s\s*\}\}"%(dep_name, variable)
+                        generated_url = re.sub(to_replace, value, generated_url)
             #Запрашиваем сгенеренный урл
             htt = httplib2.Http(timeout=3000)
             print 'requested:',generated_url
@@ -131,7 +129,7 @@ if __name__ == '__main__':
         "conferences":"http://localhost:100/conferences.json",
         "materials":"http://localhost:100/materials.json"
     }
-    aggr = DependencyAggregator(fake_urls)
+    aggr = DependencyAggregator(urls)
     result = aggr.collect()
     print "Result is:",result
     
