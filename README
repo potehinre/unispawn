@@ -1,0 +1,2 @@
+Daemon page-aggregator
+Asynchronously requests urls(with dependencies),get content, and constructs a page with requested blocks
