@@ -44,6 +44,8 @@ class DependencyAggregator(object):
     
     def _get_content(self,urlname,url,deps):
         #Если есть зависимости , сначала ждем их
+        timeout = gevent.Timeout(1)
+        timeout.start()
         generated_url=url
         try:
             if deps:
@@ -62,7 +64,7 @@ class DependencyAggregator(object):
                         to_replace = "\{\{\s*%s.%s\s*\}\}"%(dep_name, variable)
                         generated_url = re.sub(to_replace, value, generated_url)
             #Запрашиваем сгенеренный урл
-            htt = httplib2.Http(timeout=3000)
+            htt = httplib2.Http(timeout=1)
             response,content = htt.request(generated_url)
             result = (urlname,content)
             print 'requested:',generated_url
@@ -70,6 +72,12 @@ class DependencyAggregator(object):
         except Exception,ex:
             result = (urlname, ('error', ex.message))
             self._store_result(urlname,result)
+        except gevent.Timeout,t:
+            result = (urlname, ('error', 'timeout'))
+            self._store_result(urlname,result)
+        finally:
+            timeout.cancel()
+            
             
     def collect(self):
         #Запускаем гринлеты
