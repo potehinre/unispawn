@@ -10,7 +10,7 @@
               li
                 a(href='/docs/about.html') О Sports.ru
               li
-                a(href='/docs/editors.html') Редакция
+                a(href='/docs/editors.html&dada=fuck') Редакция
               li
                 a(href='/docs/contacts.html') Контакты
               li

@@ -419,13 +419,11 @@ block middle
                 img.all-arrow(src='/i/all-arrow-green.gif')
               br.clear
           .news
-            | {% if main_news.data %}
-            | {% for news in main_news.data.mainnews %}
-            | {% include "news.html" %}
-            | {% endfor %}
-            | {% else %}
-            p Ошибка
-            | {% endif %}
+            if main_news.data
+                each news in main_news.data.mainnews
+                    include jade/news.jade
+            else
+                p Ошибка
           .banner
             a(href='http://vkontakte.ru/sportsru', target='_blank')
               img(src='/i/banners/news/vkontakte/index.gif', alt='Добавить группу', label='Добавить группу')
@@ -499,13 +497,11 @@ block middle
               | все
               img.all-arrow(src='/i/all-arrow-green.gif')
           .news
-            | {% if football_news.data %}
-            | {% for news in football_news.data.news %}
-            | {% include 'news.html' %}
-            | {% endfor %}
-            | {% else %}
-            p Ошибка
-            | {% endif %}
+            if football_news.data
+                each news in football_news.data.news
+                    include jade/news.jade
+            else
+                p Ошибка
           .title
             p
               a(href='/news/', title='Новости') новости
@@ -515,13 +511,11 @@ block middle
               | все
               img.all-arrow(src='/i/all-arrow-green.gif')
           .news
-            | {% if hockey_news.data %}
-            | {% for news in hockey_news.data.news %}
-            | {% include 'news.html' %}
-            | {% endfor %}
-            | {% else %}
-            p Ошибка
-            | {% endif %}
+            if hockey_news.data
+                each news in hockey_news.data.news
+                    include jade/news.jade
+            else
+                p Ошибка
           .title
             p
               a(href='/news/', title='Новости') новости
@@ -531,13 +525,11 @@ block middle
               | все
               img.all-arrow(src='/i/all-arrow-green.gif')
           .news
-            | {% if basket_news.data %}
-            | {% for news in basket_news.data.news %}
-            | {% include 'news.html' %}
-            | {% endfor %}
-            | {% else %}
-            p Ошибка
-            | {% endif %}
+            if basket_news.data
+                each news in basket_news.data.news
+                    include jade/news.jade
+            else
+                p Ошибка
           .title
             p
               a(href='/news/', title='Новости') новости
@@ -547,13 +539,11 @@ block middle
               | все
               img.all-arrow(src='/i/all-arrow-green.gif')
           .news
-            | {% if automoto_news.data %}
-            | {% for news in automoto_news.data.news %}
-            | {% include 'news.html' %}
-            | {% endfor %}
-            | {% else %}
-            p Ошибка
-            | {% endif %}
+            if automoto_news.data
+                each news in automoto_news.data.news
+                    include jade/news.jade
+            else
+                p Ошибка
           .title
             p
               a(href='/news/', title='Новости') новости
@@ -563,13 +553,11 @@ block middle
               | все
               img.all-arrow(src='/i/all-arrow-green.gif')
           .news
-            | {% if boxing_news.data %}
-            | {% for news in boxing_news.data.news %}
-            | {% include 'news.html' %}
-            | {% endfor %}
-            | {% else %}
-            p Ошибка
-            | {% endif %}
+            if boxing_news.data
+                each news in boxing_news.data.news
+                    include jade/news.jade
+            else
+                p Ошибка
           .title
             p
               a(href='/news/', title='Новости') новости
@@ -579,13 +567,11 @@ block middle
               | все
               img.all-arrow(src='/i/all-arrow-green.gif')
           .news
-            | {% if tennis_news.data %}
-            | {% for news in tennis_news.data.news %}
-            | {% include 'news.html' %}
-            | {% endfor %}
-            | {% else %}
-            p Ошибка
-            | {% endif %}
+            if tennis_news.data
+                each news in tennis_news.data.news
+                    include jade/news.jade
+            else
+                p Ошибка
           .title
             p
               a(href='/news/', title='Новости') новости
@@ -595,13 +581,11 @@ block middle
               | все
               img.all-arrow(src='/i/all-arrow-green.gif')
           .news
-            | {% if biathlon_news.data %}
-            | {% for news in biathlon_news.data.news %}
-            | {% include 'news.html' %}
-            | {% endfor %}
-            | {% else %}
-            p Ошибка
-            | {% endif %}
+            if biathlon_news.data
+                each news in biathlon_news.data.news
+                    include jade/news.jade
+            else
+                p Ошибка
           .title
             p
               a(href='/news/', title='Новости') новости
@@ -611,13 +595,11 @@ block middle
               | все
               img.all-arrow(src='/i/all-arrow-green.gif')
           .news
-            | {% if other_news.data %}
-            | {% for news in other_news.data.news %}
-            | {% include 'news.html' %}
-            | {% endfor %}
-            | {% else %}
-            p Ошибка
-            | {% endif %}
+            if other_news.data
+                each news in other_news.data.news
+                    include jade/news.jade
+            else
+                p Ошибка
           .title
             p
               a(href='/news/', title='Новости') новости
@@ -627,13 +609,11 @@ block middle
               | все
               img.all-arrow(src='/i/all-arrow-green.gif')
           .news
-            | {% if style_news.data %}
-            | {% for news in style_news.data.news %}
-            | {% include 'news.html' %}
-            | {% endfor %}
-            | {% else %}
-            p  Ошибка 
-            | {% endif %}
+            if style_news.data
+                each news in style_news.data.news
+                    include jade/news.jade
+            else
+                p Ошибка
           .partner-rss
             .title
               a(name='partner_feeds')
