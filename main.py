@@ -4,6 +4,7 @@ import cProfile
 import time
 from markupsafe import Markup
 from gevent.wsgi import WSGIServer
+import pyjade
 
 from flask import Flask,url_for,render_template,abort
 app = Flask(__name__)
@@ -77,6 +78,31 @@ def blog(name, id):
 	  "materials":"http://www.sports.ru/stat/export/wapsports/materials.json?category_id={{post.category_id}}&count=5"}
     return construct_page(urls,"cur_blog")
 
+@app.route("/jade/")
+def index_on_jade():
+        fake_urls= {
+        "main_news":"http://localhost:100/main_news.json",
+        "football_news":"http://localhost:100/football_news.json",
+        "hockey_news":"http://localhost:100/hockey_news.json",
+        "basket_news":"http://localhost:100/basket_news.json",
+        "automoto_news":"http://localhost:100/automoto_news.json",
+        "boxing_news":"http://localhost:100/boxing_news.json",
+        "tennis_news":"http://localhost:100/tennis_news.json",
+        "biathlon_news":"http://localhost:100/biathlon_news.json",
+        "other_news":"http://localhost:100/other_news.json",
+        "style_news":"http://localhost:100/style_news.json",
+        "blogs":"http://localhost:100/blogs.json",
+        "conferences":"http://localhost:100/conferences.json",
+        "materials":"http://localhost:100/materials.json"
+    }
+        before = time.time()
+        aggr = gevent_aggregator.DependencyAggregator(fake_urls)
+        print "Aggregator creating:",time.time() - before
+        before = time.time()
+        context = aggr.collect()
+        print "Collecting:",time.time() - before
+        return render_template("jade/main.jade",**context)
+
 @app.route("/")
 def index():
     name="main"
@@ -113,7 +139,8 @@ def index():
     
 
 if __name__ == "__main__":
-    http_server = WSGIServer(('',5000),app)
-    http_server.serve_forever()
-    #app.debug = True
-    #app.run()
+    #http_server = WSGIServer(('',5000),app)
+    #http_server.serve_forever()
+    app.jinja_env.add_extension('pyjade.ext.jinja.PyJadeExtension')
+    app.debug = True
+    app.run()

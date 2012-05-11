@@ -1,0 +1,1357 @@
+extends jade/base.jade
+block css
+    link(rel='stylesheet', type='text/css', href='#{url_for('static',filename='css/index.css')}')
+block middle
+    .middle
+      .title-page
+        h1
+          | спорт сегодня
+          span главное
+        .important
+          p
+            a(href='/tags/1363803.html', title='премьер-лига') премьер-лига
+            | |
+            a(href='/tags/1044514.html', title='Зенит') Зенит
+            | |
+            a(href='/tags/1044511.html', title='Спартак') Спартак
+            | |
+            a(href='/tags/1694490.html', title='Анжи') Анжи
+            | |
+            a(href='/tags/1685212.html', title='результаты') результаты
+            | |
+            a(href='/tags/1044513.html', title='Локомотив') Локомотив
+            | |
+            a(href='/tags/1685224.html', title='болельщики') болельщики
+            | |
+            a(href='/tags/4127922.html', title='Николас Пареха') Николас Пареха
+            | |
+            a(href='/tags/', title='все теги') все теги
+        br.clear
+      #stat_teaser.teaser
+        style
+          .teaser { margin-bottom:20px; width:100%; }
+          .teaser .teaser-block-left {margin:0px; padding:0px; margin-bottom: 15px; width: 432px; border-left: 2px solid #e1e1e1; }
+          .teaser .teaser-block-right {margin:0px; padding:0px; margin-bottom: 15px; width: 432px; border-left: 2px solid #e1e1e1; border-right: 2px solid #e1e1e1; }
+          .teaser .teaser-block-center {margin:0px; padding:0px; margin-bottom: 15px; width: 866px; border-left: 2px solid #e1e1e1; border-right: 2px solid #e1e1e1; }
+          .teaser .empty-teaser-block {border-left: 2px solid #ffffff; }
+          .teaser-table { border: 0px solid #e1e1e1; width:100%; color: #9b9b9b; overflow:hidden; position:relative;}
+          .teaser-table td { font:1.1em Tahoma; text-align:center; padding: 4px 5px; border-right:1px solid #E1E1E1;}
+          .teaser-table td.ltd{border-left:1px solid #E1E1E1;}
+          .teaser-table td.rtd{border-right:0px;}
+          .teaser-table .dl {width: 1px; padding: 4px 5px 0px 5px; }
+          .teaser-table td.hr{background-color: #e1e1e1; height: 1px; padding: 0px;}
+          .teaser-table td.tvhr{height: 0px; padding: 0px;}
+          .teaser-table td.lcol { text-align:left; padding-left:5px;}
+          .teaser-table td.lcol.tight { padding-left:5px; }
+          .teaser-table td.lcol.white { padding-left:11px; }
+          .teaser-table td.rcol { text-align:right; padding-right:5px;}
+          .teaser-table td.score { font-weight:bold; color:#0063b5; }
+          .teaser-table td.grey { color:#afafaf; }
+          .teaser-table td.total { font:1em Tahoma; color:#afafaf; text-align:right; padding-right:3px; border-left:0; border-bottom:0; }
+          .teaser-table span.flag { padding-left:21px; }
+          .teaser-table img.flag { padding:1px 5px 0 0; border:0; position:absolute; margin:0; width:16px; height:12px; }
+          .teaser-table td.rcol img.flag { padding:1px 0 0 5px; border:0; position:absolute; margin:0; width:16px; height:12px; }
+          .teaser-table span.broadcast { padding-left:16px; }
+          .teaser-table img.broadcast { padding:1px 5px 0px 0px; border:0; position:absolute; margin:0; width:11px; height:12px; }
+          .teaser-table img.crn.nl { padding-top:3px; padding-bottom:4px; }
+          .f-left {float: left}
+          .f-right {float: right}
+          .star_teaser { margin-bottom:5px; overflow:hidden; padding:0; position:relative; }
+          .star_teaser .star_teaser{background-color: #fff; padding: 0px; margin: 0px; }
+          .star_teaser .cn { background:transparent url(http://www.sports.ru/stat/skin/images/star.png) repeat scroll 0%; height:10px; left:-5px; position:absolute; top:-5px; width:10px; #font-size:1px !important;}
+          .star_teaser .cn.tr { margin-left:100%; }
+          .star_teaser .cn.bl { top:auto; bottom:-5px; }
+          .star_teaser .cn.br { top:auto; bottom:-5px; margin-left:100%;}
+          .star_teaser .gcn { background:transparent url(http://www.sports.ru/stat/skin/images/star_gray.png) repeat scroll 0%; height:6px; left:-3px; position:absolute; top:-3px; width:6px; #font-size:1px !important;}
+          .star_teaser .gcn.tr { margin-left:100%; }
+          .star_teaser .gcn.bl { top:auto; bottom:-3px; }
+          .star_teaser .gcn.br { top:auto; bottom:-3px; margin-left:100%;}
+          .gray_teaser { background-color:#e1e1e1; width:100%;  }
+          .gray_teaser p { color:#000000; float:left; font-family:Tahoma; font-size:1.1em; padding:3px 10px; }
+          .gray_teaser p a { color:#000000; }
+          .gray_teaser span.rlink { float:right; font-family:Tahoma; font-size:1.1em; padding-right:10px; padding-top:3px; }
+          .gray_teaser span.rimage { float:right; font-family:Tahoma; font-size:1.1em; padding:0px; position: absolute; right:0px;}
+          .gray_teaser span.rtext { float:right; font-family:Tahoma; font-size:1.1em; padding-top:3px; position: absolute; right:33px; color: #999;}
+          .border_teaser {position: relative; background-color: #a9a9a9; height: 2px; margin: 0px; padding: 0px; width: 100%; float: left; #font-size:1px !important;}
+          .header_teaser { position:relative; padding: 0px 11px 5px 12px; font-family:Tahoma; font-size:1.1em;}
+          .header_teaser p.right_header { position:absolute; top:0px; right:11px; }
+          .team-match-link {color: #9B9B9B;}
+          .team-match-link:hover {text-decoration: none;}
+          .team-match-link .team-tag {color: #0565B2;}
+          .team-match-link .team-tag:hover {color: #0565B2; text-decoration: underline;}
+        div
+          .header_teaser
+            p
+              a(href='/stat/football/center/') матч-центр
+            p.right_header
+              img#teaser_loader.loader(src='/stat/skin/images/arrows.gif', width='16', height='16', alt='Загрузка...', align='absmiddle', style='display: none;')
+              a(href='', onclick='return Teaser.roll();') свернуть
+          .gray_teaser.star_teaser
+            .cn.tl
+            .cn.tr
+            p
+              a(href='http://www.sports.ru/tags/1685230.html') Футбол. ФНЛ
+            span.rtext
+              a(href='http://www.sports.ru/tags/1685230.html?type=table', title='таблица') таблица
+              | |
+              a(href='http://www.sports.ru/tags/1685230.html?type=calendar', title='календарь') календарь
+              | |
+              a(href='http://www.sports.ru/tags/1685230.html?type=stat', title='статистика') статистика
+            span.rimage
+              #1685230_spanoff
+                a(href='', onclick='return Teaser.switchOff(1685230, 1);')
+                  img(src='/stat/skin/images/teaser_minus.gif')
+              #1685230_spanon(style='display: none;')
+                a(href='', onclick='return Teaser.switchOn(1685230, 1);')
+                  img(src='/stat/skin/images/teaser_plus.gif')
+            br.clear
+            #1685230_teaser.teaser-block-left.f-left.star_teaser
+              table.teaser-table(cellspacing='0', cellpadding='0')
+                colgroup
+                  col(width='30')
+                  col
+                  col(width='62')
+                  col(width='90')
+                tr
+                  td(nowrap='nowrap') 18:00
+                  td.lcol(nowrap='nowrap')
+                    nobr
+                      a.team-match-link(href='/stat/football/41/match/288461.html')
+                        img.flag(src='http://www.sports.ru/images/object_80.1206550372.png', alt='Россия', title='Россия')
+                        span.flag
+                          span(style='display: none;')  
+                        span.team-tag Черноморец
+                        | —
+                        img.flag(src='http://www.sports.ru/images/object_80.1206550372.png', alt='Россия', title='Россия')
+                        span.flag
+                          span(style='display: none;')  
+                        span.team-tag КАМАЗ
+                  td.score(nowrap='nowrap')
+                    a#match_teaser_288461(href='/stat/football/41/match/288461.html')
+                      | превью
+                  td.rtd.lcol
+                    nobr
+                      span#match_status_288461 не начался
+                tr
+                  td.hr(colspan='7', height='1')
+                tr
+                  td(nowrap='nowrap') 19:00
+                  td.lcol(nowrap='nowrap')
+                    nobr
+                      a.team-match-link(href='/stat/football/41/match/288462.html')
+                        img.flag(src='http://www.sports.ru/images/object_80.1206550372.png', alt='Россия', title='Россия')
+                        span.flag
+                          span(style='display: none;')  
+                        span.team-tag ФК Химки
+                        | —
+                        img.flag(src='http://www.sports.ru/images/object_80.1206550372.png', alt='Россия', title='Россия')
+                        span.flag
+                          span(style='display: none;')  
+                        span.team-tag Алания
+                  td.score(nowrap='nowrap')
+                    a#match_teaser_288462(href='/stat/football/41/match/288462.html')
+                      | превью
+                  td.rtd.lcol
+                    nobr
+                      span#match_status_288462 не начался
+            #1685230_teaser_right.teaser-block-right.f-right.star_teaser
+              table.teaser-table(cellspacing='0', cellpadding='0')
+                colgroup
+                  col(width='30')
+                  col
+                  col(width='62')
+                  col(width='90')
+                tr
+                  td(nowrap='nowrap') 18:30
+                  td.lcol(nowrap='nowrap')
+                    nobr
+                      a.team-match-link(href='/stat/football/41/match/288458.html')
+                        img.flag(src='http://www.sports.ru/images/object_80.1206550372.png', alt='Россия', title='Россия')
+                        span.flag
+                          span(style='display: none;')  
+                        span.team-tag Динамо Брянск
+                        | —
+                        img.flag(src='http://www.sports.ru/images/object_80.1206550372.png', alt='Россия', title='Россия')
+                        span.flag
+                          span(style='display: none;')  
+                        span.team-tag Сибирь
+                  td.score(nowrap='nowrap')
+                    a#match_teaser_288458(href='/stat/football/41/match/288458.html')
+                      | превью
+                  td.rtd.lcol
+                    nobr
+                      span#match_status_288458 не начался
+                tr
+                  td.hr(colspan='4', height='2')
+                tr
+                  td(nowrap='nowrap') 20:00
+                  td.lcol(nowrap='nowrap')
+                    nobr
+                      a.team-match-link(href='/stat/football/41/match/288464.html')
+                        img.flag(src='http://www.sports.ru/images/object_80.1206550372.png', alt='Россия', title='Россия')
+                        span.flag
+                          span(style='display: none;')  
+                        span.team-tag Балтика
+                        | —
+                        img.flag(src='http://www.sports.ru/images/object_80.1206550372.png', alt='Россия', title='Россия')
+                        span.flag
+                          span(style='display: none;')  
+                        span.team-tag СКА-Энергия
+                  td.score(nowrap='nowrap')
+                    a#match_teaser_288464(href='/stat/football/41/match/288464.html')
+                      | превью
+                  td.rtd.lcol
+                    nobr
+                      span#match_status_288464 не начался
+            .border_teaser
+            .cn.bl
+            .cn.br
+          .gray_teaser.star_teaser
+            .cn.tl
+            .cn.tr
+            p
+              a(href='http://www.sports.ru/tags/1364772.html') Футбол. Примера Испания
+            span.rtext
+              a(href='http://www.sports.ru/tags/1364772.html?type=table', title='таблица') таблица
+              | |
+              a(href='http://www.sports.ru/tags/1364772.html?type=calendar', title='календарь') календарь
+              | |
+              a(href='http://www.sports.ru/tags/1364772.html?type=stat', title='статистика') статистика
+            span.rimage
+              #1364772_spanoff
+                a(href='', onclick='return Teaser.switchOff(1364772, 1);')
+                  img(src='/stat/skin/images/teaser_minus.gif')
+              #1364772_spanon(style='display: none;')
+                a(href='', onclick='return Teaser.switchOn(1364772, 1);')
+                  img(src='/stat/skin/images/teaser_plus.gif')
+            br.clear
+            #1364772_teaser.teaser-block-left.f-left.star_teaser
+              table.teaser-table(cellspacing='0', cellpadding='0')
+                colgroup
+                  col(width='30')
+                  col
+                  col(width='62')
+                  col(width='90')
+                tr
+                  td(nowrap='nowrap') 00:00
+                  td.lcol(nowrap='nowrap')
+                    nobr
+                      a.team-match-link(href='/stat/football/49/match/383173.html')
+                        img.flag(src='http://www.sports.ru/images/object_87.1206546589.png', alt='Испания', title='Испания')
+                        span.flag
+                          span(style='display: none;')  
+                        span.team-tag Эспаньол
+                        | —
+                        img.flag(src='http://www.sports.ru/images/object_87.1206546589.png', alt='Испания', title='Испания')
+                        span.flag
+                          span(style='display: none;')  
+                        span.team-tag Реал Мадрид
+                  td.score(nowrap='nowrap')
+                    a#match_teaser_383173(href='/stat/football/49/match/383173.html')
+                      | 0 : 4
+                  td.rtd.lcol
+                    nobr
+                      img.broadcast(src='/stat/skin/images/teaser-textonline.gif', width='11', height='12')
+                      span.broadcast
+                      span#match_status_383173 завершен
+            #1364772_teaser_right.teaser-block-right.f-right.star_teaser.empty-teaser-block
+              table.teaser-table(cellspacing='0', cellpadding='0')
+                colgroup
+                  col(width='30')
+                  col
+                  col(width='62')
+                  col(width='90')
+                tr
+                  td.rtd  
+            .border_teaser
+            .cn.bl
+            .cn.br
+          .gray_teaser.star_teaser
+            .cn.tl
+            .cn.tr
+            p
+              a(href='http://www.sports.ru/tags/1048214.html') Футбол. Высшая лига Португалия
+            span.rtext
+              a(href='http://www.sports.ru/tags/1048214.html?type=table', title='таблица') таблица
+              | |
+              a(href='http://www.sports.ru/tags/1048214.html?type=calendar', title='календарь') календарь
+              | |
+              a(href='http://www.sports.ru/tags/1048214.html?type=stat', title='статистика') статистика
+            span.rimage
+              #1048214_spanoff
+                a(href='', onclick='return Teaser.switchOff(1048214, 1);')
+                  img(src='/stat/skin/images/teaser_minus.gif')
+              #1048214_spanon(style='display: none;')
+                a(href='', onclick='return Teaser.switchOn(1048214, 1);')
+                  img(src='/stat/skin/images/teaser_plus.gif')
+            br.clear
+            #1048214_teaser.teaser-block-left.f-left.star_teaser
+              table.teaser-table(cellspacing='0', cellpadding='0')
+                colgroup
+                  col(width='30')
+                  col
+                  col(width='62')
+                  col(width='90')
+                tr
+                  td(nowrap='nowrap') 23:15
+                  td.lcol(nowrap='nowrap')
+                    nobr
+                      a.team-match-link(href='/stat/football/207/match/383715.html')
+                        img.flag(src='http://www.sports.ru/images/object_91.1206550315.png', alt='Португалия', title='Португалия')
+                        span.flag
+                          span(style='display: none;')  
+                        span.team-tag Жил Висенте
+                        | —
+                        img.flag(src='http://www.sports.ru/images/object_91.1206550315.png', alt='Португалия', title='Португалия')
+                        span.flag
+                          span(style='display: none;')  
+                        span.team-tag Бейра-Мар
+                  td.score(nowrap='nowrap')
+                    a#match_teaser_383715(href='/stat/football/207/match/383715.html')
+                      | превью
+                  td.rtd.lcol
+                    nobr
+                      span#match_status_383715 не начался
+            #1048214_teaser_right.teaser-block-right.f-right.star_teaser.empty-teaser-block
+              table.teaser-table(cellspacing='0', cellpadding='0')
+                colgroup
+                  col(width='30')
+                  col
+                  col(width='62')
+                  col(width='90')
+                tr
+                  td.rtd  
+            .border_teaser
+            .cn.bl
+            .cn.br
+          .gray_teaser.star_teaser
+            .cn.tl
+            .cn.tr
+            p
+              a(href='http://www.sports.ru/tags/4084863.html') Хоккей. КХЛ
+            span.rtext
+              a(href='http://www.sports.ru/tags/4084863.html?type=table', title='таблица') таблица
+              | |
+              a(href='http://www.sports.ru/tags/4084863.html?type=calendar', title='календарь') календарь
+              | |
+              a(href='http://www.sports.ru/tags/4084863.html?type=stat', title='статистика') статистика
+            span.rimage
+              #4084863_spanoff
+                a(href='', onclick='return Teaser.switchOff(4084863, 1);')
+                  img(src='/stat/skin/images/teaser_minus.gif')
+              #4084863_spanon(style='display: none;')
+                a(href='', onclick='return Teaser.switchOn(4084863, 1);')
+                  img(src='/stat/skin/images/teaser_plus.gif')
+            br.clear
+            #4084863_teaser.teaser-block-left.f-left.star_teaser
+              table.teaser-table(cellspacing='0', cellpadding='0')
+                colgroup
+                  col(width='30')
+                  col
+                  col(width='62')
+                  col(width='90')
+                tr
+                  td(nowrap='nowrap') 19:00
+                  td.lcol(nowrap='nowrap')
+                    nobr
+                      a.team-match-link(href='/stat/hockey/107/match/385845.html')
+                        img.flag(src='http://www.sports.ru/images/object_80.1206550372.png', alt='Россия', title='Россия')
+                        span.flag
+                          span(style='display: none;')  
+                        span.team-tag СКА
+                        | —
+                        img.flag(src='http://www.sports.ru/images/object_97.1206548518.png', alt='Латвия', title='Латвия')
+                        span.flag
+                          span(style='display: none;')  
+                        span.team-tag Динамо Рига
+                  td.score(nowrap='nowrap')
+                    a#match_teaser_385845(href='/stat/hockey/107/match/385845.html')
+                      | превью
+                  td.rtd.lcol
+                    nobr
+                      span#match_status_385845 не начался
+            #4084863_teaser_right.teaser-block-right.f-right.star_teaser
+              table.teaser-table(cellspacing='0', cellpadding='0')
+                colgroup
+                  col(width='30')
+                  col
+                  col(width='62')
+                  col(width='90')
+                tr
+                  td(nowrap='nowrap') 19:30
+                  td.lcol(nowrap='nowrap')
+                    nobr
+                      a.team-match-link(href='/stat/hockey/107/match/385835.html')
+                        img.flag(src='http://www.sports.ru/images/object_80.1206550372.png', alt='Россия', title='Россия')
+                        span.flag
+                          span(style='display: none;')  
+                        span.team-tag ОХК Динамо
+                        | —
+                        img.flag(src='http://www.sports.ru/images/object_80.1206550372.png', alt='Россия', title='Россия')
+                        span.flag
+                          span(style='display: none;')  
+                        span.team-tag Спартак
+                  td.score(nowrap='nowrap')
+                    a#match_teaser_385835(href='/stat/hockey/107/match/385835.html')
+                      | превью
+                  td.rtd.lcol
+                    nobr
+                      img.broadcast(src='/stat/skin/images/teaser-textonline.gif', width='11', height='12')
+                      span.broadcast
+                      span#match_status_385835 не начался
+            .border_teaser
+            .cn.bl
+            .cn.br
+      script(type='text/javascript')
+        var section = 0; var subsection = 0;
+      script(src='/stat/skin/js/teaser-new.js?243')
+      .left
+        .left
+          .title
+            p главные новости
+            p.lnk
+              a(href='/rss/topnews.xml', title='RSS')
+                img.ico(src='/i/ico/ico-feed-green.gif', width='13', height='13', alt='RSS', title='RSS')
+                | RSS
+              span |
+              a(href='/topnews/?link=all', title='Все')
+                | все
+                img.all-arrow(src='/i/all-arrow-green.gif')
+              br.clear
+          .news
+            | {% if main_news.data %}
+            | {% for news in main_news.data.mainnews %}
+            | {% include "news.html" %}
+            | {% endfor %}
+            | {% else %}
+            p Ошибка
+            | {% endif %}
+          .banner
+            a(href='http://vkontakte.ru/sportsru', target='_blank')
+              img(src='/i/banners/news/vkontakte/index.gif', alt='Добавить группу', label='Добавить группу')
+          .banner
+          script(language='javascript')
+            var cn_sid   = 'sid';
+            // values
+            Cookies.set_domain('.sports.ru');
+            store_cookie_name.set('user', 'favteam_user');
+            store_cookie_name.set('nouser', 'favteam0');
+            var sid = Cookies.get( cn_sid );
+            var rmsid = Cookies.get('rm_sid');
+            if (sid) { store_cookie_type = 'user'; }
+            var fav_team_id = Cookies.get( store_cookie_name.get(store_cookie_type) );
+            document.observe("dom:loaded", function() {
+            if (fav_team_id === '0') { return; }
+            if (!fav_team_id && (store_cookie_type == 'user'))
+            {
+            // get settings from user profile
+            new Ajax.Request('/ajax/user/fav_team_news_getcfg.html', {
+            method: 'post',
+            onComplete: function(response) {
+            if (200 == response.status) {
+            var text = response.responseText || '{}';
+            // TODO : process wrong format
+            var data = text.evalJSON();
+            tag_id = data.tag_id;
+            fav_team_id = tag_id;
+            Cookies.set( store_cookie_name.get(store_cookie_type), tag_id,
+            cookie_store_time.get(store_cookie_type) );
+            }
+            process_my_team_block();
+            }
+            });
+            }
+            else {
+            process_my_team_block();
+            }
+            });
+            function process_my_team_block() {
+            if (fav_team_id === '0') { return; }
+            if (fav_team_id) {
+            getMyTeamNews(fav_team_id);
+            $('team_settings_block').hide();
+            $('favTeamNews').show();
+            return;
+            }
+            $('hide_favteam_block').show(); // show button
+            fetchTeamSettings();
+            $('favTeamNews').show();
+            }
+          #favTeamNews.fav_team(style='display: none;')
+            .title
+              a(name='partner_feeds')
+              p
+                #favTeamSwitch.switch(onclick='toggleMyTeamCfg();') новости моей команды
+              p.lnk
+                a#favTeamSwitch2(href='#', style='display: none;', onclick='return toggleMyTeamCfg();', title='выбрать другую команду') изменить
+              p#hide_favteam_block.lnk(style='display: none;')
+                a.hidden(href='#', onclick='hideFavBlock(); return false;', title='закрыть блок') ×
+            #team_settings_block.team_settings
+              p#helpText.info
+              #team_config
+            #team_news.news(style='display: none;')
+          .title
+            p
+              a(href='/news/', title='Новости') новости
+              span |
+              a(href='/football/', title='Футбол') футбол
+            a.arhive(href='/news/football/?link=all', title='Все')
+              | все
+              img.all-arrow(src='/i/all-arrow-green.gif')
+          .news
+            | {% if football_news.data %}
+            | {% for news in football_news.data.news %}
+            | {% include 'news.html' %}
+            | {% endfor %}
+            | {% else %}
+            p Ошибка
+            | {% endif %}
+          .title
+            p
+              a(href='/news/', title='Новости') новости
+              span |
+              a(href='/hockey/', title='Хоккей') хоккей
+            a.arhive(href='/news/hockey/?link=all', title='Все')
+              | все
+              img.all-arrow(src='/i/all-arrow-green.gif')
+          .news
+            | {% if hockey_news.data %}
+            | {% for news in hockey_news.data.news %}
+            | {% include 'news.html' %}
+            | {% endfor %}
+            | {% else %}
+            p Ошибка
+            | {% endif %}
+          .title
+            p
+              a(href='/news/', title='Новости') новости
+              span |
+              a(href='/basketball/', title='Баскетбол') баскетбол
+            a.arhive(href='/news/basketball/?link=all', title='Все')
+              | все
+              img.all-arrow(src='/i/all-arrow-green.gif')
+          .news
+            | {% if basket_news.data %}
+            | {% for news in basket_news.data.news %}
+            | {% include 'news.html' %}
+            | {% endfor %}
+            | {% else %}
+            p Ошибка
+            | {% endif %}
+          .title
+            p
+              a(href='/news/', title='Новости') новости
+              span |
+              a(href='/automoto/', title='Авто/мото') авто/мото
+            a.arhive(href='/news/automoto/?link=all', title='Все')
+              | все
+              img.all-arrow(src='/i/all-arrow-green.gif')
+          .news
+            | {% if automoto_news.data %}
+            | {% for news in automoto_news.data.news %}
+            | {% include 'news.html' %}
+            | {% endfor %}
+            | {% else %}
+            p Ошибка
+            | {% endif %}
+          .title
+            p
+              a(href='/news/', title='Новости') новости
+              span |
+              a(href='/boxing/', title='Бокс/MMA') бокс/mma
+            a.arhive(href='/news/boxing/?link=all', title='Все')
+              | все
+              img.all-arrow(src='/i/all-arrow-green.gif')
+          .news
+            | {% if boxing_news.data %}
+            | {% for news in boxing_news.data.news %}
+            | {% include 'news.html' %}
+            | {% endfor %}
+            | {% else %}
+            p Ошибка
+            | {% endif %}
+          .title
+            p
+              a(href='/news/', title='Новости') новости
+              span |
+              a(href='/tennis/', title='Теннис') теннис
+            a.arhive(href='/news/tennis/?link=all', title='Все')
+              | все
+              img.all-arrow(src='/i/all-arrow-green.gif')
+          .news
+            | {% if tennis_news.data %}
+            | {% for news in tennis_news.data.news %}
+            | {% include 'news.html' %}
+            | {% endfor %}
+            | {% else %}
+            p Ошибка
+            | {% endif %}
+          .title
+            p
+              a(href='/news/', title='Новости') новости
+              span |
+              a(href='/biathlon/', title='Биатлон') биатлон
+            a.arhive(href='/news/biathlon/?link=all', title='Все')
+              | все
+              img.all-arrow(src='/i/all-arrow-green.gif')
+          .news
+            | {% if biathlon_news.data %}
+            | {% for news in biathlon_news.data.news %}
+            | {% include 'news.html' %}
+            | {% endfor %}
+            | {% else %}
+            p Ошибка
+            | {% endif %}
+          .title
+            p
+              a(href='/news/', title='Новости') новости
+              span |
+              a(href='/others/', title='Прочие') прочие
+            a.arhive(href='/news/others/?link=all', title='Все')
+              | все
+              img.all-arrow(src='/i/all-arrow-green.gif')
+          .news
+            | {% if other_news.data %}
+            | {% for news in other_news.data.news %}
+            | {% include 'news.html' %}
+            | {% endfor %}
+            | {% else %}
+            p Ошибка
+            | {% endif %}
+          .title
+            p
+              a(href='/news/', title='Новости') новости
+              span |
+              a(href='/style/', title='Стиль') стиль
+            a.arhive(href='/news/style/?link=all', title='Все')
+              | все
+              img.all-arrow(src='/i/all-arrow-green.gif')
+          .news
+            | {% if style_news.data %}
+            | {% for news in style_news.data.news %}
+            | {% include 'news.html' %}
+            | {% endfor %}
+            | {% else %}
+            p  Ошибка 
+            | {% endif %}
+          .partner-rss
+            .title
+              a(name='partner_feeds')
+              p
+                .switch(onclick='toggleRSSPartnersBlock(this);') новости партнеров
+            #prss_settings(style='display: none;')
+              form(action='/ajax/user/store_partner_feeds.html', method='post')
+                input(type='hidden', name='back', value='/index.html')
+                .prss_settings
+                  .row
+                    input#feed_10297668.chkbox(type='checkbox', name='feed_id', value='10297668')
+                    label(for='feed_10297668') fc-arsenal.com
+                    br.clear
+                  .row
+                    input#feed_70842876.chkbox(type='checkbox', name='feed_id', value='70842876')
+                    label(for='feed_70842876') merengues.ru
+                    br.clear
+                  .row
+                    input#feed_7955834.chkbox(type='checkbox', name='feed_id', value='7955834')
+                    label(for='feed_7955834') realmadrid.ru
+                    br.clear
+                  .row
+                    input#feed_7955913.chkbox(type='checkbox', name='feed_id', value='7955913')
+                    label(for='feed_7955913') liverpoolfc.ru
+                    br.clear
+                  .row
+                    input#feed_8306069.chkbox(type='checkbox', name='feed_id', value='8306069')
+                    label(for='feed_8306069') barcamania.com
+                    br.clear
+                  .row
+                    input#feed_7955995.chkbox(type='checkbox', name='feed_id', value='7955995')
+                    label(for='feed_7955995') fcdin.com
+                    br.clear
+                  .row
+                    input#feed_8670966.chkbox(type='checkbox', name='feed_id', value='8670966')
+                    label(for='feed_8670966') as-roma.ru
+                    br.clear
+                  .row
+                    input#feed_12086836.chkbox(type='checkbox', name='feed_id', value='12086836')
+                    label(for='feed_12086836') forzajuve.ru
+                    br.clear
+                  .row
+                    input#feed_22809714.chkbox(type='checkbox', name='feed_id', value='22809714')
+                    label(for='feed_22809714') barcelona-fc.ru
+                    br.clear
+                  .row
+                    input#feed_55914701.chkbox(type='checkbox', name='feed_id', value='55914701')
+                    label(for='feed_55914701') intermilano.ru
+                    br.clear
+                  .row
+                    input#feed_69882339.chkbox(type='checkbox', name='feed_id', value='69882339')
+                    label(for='feed_69882339') acmilan.su
+                    br.clear
+                  .row
+                    input#feed_58109885.chkbox(type='checkbox', name='feed_id', value='58109885')
+                    label(for='feed_58109885') dynamo.kiev.ua
+                    br.clear
+                  .row
+                    input#feed_70358697.chkbox(type='checkbox', name='feed_id', value='70358697')
+                    label(for='feed_70358697') real-madrid.ru 
+                    br.clear
+                  .row
+                    input#feed_70426938.chkbox(type='checkbox', name='feed_id', value='70426938')
+                    label(for='feed_70426938') fckuban.ru
+                    br.clear
+                  .row
+                    input#feed_71331554.chkbox(type='checkbox', name='feed_id', value='71331554')
+                    label(for='feed_71331554') online.amkar.ru
+                    br.clear
+                  .row
+                    input#feed_74249769.chkbox(type='checkbox', name='feed_id', value='74249769')
+                    label(for='feed_74249769') redevils.ru
+                    br.clear
+                  .row
+                    input#feed_102291454.chkbox(type='checkbox', name='feed_id', value='102291454')
+                    label(for='feed_102291454') www.fckrasnodar.ru
+                    br.clear
+                .button
+                  input(type='submit', value='сохранить изменения')
+            #prss_news.news
+              p.date
+                | 3 октября
+                span |
+                | понедельник
+              p
+                span 13:07
+                a.photo(href='http://redevils.ru/7643-skoulz-ne-opredelilsya-s-buduschim.html', title='Скоулз: Не определился с будущим', target='_blank')
+                  img(src='/i/ico/ico-news-rss.gif', width='9', height='9', alt='Скоулз: Не определился с будущим')
+                a.txt(href='http://redevils.ru/7643-skoulz-ne-opredelilsya-s-buduschim.html', title='Скоулз: Не определился с будущим', target='_blank') Скоулз: Не определился с будущим
+                span |
+                a(href='http://redevils.ru/news/rss.xml', title='redevils.ru', target='_blank') redevils.ru
+              p
+                span 12:26
+                a.photo(href='http://www.barcamania.com/news/9107.html', title='Абидаль: 7-10 дней на больничном', target='_blank')
+                  img(src='/i/ico/ico-news-rss.gif', width='9', height='9', alt='Абидаль: 7-10 дней на больничном')
+                a.txt(href='http://www.barcamania.com/news/9107.html', title='Абидаль: 7-10 дней на больничном', target='_blank') Абидаль: 7-10 дней на больничном
+                span |
+                a(href='http://www.barcamania.com/rss/', title='barcamania.com', target='_blank') barcamania.com
+              p
+                span 11:57
+                a.photo(href='http://fc-amkar.org/news/?id=26971', title='Амкаровцы в сборных', target='_blank')
+                  img(src='/i/ico/ico-news-rss.gif', width='9', height='9', alt='Амкаровцы в сборных')
+                a.txt(href='http://fc-amkar.org/news/?id=26971', title='Амкаровцы в сборных', target='_blank') Амкаровцы в сборных
+                span |
+                a(href='http://www.amkar.org/rss.php', title='online.amkar.ru', target='_blank') online.amkar.ru
+              p
+                span 11:18
+                a.photo(href='http://intermilano.ru/news/primavera/20869-stramachioni-pobeda-bez-rascheta.html', title='Примавера: Интер побеждает Асколи', target='_blank')
+                  img(src='/i/ico/ico-news-rss.gif', width='9', height='9', alt='Примавера: Интер побеждает Асколи')
+                a.txt(href='http://intermilano.ru/news/primavera/20869-stramachioni-pobeda-bez-rascheta.html', title='Примавера: Интер побеждает Асколи', target='_blank') Примавера: Интер побеждает Асколи
+                span |
+                a(href='http://intermilano.ru', title='intermilano.ru', target='_blank') intermilano.ru
+              p
+                span 11:07
+                a.photo(href='http://www.merengues.ru/main/3447-maurisio-pochettino-ya-razocharovan.html', title='Маурисио Почеттино: "Я разочарован"', target='_blank')
+                  img(src='/i/ico/ico-news-rss.gif', width='9', height='9', alt='Маурисио Почеттино: "Я разочарован"')
+                a.txt(href='http://www.merengues.ru/main/3447-maurisio-pochettino-ya-razocharovan.html', title='Маурисио Почеттино: "Я разочарован"', target='_blank') Маурисио Почеттино: "Я разочарован"
+                span |
+                a(href='http://merengues.ru/rss.xml', title='merengues.ru', target='_blank') merengues.ru
+              p
+                | Остальные новости партнеров читайте в
+                a(href='/my/news/') ленте ваших новостей
+        .center
+          | {% for material in materials.data.materials %}
+          | {% include "material.html" %}
+          | {% endfor %}
+          .banner
+            img(src='/i/alcohol-warning.jpg')
+          .public
+            .date
+              span(style='padding-left: 5px; float: right;')
+                a#addFavorite(onclick='return InOutFavorite( this, 126530627, \'Sports::Message\', \'2011-10-03 11:15:00\' )', target='_blank')
+                  img(src='/i/ico/ico-fav-star-empty.png', alt='в избранное', lable='добавить/удалить избранное')
+              | 3 октября 11:15
+            .text
+              a(href='/tribuna/blogs/khryaeva/240985.html', title='')
+                img.flo-right(src='/images/object_4.1317625987.46849.jpg', alt='НХЛ, Айлендерс, Евгений Набоков', width='110', height='110')
+              h2
+                a(href='/tribuna/blogs/khryaeva/240985.html', title='Евгений Набоков: «Прошлый сезон получился кувырком, но жизнь продолжается»') Евгений Набоков: «Прошлый сезон получился кувырком, но жизнь продолжается»
+              p
+                | После тренировки голкипер «Нью-Йорк Айлендерс» и сборной России Евгений Набоков ответил на некоторые вопросы, а на некоторые отвечать отказался. Главное, что можно вынести из общения с Евгением, – он полон сил и энтузиазма, чтобы доказать всем нам, что его рано списывать со счетов. И еще, знайте, – двое детей отнимают кучу времени. Во всяком случае, так говорит Набоков в интервью автору блога «Turn on the bright lights» Ирине Хряевой.
+            .themes
+              p
+                | комментарии:
+                a(href='/tribuna/blogs/khryaeva/240985.html?comments=1#comments') 7
+                p
+                  | теги:
+                  a(href='/tags/1046611.html') Айлендерс
+                  | |
+                  a(href='/tags/1365701.html') Евгений Набоков
+          .public
+            #redactors-choice
+              #posts.tabs.twoTabs
+                ul#posts-menu
+                  li.ttl.dark-grey.active
+                    .inner
+                      p
+                        a(onclick='toggleBSIndex(\'posts\', \'choice\', this); return false;', href='#') выбор пользователей
+                      p.lnk
+                        a(title='все', href='/tribuna/')
+                          | все
+                          img.all-arrow(src='/i/all-arrow-blue.gif')
+                        br.clear
+                  li.ttl.dark-grey.last
+                    .inner
+                      p
+                        a(onclick='toggleBSIndex(\'posts\', \'new\', this); return false;', href='#') новые записи в блогах
+                      p.lnk
+                        a(title='все', href='/tribuna/new.html')
+                          | все
+                          img.all-arrow(src='/i/all-arrow-blue.gif')
+                        br.clear
+                  br.clear
+                #posts-choice
+                  table(cellspacing='0')
+                    tr
+                      td.time.stroke(align='center', valign='top')
+                        | 03:29
+                      td.stroke
+                        strong
+                          a(href='/tribuna/blogs/ronaldo7/240976.html') 10 машин Криштиану Роналду
+                        | (44)
+                        br
+                        | в блоге
+                        a(href='/tribuna/blogs/ronaldo7/') Криштиану Роналду
+                    tr
+                      td.time.stroke(align='center', valign='top')
+                        | 02:06
+                      td.stroke
+                        strong
+                          a(href='/tribuna/blogs/televizor3/240966.html') Красивый гол Гонсало Игуаина!
+                        | (11)
+                        br
+                        | в блоге
+                        a(href='/tribuna/blogs/televizor3/') Телевизор 3.0
+                    tr
+                      td.time.stroke(align='center', valign='top')
+                        | 01:41
+                      td.stroke
+                        strong
+                          a(href='/tribuna/blogs/spartakblog/240963.html') Вредители
+                        | (36)
+                        br
+                        | в блоге
+                        a(href='/tribuna/blogs/spartakblog/') Блог болельщиков Спартака
+                    tr
+                      td.time.stroke(align='center', valign='top')
+                        | 01:21
+                      td.stroke
+                        strong
+                          a(href='/tribuna/blogs/televizor3/240960.html') Street work in Glasgow
+                        | (12)
+                        br
+                        | в блоге
+                        a(href='/tribuna/blogs/televizor3/') Телевизор 3.0
+                    tr
+                      td.time.stroke(align='center', valign='top')
+                        | 01:20
+                      td.stroke
+                        strong
+                          a(href='/tribuna/blogs/televizor3/240959.html') Дубль Маркизио в ворота Милана!
+                        | (12)
+                        br
+                        | в блоге
+                        a(href='/tribuna/blogs/televizor3/') Телевизор 3.0
+                    tr
+                      td.time.stroke(align='center', valign='top')
+                        | 01:09
+                      td.stroke
+                        strong
+                          a(href='/tribuna/blogs/dud/240954.html') Шапкозакидательство
+                        | (45)
+                        br
+                        | в блоге
+                        a(href='/tribuna/blogs/dud/') Заводной апельсин
+                    tr
+                      td.time.stroke(align='center', valign='top')
+                        | 2 октября
+                        br
+                      td.stroke
+                        strong
+                          a(href='/tribuna/blogs/mama4h/240927.html') Перфоманс болельщиков Спартака
+                        | (39)
+                        br
+                        | в блоге
+                        a(href='/tribuna/blogs/mama4h/') Вы это видели?
+                    tr
+                      td.time.stroke(align='center', valign='top')
+                        | 2 октября
+                        br
+                      td.stroke
+                        strong
+                          a(href='/tribuna/blogs/televizor3/240885.html') Сумасшедший гол Уолкера в ворота «Арсенала»
+                        | (24)
+                        br
+                        | в блоге
+                        a(href='/tribuna/blogs/televizor3/') Телевизор 3.0
+                    tr
+                      td.time.stroke(align='center', valign='top')
+                        | 2 октября
+                        br
+                      td.stroke
+                        strong
+                          a(href='/tribuna/blogs/icetv/240883.html') Хрюша, болеющий за «Спартак»
+                        | (10)
+                        br
+                        | в блоге
+                        a(href='/tribuna/blogs/icetv/') Айс-ТВ
+                    tr
+                      td.time(align='center', valign='top')
+                        | 2 октября
+                        br
+                      td
+                        strong
+                          a(href='/tribuna/blogs/televizor3/240881.html') 7 лучших голов уик-энда
+                        | (20)
+                        br
+                        | в блоге
+                        a(href='/tribuna/blogs/televizor3/') Телевизор 3.0
+                #posts-new.hidden
+                  table(cellspacing='0')
+                    tr
+                      td.time.stroke(align='center', valign='top')
+                        | 13:14
+                      td.stroke
+                        strong
+                          a(href='/tribuna/blogs/glebis/241060.html') Габулов: качество поля не позволило показать более качественный футбол
+                        | (0)
+                        br
+                        | в блоге
+                        a(href='/tribuna/blogs/glebis/') ЦСКА - Онлайн
+                    tr
+                      td.time.stroke(align='center', valign='top')
+                        | 13:13
+                      td.stroke
+                        strong
+                          a(href='/tribuna/blogs/glebis/241059.html') Игнашевич: А о проблеме в команде вам кто рассказал? Ловчев или Бубнов?
+                        | (0)
+                        br
+                        | в блоге
+                        a(href='/tribuna/blogs/glebis/') ЦСКА - Онлайн
+                    tr
+                      td.time.stroke(align='center', valign='top')
+                        | 13:13
+                      td.stroke
+                        strong
+                          a(href='/tribuna/blogs/footman90/241058.html') Неманья Видич - 15
+                        | (0)
+                        br
+                        | в блоге
+                        a(href='/tribuna/blogs/footman90/') Про футболистов МЮ
+                    tr
+                      td.time.stroke(align='center', valign='top')
+                        | 13:09
+                      td.stroke
+                        strong
+                          a(href='/tribuna/blogs/bawariya/241057.html') Баварцы празднуют пребывание на первой строчке. Фотопост
+                        | (0)
+                        br
+                        | в блоге
+                        a(href='/tribuna/blogs/bawariya/') Бавария
+                    tr
+                      td.time.stroke(align='center', valign='top')
+                        | 13:08
+                      td.stroke
+                        strong
+                          a(href='/tribuna/blogs/totalfootforecast/241056.html') Итоги 1/32 Кубка Первенства №3
+                        | (0)
+                        br
+                        | в блоге
+                        a(href='/tribuna/blogs/totalfootforecast/') Футбольные прогнозы
+                    tr
+                      td.time.stroke(align='center', valign='top')
+                        | 13:03
+                      td.stroke
+                        strong
+                          a(href='/tribuna/blogs/sportcalculator/241055.html') Мидтьюлланд - Хорсенс, онлайн, превью, прогноз
+                        | (0)
+                        br
+                        | в блоге
+                        a(href='/tribuna/blogs/sportcalculator/') Спортивный калькулятор
+                    tr
+                      td.time.stroke(align='center', valign='top')
+                        | 12:58
+                      td.stroke
+                        strong
+                          a(href='/tribuna/blogs/f1history/241054.html') Intro
+                        | (0)
+                        br
+                        | в блоге
+                        a(href='/tribuna/blogs/f1history/') История Формулы-1
+                    tr
+                      td.time.stroke(align='center', valign='top')
+                        | 12:52
+                      td.stroke
+                        strong
+                          a(href='/tribuna/blogs/parallel/241053.html') Результаты за Пекин!
+                        | (0)
+                        br
+                        | в блоге
+                        a(href='/tribuna/blogs/parallel/') Теннис большой - это хорошо
+                    tr
+                      td.time.stroke(align='center', valign='top')
+                        | 12:50
+                      td.stroke
+                        strong
+                          a(href='/tribuna/blogs/dima87/241052.html') Понедельник
+                        | (0)
+                        br
+                        | в блоге
+                        a(href='/tribuna/blogs/dima87/') Заводной мандаринчик
+                    tr
+                      td.time(align='center', valign='top')
+                        | 12:49
+                      td
+                        strong
+                          a(href='/tribuna/blogs/russianteam/241051.html') Смена
+                        | (0)
+                        br
+                        | в блоге
+                        a(href='/tribuna/blogs/russianteam/') Надежды нации
+          .title
+            p
+              a(href='/photogallery/') фотогалереи
+            p.lnk
+              a(href='/photogallery/')
+                | все
+                img.all-arrow(src='/i/all-arrow-green.gif')
+          .photo-journal
+            .photo-journal2
+              h2
+                a(href='/photogallery/126451547.html') Евротур. Лучшие кадры воскресенья
+              p#photojournal
+                a(href='/photogallery/126451547.html?photo_id=126452306', title='')
+                  img(src='/images/object_26.1317577642.jpg', alt='Челси, Фрэнк Лэмпард, Болтон, премьер-лига Англия', title='', width='70', height='70')
+                a(href='/photogallery/126451547.html?photo_id=126452355', title='')
+                  img(src='/images/object_57.1317577736.jpg', alt='Челси, Фрэнк Лэмпард, Болтон, премьер-лига Англия', title='', width='70', height='70')
+                a(href='/photogallery/126451547.html?photo_id=126452397', title='')
+                  img(src='/images/object_5.1317577811.jpg', alt='Челси, Болтон, премьер-лига Англия, Дэниэл Старридж', title='', width='70', height='70')
+                a.last(href='/photogallery/126451547.html?photo_id=126453099', title='')
+                  img(src='/images/object_24.1317577922.jpg', alt='Рафаэл ван дер Варт, премьер-лига Англия, Арсенал, Тоттенхэм', title='', width='70', height='70')
+                a(href='/photogallery/126451547.html?photo_id=126453147', title='')
+                  img(src='/images/object_96.1317578019.jpg', alt='Микель Артета, премьер-лига Англия, Арсенал, Тоттенхэм, Лука Модрич', title='', width='70', height='70')
+                a(href='/photogallery/126451547.html?photo_id=126453190', title='')
+                  img(src='/images/object_62.1317578126.jpg', alt='Бакари Санья, Харри Реднапп, премьер-лига Англия, Тоттенхэм', title='', width='70', height='70')
+                a(href='/photogallery/126451547.html?photo_id=126453917', title='')
+                  img(src='/images/object_97.1317578299.jpg', alt='Эммануэль Адебайор, премьер-лига Англия, Арсенал, Тоттенхэм', title='', width='70', height='70')
+                a.last(href='/photogallery/126451547.html?photo_id=126454702', title='')
+                  img(src='/images/object_42.1317578518.jpg', alt='Бетис, примера Испания', title='', width='70', height='70')
+          .public
+            .date
+              span(style='padding-left: 5px; float: right;')
+                a#addFavorite(onclick='return InOutFavorite( this, 126563641, \'Sports::Article\', \'2011-10-03 11:05:00\' )', target='_blank')
+                  img(src='/i/ico/ico-fav-star-empty.png', alt='в избранное', lable='добавить/удалить избранное')
+              | 3 октября 11:05
+            .text
+              a(href='/football/126563641.html', title='')
+                img.flo-right(src='/images/object_11.1317625714.28858.jpg', alt='премьер-лига Англия, Арсенал, Тоттенхэм', width='110', height='110')
+              h2
+                a(href='/football/126563641.html', title='Перемена мест') Перемена мест
+              p
+                | В очередном дерби «Тоттенхэм» с «Арсеналом» сыграли открытый матч, создали с десяток голевых моментов, впутали рефери в небольшой скандал и как минимум на месяц-другой изменили закостенелый миропорядок на севере английской столицы. Очередная победа удовлетворила притязания «шпор» на звание первых парней на районе. Очередное поражение болезненно подчеркнуло нынешний середняцкий статус «Арсенала».
+            .themes
+              p
+                | комментарии:
+                a(href='/football/126563641.html?comments=1#comments') 5
+                p
+                  | теги:
+                  a(href='/tags/1685202.html') Арсенал
+                  | |
+                  a(href='/tags/2682611.html') Тоттенхэм
+          .public
+            .date
+              span(style='padding-left: 5px; float: right;')
+                a#addFavorite(onclick='return InOutFavorite( this, 126479110, \'Sports::Article\', \'2011-10-03 01:30:00\' )', target='_blank')
+                  img(src='/i/ico/ico-fav-star-empty.png', alt='в избранное', lable='добавить/удалить избранное')
+              | 3 октября 01:30
+            .text
+              a(href='/football/126479110.html', title='')
+                img.flo-right(src='/images/object_86.1317589886.95109.jpg', alt='премьер-лига, Спартак, Зенит', width='110', height='110')
+              h2
+                a(href='/football/126479110.html', title='Пареха на человечестве') Пареха на человечестве
+              p
+                | В матче с «Зенитом» «Спартак» провел целый тайм вдесятером и даже не проиграл. ОМОН готовился к беспорядкам, врачи «Зенита» бегали больше Вячеслава Малафеева, а Николас Пареха со злости швырял напульсник на землю. Репортаж Sports.ru из «Лужников».
+            .themes
+              p
+                | комментарии:
+                a(href='/football/126479110.html?comments=1#comments') 30
+                p
+                  | теги:
+                  a(href='/tags/1044511.html') Спартак
+                  | |
+                  a(href='/tags/1044514.html') Зенит
+          .public
+            .date
+              span(style='padding-left: 5px; float: right;')
+                a#addFavorite(onclick='return InOutFavorite( this, 126430488, \'Sports::Article\', \'2011-10-03 00:41:00\' )', target='_blank')
+                  img(src='/i/ico/ico-fav-star-empty.png', alt='в избранное', lable='добавить/удалить избранное')
+              | 3 октября 00:41
+            .text
+              a(href='/hockey/126430488.html', title='')
+                img.flo-right(src='/images/object_1.1317576081.41305.jpg', alt='Ак Барс, Авангард, Салават Юлаев, Металлург Мг, Сибирь, ЦСКА, Нефтехимик, Витязь, Металлург Нк, Трактор, Амур, Автомобилист, Торпедо, Динамо Минск, Барыс, Атлант, Югра, Лев Попрад, результаты, КХЛ', width='110', height='110')
+              h2
+                a(href='/hockey/126430488.html', title='КХЛ. Главное. 1-2 октября') КХЛ. Главное. 1-2 октября
+              p
+                | Хоккейные выходные порадовали болельщиков не только отличными матчами, но и весьма неожиданными результатами. «Ак Барс» и «Салават» теряют очки в домашних встречах, Артемий Панарин прерывает безголевую серию чеховской команды, а Майкл Гарнетт становится единственным голкипером, оставившим ворота «сухими» – Sports.ru представляет обзор двух последних игровых дней чемпионата КХЛ.
+            .themes
+              p
+                | комментарии:
+                a(href='/hockey/126430488.html?comments=1#comments') 4
+                p
+                  | теги:
+                  a(href='/tags/1046593.html') результаты
+                  | |
+                  a(href='/tags/4084863.html') КХЛ
+          .yellow
+            .title дайджест слухов
+            .content
+              .photo
+                a(href='/football/125992911.html', title='')
+                  img(src='/images/object_79.1317384034.5981.jpg', alt='')
+              .text
+                a(href='/football/125992911.html', title='')
+                  | Павлюченко в  дортмундской «Боруссии», ультиматум Семшова, финансовые аппетиты Самедова, Марио Гомес в обмен на Тевеса, воссоединение Марина с Мертезакером в «Арсенале», Паццини на «Сантьяго Бернабеу» и другие слухи пятницы
+                | (
+                a(href='/football/125992911.html?comments=1#comments', title='Комментарии к слуху') 21
+                | )
+              br.clear
+          .public
+            .date
+              span(style='padding-left: 5px; float: right;')
+                a#addFavorite(onclick='return InOutFavorite( this, 126473690, \'Sports::Article\', \'2011-10-03 00:23:00\' )', target='_blank')
+                  img(src='/i/ico/ico-fav-star-empty.png', alt='в избранное', lable='добавить/удалить избранное')
+              | 3 октября 00:23
+            .text
+              a(href='/football/126473690.html', title='')
+                img.flo-right(src='/images/object_48.1317586978.85487.jpg', alt='Бавария, Вердер, Боруссия Дортмунд, Нюрнберг, Боруссия Менхенгладбах, Майнц-05, Мануэль Нойер, Эрен Дердийок, бундеслига Германия, Роберт Левандовски', width='110', height='110')
+              h2
+                a(href='/football/126473690.html', title='Верхи не могут') Верхи не могут
+              p
+                | «Бавария», «Вердер» и гладбахская «Боруссия» набирают одно очко на троих, «Герта» громит набравший ход «Кельн», а дортмундская «Боруссия» – тонущий «Аугсбург». Роберт Левандовски делает хет-трик, Халид Буларуз отмечается голом впервые за 6,5 лет, а Эрен Дердийок забивает ударом через себя. Очередной тур немецкой бундеслиги весьма сурово обошелся с лидерами чемпионата.
+            .themes
+              p
+                | комментарии:
+                a(href='/football/126473690.html?comments=1#comments') 8
+                p
+                  | теги:
+                  a(href='/tags/1363808.html') бундеслига Германия
+                  | |
+                  a(href='/tags/5899346.html') Роберт Левандовски
+          .public
+            .date
+              span(style='padding-left: 5px; float: right;')
+                a#addFavorite(onclick='return InOutFavorite( this, 126451547, \'Sports::PhotoGallery\', \'2011-10-02 23:42:00\' )', target='_blank')
+                  img(src='/i/ico/ico-fav-star-empty.png', alt='в избранное', lable='добавить/удалить избранное')
+              | 2 октября 23:42
+            .text
+              a(href='/photogallery/126451547.html', title='')
+                img.flo-right(src='/images/object_33.1317586755.98044.jpg', alt='бундеслига Германия, серия А Италия, примера Испания, премьер-лига Англия, фото', width='110', height='110')
+              h2
+                a(href='/photogallery/126451547.html', title='Евротур. Лучшие кадры воскресенья') Евротур. Лучшие кадры воскресенья
+              p
+                | Кайл Уокер и товарищи празднуют победу в северолондонском дерби, Фрэнк Лэмпард забивает три гола «Болтону», а «Бетис» уступает лидерство в чемпионате Испании. Самые красивые кадры воскресенья – в традиционной галерее Sports.ru.
+            .themes
+              p
+                | комментарии:
+                a(href='/photogallery/126451547.html?comments=1#comments') 0
+                p
+                  | теги:
+                  a(href='/tags/1363805.html') премьер-лига Англия
+                  | |
+                  a(href='/tags/2813094.html') фото
+          .public
+            .date
+              span(style='padding-left: 5px; float: right;')
+                a#addFavorite(onclick='return InOutFavorite( this, 126462657, \'Sports::Message\', \'2011-10-02 23:13:00\' )', target='_blank')
+                  img(src='/i/ico/ico-fav-star-empty.png', alt='в избранное', lable='добавить/удалить избранное')
+              | 2 октября 23:13
+            .text
+              a(href='/tribuna/blogs/festival/240914.html', title='')
+                img.flo-right(src='/images/object_40.1317582504.78402.png', alt='премьер-лига, судьи, Спартак, Зенит', width='110', height='110')
+              h2
+                a(href='/tribuna/blogs/festival/240914.html', title='За «Спартак», за «Зенит», все вместе против судейства') За «Спартак», за «Зенит», все вместе против судейства
+              p
+                | Спартаковские и зенитовские блогеры дружно посчитали, что именно их команда сегодня выглядела лучше, но потеряла очки. Так же дружно все выступили против судейства, но судья, по мнению каждой из сторон, помогал именно соперникам. А вы на чьей стороне?
+            .themes
+              p
+                | комментарии:
+                a(href='/tribuna/blogs/festival/240914.html?comments=1#comments') 25
+                p
+                  | теги:
+                  a(href='/tags/1044511.html') Спартак
+                  | |
+                  a(href='/tags/1044514.html') Зенит
+            .materials
+              p материалы по теме:
+              ul
+                li
+                  a.txt(href='/football/126463503.html')
+                    | Александр Колобаев: «Неспортивное поведение было более ярко выражено со стороны Парехи»
+                  | (
+                  a(href='/football/126463503.html?comments=1#comments', title='66') 66
+                  | )
+                  span | 2 октября 23:02
+                li
+                  a.txt(href='/football/126453872.html') Казьменко получил 8,3 балла за игру между «Спартаком» и «Зенитом»
+                  | (
+                  a(href='/football/126453872.html?comments=1#comments', title='59') 59
+                  | )
+                  span | 2 октября 21:58
+                li
+                  a.txt(href='/football/126424053.html')
+                    | Лучано Спаллетти: «Для «Спартака» победа над «Зенитом» – это как выграть чемпионат. А для нас чемпионство будет разыграно в мае»
+                  | (
+                  a(href='/football/126424053.html?comments=1#comments', title='296') 296
+                  | )
+                  span | 2 октября 19:25
+                li
+                  a.txt(href='/football/126424929.html') Леонид Федун: «Стоит нам повести в счете, как судья тут же включается в игру»
+                  | (
+                  a(href='/football/126424929.html?comments=1#comments', title='88') 88
+                  | )
+                  span | 2 октября 19:02
+          .public
+            .date
+              span(style='padding-left: 5px; float: right;')
+                a#addFavorite(onclick='return InOutFavorite( this, 126392438, \'Sports::Article\', \'2011-10-02 22:31:00\' )', target='_blank')
+                  img(src='/i/ico/ico-fav-star-empty.png', alt='в избранное', lable='добавить/удалить избранное')
+              | 2 октября 22:31
+            .text
+              a(href='/football/126392438.html', title='')
+                img.flo-right(src='/images/object_24.1317580102.51514.jpg', alt='Андрей Аршавин, Манчестер Юнайтед, Ливерпуль, Блэкберн, Ньюкасл, Уиган, Эвертон, Эндрю Джонсон, Астон Вилла, Манчестер Сити, Фулхэм, Стив Брюс, Сандерленд, Габриэль Агбонлахор, Вест Бромвич, Вулверхэмптон, Стив Кин, Джек Родуэлл, Марк Халси, Мартин Аткинсон, Кайл Уокер, премьер-лига Англия, Арсенал, Тоттенхэм', width='110', height='110')
+              h2
+                a(href='/football/126392438.html', title='Крутой Уокер') Крутой Уокер
+              p
+                | «Тоттенхэм» обыгрывает «Арсенал» в одном супердерби, а «Ливерпуль» «Эвертон» в другом. Фрэнк Лэмпард и Энди Джонсон делают хет-трики, Хонас, Уокер, Агбонлахор и Адам Джонсон забивают красивые голы, а лидируют по-прежнему два «Манчестера». Событийный 7-й тур английской премьер-лиги уходит в историю, забирая с собой несколько грубых судейских ошибок.
+            .themes
+              p
+                | комментарии:
+                a(href='/football/126392438.html?comments=1#comments') 37
+                p
+                  | теги:
+                  a(href='/tags/1363805.html') премьер-лига Англия
+                  | |
+                  a(href='/tags/1685202.html') Арсенал
+                  | |
+                  a(href='/tags/2682611.html') Тоттенхэм
+            .materials
+              p материалы по теме:
+              ul
+                li
+                  a.txt(href='http://www.sports.ru/tribuna/football/england/') Английский футбол на Трибуне Sports.ru
+                li
+                  a.txt(href='/football/126166471.html')
+                    | Чемпионат Англии. 7-й тур. «Тоттенхэм» выиграл у «Арсенала», «Челси» в гостях разгромил «Болтон» и другие результаты
+                  | (
+                  a(href='/football/126166471.html?comments=1#comments', title='1131') 1131
+                  | )
+                  span | 2 октября 21:18
+          .public
+            .date
+              span(style='padding-left: 5px; float: right;')
+                a#addFavorite(onclick='return InOutFavorite( this, 126447483, \'Sports::Message\', \'2011-10-02 21:50:00\' )', target='_blank')
+                  img(src='/i/ico/ico-fav-star-empty.png', alt='в избранное', lable='добавить/удалить избранное')
+              | 2 октября 21:50
+            .text
+              a(href='/tribuna/blogs/televizor3/240881.html', title='')
+                img.flo-right(src='/images/object_55.1317577436.15919.jpg', alt='Жулио Баптиста, Адам Джонсон, Игорь Смольников, Педро Леон, Иньиго Мартинес, видео, Эрен Дердийок', width='110', height='110')
+              h2
+                a(href='/tribuna/blogs/televizor3/240881.html', title='7 лучших голов уик-энда') 7 лучших голов уик-энда
+              p
+                | Подходящий к концу уик-энд неожиданно превратился в хит-парад отчаянно красивых голов, многие из которых будут претендовать на звание лучших по итогам всего сезона. Адам Джонсон и Педро Леон расстреливают «девятки», Иньиго Мартинес кладет со своей половины поля, а Жулио Баптиста и Эрен Дердийок забивают через себя. Подборка из 7 шикарных мячей – в блоге «Телевизор 3.0».
+            .themes
+              p
+                | комментарии:
+                a(href='/tribuna/blogs/televizor3/240881.html?comments=1#comments') 20
+                p
+                  | теги:
+                  a(href='/tags/1694562.html') видео
+                  | |
+                  a(href='/tags/4791926.html') Эрен Дердийок
+          .paginator
+            .paginator2
+              p
+                span 2203
+                | |
+                a(href='?p=2202') 2202
+                | |
+                a(href='?p=2201') 2201
+                | |
+                a(href='?p=2200') 2200
+                | |
+                a(href='?p=2199') 2199
+                | |
+                a(href='?p=2198') 2198
+                | |
+                a(href='?p=2197') 2197
+                | |
+                a(href='?p=2196') 2196
+                | |
+                a(href='?p=1') в начало
+        br.clear
+      .right
+        .banner
+        .banner
+          script(type='text/javascript')
+          noscript
+        #stat_gadget
+        link(rel='stylesheet', href='/stat/skin/css/gadget.css?1')
+        script(src='/stat/skin/js/gadget-loader.js?3')
+        script(type='text/javascript')
+          updateGadget('stat_gadget', '/stat/gadget/', 0);
+        .title.blue
+          p
+            a(href='/tribuna/blogs/', title='блоги') блоги
+          p.lnk
+            a(href='/tribuna/blogs/', title='все')
+              | все
+              img.all-arrow(src='/i/all-arrow-blue.gif')
+            br.clear
+        .gray
+          | {% if blogs.data.blogs %}
+          | {% for blog in blogs.data.blogs %}
+          | {% include "blog.html" %}
+          | {% endfor %}
+          | {% else %}
+          p Ошибка
+          | {% endif %}
+        .title
+          p
+            a(href='/conference/', title='конференции') конференции
+          p.lnk
+            a(href='/conference/', title='Все')
+              | все
+              img.all-arrow(src='/i/all-arrow-green.gif')
+            br.clear
+        .gray
+          | {% if conferences.data.conferences %}
+          | {% for conference in conferences.data.conferences %}
+          | {% include "conference.html" %}
+          | {% endfor %}
+          | {% else %}
+          p Ошибка
+          | {% endif %}
+        .title
+          p
+            a(href='/polls/126455528.html', title='Опрос') опрос
+          p.lnk
+            a(href='/polls/', title='Все')
+              | все
+              img.all-arrow(src='/i/all-arrow-green.gif')
+        .gray
+          form(action='/ajax/poll/poll_submit.html', method='post', target='answer_frame_126455528', name='PollAnswer')
+            input(type='hidden', name='poll_id', value='126455528')
+            input(type='hidden', name='left_column', value='0')
+            #answers_list_126455528
+            script
+              display_answers('126455528', 0);
+          iframe#answer_frame_126455528(name='answer_frame_126455528', src='', style='border: 0pt none; width: 0px; height: 0px;')
+      br.clear
+

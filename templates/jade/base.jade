@@ -1,0 +1,71 @@
+!!! strict
+html(xmlns='http://www.w3.org/1999/xhtml', xml:lang='ru', xmlns:og='http://opengraphprotocol.org/schema/', xmlns:fb='http://www.facebook.com/2008/fbml')
+head
+    title
+      | Футбол, хоккей, баскетбол, теннис, бокс, Формула-1  все новости спорта на Sports.ru
+    meta(http-equiv='Content-Language', content='ru')
+    meta(http-equiv='Refresh', content='720; URL=http://www.sports.ru/?')
+    meta(name='copyright', content='copyright ©2007, Sports.RU')
+    meta(name='Robots', content='index, follow')
+    meta(name='robots', content='all')
+    link(href='http://stg.odnoklassniki.ru/share/odkl_share.css?1', rel='stylesheet')
+    link(rel='stylesheet', type='text/css', href='#{url_for('static',filename='css/parent.css')}')
+    link(rel='stylesheet', type='text/css', href='#{url_for('static',filename='css/poll_export.css')}')
+    link(rel='stylesheet', type='text/css', href='#{url_for('static',filename='css/popups.css')}')
+    link(rel='stylesheet', type='text/css', href='#{url_for('static',filename='css/search.css')}')
+    //if lte IE 7
+      link(rel='stylesheet', type='text/css', href='/css/miserable-browsers/internet-explorer.css')
+    //if IE 6
+      link(rel='stylesheet', type='text/css', href='/css/miserable-browsers/internet-explorer-6.css')
+    link(rel='stylesheet', type='text/x-opera-css;charset=utf-8', href='#{url_for('static',filename='css/opera.css')}')
+    link(rel='stylesheet', type='text/css', href='#{url_for('static',filename='css/promo.css')}')
+    link(rel='stylesheet', type='text/css', href='#{url_for('static',filename='css/mikroblog.css')}')
+    block css
+  body
+    #vk_api_transport
+    #fb-root
+    script(type='text/javascript')
+    div(style='height: 0;')
+      script#top100Counter(type='text/javascript', src='http://counter.rambler.ru/top100.jcn?44833')
+      noscript
+        img(src='http://counter.rambler.ru/top100.cnt?44833', alt='', width='1', height='1', border='0')
+      //
+         end of Top100 code 
+      //
+         tns-counter.ru 
+      script(language='JavaScript')
+        var img = new Image();
+        img.src = 'http://www.tns-counter.ru/V13a***R>' + document.referrer.replace(/\\*/g,'%2a') + '*sports_ru/ru/CP1251/tmsec=sports_total/';
+      noscript
+        img(src='http://www.tns-counter.ru/V13a****sports_ru/ru/CP1251/tmsec=sports_total/', width='1', height='1', alt='')
+    #affs(align='center', style='visibility: hidden; display: none;')
+    #overall
+      #vkontakte-line(style='position: relative; z-index: 100;')
+      #affs_content
+        .corner-banner
+          script(type='text/javascript')
+        #basis
+          .top-content-corners
+          script(type='text/javascript')
+            var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+            document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+          script(type='text/javascript')
+            var pageTracker = _gat._getTracker("UA-2190769-1");
+            pageTracker._addOrganic("Rambler","words");
+            pageTracker._addOrganic("Mail","q");
+            pageTracker._addOrganic("Nigma","q");
+            pageTracker._addOrganic("Webalta","q");
+            pageTracker._addOrganic("Aport","r");
+            pageTracker._addOrganic("Gogo","q");
+            pageTracker._initData();
+            pageTracker._trackPageview();
+          script(src='http://www.google-analytics.com/urchin.js', type='text/javascript')
+                                        
+          script(type='text/javascript')
+            _uacct = "UA-3856443-1";
+            urchinTracker();
+          block header
+            include jade/header.jade
+          block middle
+          block footer
+            include jade/footer.jade

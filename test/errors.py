@@ -25,7 +25,11 @@ class ErrorHandlingTest(unittest.TestCase):
         result = collect_urls({"post":"http://www.sports.ololo/stat/export/wapsports/blog_post.json?id=255756",
                                "category_blog_popular_posts":"http://www.sports.ru/stat/export/wapsports/category_blog_popular_posts.json?category_id={{post.category_id}}&count=10"})
         self.assertEqual(result["category_blog_popular_posts"], {u'error': u'Dependency failed'})
-        
+    
+    def test_incorrect_dep_format(self):
+        result = collect_urls({"post":"http://www.sports.ru/stat/export/wapsports/blog_post.json?id=255756",
+                               "category_blog_popular_posts":"http://www.sports.ru/stat/export/wapsports/category_blog_popular_posts.json?category_id={{post.nonexist_param}}&count=10"})
+        self.assertEqual(result['category_blog_popular_posts'],{u'error':'nonexist_param'})
 
 if __name__ == '__main__':
     unittest.main()

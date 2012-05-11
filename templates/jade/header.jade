@@ -1,0 +1,1102 @@
+.header
+    noindex
+        script(type='text/javascript')
+          var SportsOAuth2 = new Object();
+          SportsOAuth2.VK = {
+          client_id       :   2432279,
+          scope           :   'wall,notes,friends,photo,offline',
+          redirect_uri    :   'http://www.sports.ru/ajax/user/oauth2/vkontakte.html&display=popup',
+          type            :   'logon',
+          login           :   function() {
+          this.type = 'logon';
+          this.open();
+          },
+          registration    :   function() {
+          this.type = 'reg';
+          this.open();
+          },
+          join            :   function() {
+          this.type = 'join';
+          this.open();
+          },
+          open            :   function() {
+          SportsOAuth2.social = 'vkontakte';
+          window.open('http://api.vkontakte.ru/oauth/authorize?client_id='+ this.client_id +'&scope='+ this.scope +'&redirect_uri=' + this.redirect_uri,'','width=500,height=300');
+          }
+          }
+          SportsOAuth2.FB = {
+          client_id       :   109556845805232,
+          scope           :   'email, user_birthday, user_interests, publish_stream, offline_access, user_about_me, friends_about_me',
+          redirect_uri    :   'http://www.sports.ru/ajax/user/oauth2/facebook.html&display=popup',
+          type            :   'logon',
+          login           :   function() {
+          this.type = 'logon';
+          this.open();
+          },
+          registration    :   function() {
+          this.type = 'reg';
+          this.open();
+          },
+          join            :   function() {
+          this.type = 'join';
+          this.open();
+          },
+          open            :   function() {
+          SportsOAuth2.social = 'facebook';
+          window.open('https://www.facebook.com/dialog/oauth?client_id='+ this.client_id +'&scope='+ this.scope +'&return_session=1&redirect_uri=' + this.redirect_uri,'','width=500,height=300');
+          }
+          }
+          window.vkAsyncInit = function() {
+          VK.init({
+          apiId: 2432279
+          });
+          };
+          setTimeout(function() {
+          var el = document.createElement("script");
+          el.type = "text/javascript";
+          el.src = "http://vkontakte.ru/js/api/openapi.js";
+          el.async = true;
+          document.getElementById("vk_api_transport").appendChild(el);
+          }, 0);
+          var defaultSocialLogin = '';
+          var defaultSocialNickname = '';
+          function authVkontakteReq(user) {
+          var social = SportsOAuth2.social;
+          if(user != null) {
+          defaultSocialNickname = user.first_name + ' ' + user.last_name;
+          new Ajax.Request( '/ajax/user/authorization.html', {
+          method: 'post',
+          parameters: { 'social': social },
+          onSuccess:	function(req)	{
+          if ( SportsOAuth2.VK.type == 'logon') { closePopupBlock('autoriz-popup'); }
+          if ( SportsOAuth2.VK.type == 'reg'	) { closePopupBlock('registr-popup'); }
+          var resp = req.responseText.evalJSON();
+          if ( resp.result == 1 ) {
+          if ( SportsOAuth2.VK.type == 'join'	) {
+          socialFriends();
+          }
+          else {
+          reloadBrowserWindow();
+          }
+          } else {
+          defaultSocialLogin = defaultLogin;
+          $('registrationSocialNickname').value = defaultSocialNickname;
+          $('registrationSocialLogin').value = defaultSocialLogin;
+          if ( SportsOAuth2.VK.type == 'logon') { showPopup( social + '-info-popup'); 		    }
+          if ( SportsOAuth2.VK.type == 'reg'	) { showPopup( social + '-ask-old-account-popup');	}
+          }
+          },
+          onFailure:	function() {
+          alert('Системная ошибка');
+          },
+          } );
+          }
+          }
+          function authFacebookReq(user) {
+          var social = SportsOAuth2.social;
+          if(user != null) {
+          defaultSocialNickname = user.first_name + ' ' + user.last_name;
+          if ( user.email ) {
+          defaultSocialLogin = user.email;
+          } else {
+          defaultSocialLogin = defaultLogin;
+          }
+          new Ajax.Request( '/ajax/user/authorization.html', {
+          method: 'post',
+          parameters: { social: SportsOAuth2.social },
+          onSuccess:	function(req)	{
+          if ( SportsOAuth2.FB.type == 'logon') { closePopupBlock('autoriz-popup'); }
+          if ( SportsOAuth2.FB.type == 'reg'	) { closePopupBlock('registr-popup'); }
+          var resp = req.responseText.evalJSON();
+          if ( resp.result == 1 ) {
+          if ( resp.after_join ) {
+          socialFriends();
+          closePopupBlock('autoriz-popup');
+          } else {
+          reloadBrowserWindow();
+          }
+          } else {
+          $('registrationSocialNickname').value = defaultSocialNickname;
+          $('registrationSocialLogin').value = defaultSocialLogin;
+          if ( SportsOAuth2.FB.type == 'logon') {
+          showPopup(social + '-info-popup');
+          } else {
+          registerSocialUser();
+          }
+          }
+          },
+          onFailure:	function() {
+          alert('Системная ошибка');
+          }
+          } );
+          }
+          }
+        #user_menu.top-links
+          img.preload(src='/i/preload.gif')
+        script(language='javascript')
+          new Ajax.Updater({ 'success':'user_menu' },     '/ajax/user/menu.html',             { method:'get' });
+          new Ajax.Updater({ 'success':'vkontakte-line'}, '/ajax/social/vkontakte/line.html', { method:'get' });
+          get_user_background('/index.html');
+
+#topBanner.top-banner
+    div
+      script(language='JavaScript')
+        defaultLogin = 'Ваш e-mail';
+        defaultPasswd = 'Пароль';
+        defaultOpenId = 'Логин';
+        defaultEmail = 'Ваш e-mail';
+      #overlay.overlay(style='display: none;')
+      #autoriz-popup.popupBlock(style='display: none;')
+        i.popup-corn
+        .popup-body
+          span#popup-close.popup-close(onclick='closePopupBlock(\'autoriz-popup\');')
+          h3 Авторизация
+          span#authorizationError.error(style='display: none;') error
+          form.autoriz-form(action='', onkeypress='return onFormPressEnter(event, \'authorizeSubmit\');', method='post')
+            input#autorizationControl(type='hidden', name='control_charset', value='Контроль')
+            input#autorizationBackURL(type='hidden', name='back_url', value='/index.html')
+            .col
+              span.corner-input
+                i.cn.tl
+                i.cn.tr
+                i.cn.bl
+                i.cn.br
+                input#autorizationLogin(type='text', name='login', value='', onfocus='onFocusInputField(this, defaultLogin);', onblur='onBlurInputField(this, defaultLogin);')
+              label.checkBox
+                input#remember_me(type='checkbox', name='remember_me')
+                | Запомнить меня
+            .col
+              span.corner-input
+                i.cn.tl
+                i.cn.tr
+                i.cn.bl
+                i.cn.br
+                input#autorizationPasswd(type='password', name='password', value='', onfocus='onFocusInputField(this, defaultPasswd);', onblur='onBlurInputField(this, defaultPasswd);')
+              a(href='#', onclick='closePopupBlock(\'autoriz-popup\'); showPopup(\'forget-popup\'); return false;') Забыли пароль?
+            .col
+              input#authorizeSubmit.blue-button.button-login(type='button', value='', onclick='return authorizeUser(0);')
+          p
+            | Если вы еще не зарегистрированы на Sports.ru, то можете сделать это
+            a(href='#', onclick='closePopupBlock(\'autoriz-popup\'); showPopup(\'registr-popup\'); return false;') здесь
+            | .
+            br
+            | Также вы можете войти, использую учетную запись Вконтакте или с помощью OpenID:
+          .social-login
+            a.facebook-but(href='#', onclick='SportsOAuth2.FB.login();return false;')
+            a.vkontakte-but(href='#', onclick='SportsOAuth2.VK.login();return false;')
+            span.openId
+              i.openId-but(onclick='$(\'autoriz-popup\').toggleClassName(\'openId-show\');')
+              i.openId-bg
+        #openId.openId-block
+          form.openId-form(action='/logon.html', method='post')
+            .col
+              span.corner-input
+                i.cn.tl
+                i.cn.tr
+                i.cn.bl
+                i.cn.br
+                input(type='hidden', name='control_charset', value='Контроль')
+                input(type='hidden', name='url', value='/index.html')
+                input#autorizationOpenId(type='text', name='open_id', value='', onfocus='onFocusInputField(this, defaultOpenId);', onblur='onBlurInputField(this, defaultOpenId);', onkeypress='return onFormPressEnter(event, \'authorizeOpenIdSubmit\');')
+            .col
+              input#authorizeOpenIdSubmit.blue-button.button-login(type='submit', value='')
+          | Например: user.livejournal.com
+      #registr-popup.popupBlock(style='display: none;')
+        i.popup-corn
+        .popup-body
+          span#popup-close.popup-close(onclick='closePopupBlock(\'registr-popup\');')
+          h3 Регистрация
+          form.registr-form(action='', onkeypress='return onFormPressEnter(event, \'registerSubmit\');')
+            .overBox
+              .col
+                span.corner-input
+                  i.cn.tl
+                  i.cn.bl
+                  input#registrationLogin(type='text', name='login', value='', onfocus='onFocusInputField(this, defaultLogin);', onblur='onBlurInputField(this, defaultLogin);')
+              .col
+                input#registerSubmit.blue-button.button-registr(type='button', value='', onclick='return registerUser(0);')
+            input#registrationControl(type='hidden', name='control_charset', value='Контроль')
+            input#registrationBackURL(type='hidden', name='back_url', value='/index.html')
+            .what-give-registr
+              span(onclick='showHiddenBlock(\'info-reg-block\')') Что дает регистрация?
+              span(onclick='showHiddenBlock(\'adv-data\')') Ввести больше данных
+            #adv-data.advance-data-block(style='display: none;')
+              div
+                span#registrationError.error(style='display: hidden;')
+              .col
+                table.adv-table(cellpadding='0', cellspacing='0', border='0')
+                  tr
+                    td.name-field Nickname
+                    td
+                      .input-line
+                        input#registrationNick(type='text', name='nick')
+                  tr
+                    td.name-field Пароль
+                    td
+                      input#registrationPasswd(type='password', name='passwd')
+                  tr
+                    td.name-field Пароль еще раз
+                    td
+                      input#registrationRepasswd(type='password', name='repasswd')
+                  tr
+                    td.name-field Страна
+                    td
+                      #registration-country-div
+                        select#registration_country_select(name='country_id')
+                          option(value='') Выберите страну...
+                          option(value='1285') Россия
+                          option(value='1317') Украина
+                          option(value='1413') Англия
+                          option(value='1287') Германия
+                          option(value='1304') Испания
+                          option(value='1306') Италия
+                          option(value='1291') Нидерланды
+                          option(value='1311') Франция
+                          option(value='1323') Австралия
+                          option(value='1322') Австрия
+                          option(value='1315') Азербайджан
+                          option(value='1411') Албания
+                          option(value='1326') Алжир
+                          option(value='1476') Американское Самоа
+                          option(value='1387') Ангола
+                          option(value='1417') Андорра
+                          option(value='1418') Антигуа и Барбуда
+                          option(value='1373') Антильские Острова
+                          option(value='1332') Аргентина
+                          option(value='1341') Армения
+                          option(value='1419') Аруба
+                          option(value='1420') Афганистан
+                          option(value='1421') Багамские Острова
+                          option(value='1365') Бангладеш
+                          option(value='1422') Барбадос
+                          option(value='1423') Бахрейн
+                          option(value='1302') Беларусь
+                          option(value='1424') Белиз
+                          option(value='1349') Бельгия
+                          option(value='1385') Бенин
+                          option(value='1333') Болгария
+                          option(value='1371') Боливия
+                          option(value='1364') Босния и Герцеговина
+                          option(value='1425') Ботсвана
+                          option(value='1296') Бразилия
+                          option(value='1478') Британские Виргинские острова
+                          option(value='1363') Бруней
+                          option(value='1396') Буркина Фасо
+                          option(value='1370') Бурунди
+                          option(value='1426') Бутан
+                          option(value='1427') Вануату
+                          option(value='1299') Великобритания
+                          option(value='1295') Венгрия
+                          option(value='1310') Венесуэла
+                          option(value='1350') Вьетнам
+                          option(value='1428') Габон
+                          option(value='1391') Гаити
+                          option(value='1379') Гайана
+                          option(value='1430') Гамбия
+                          option(value='1402') Гана
+                          option(value='1431') Гваделупа
+                          option(value='1378') Гватемала
+                          option(value='1432') Гвинея
+                          option(value='1470') Гвинея-Бисау
+                          option(value='1495') ГДР
+                          option(value='1433') Гондурас
+                          option(value='1434') Гонконг
+                          option(value='1435') Гренада
+                          option(value='1318') Греция
+                          option(value='1293') Грузия
+                          option(value='1309') Дания
+                          option(value='1383') Демократическая Республика Конго
+                          option(value='1393') Доминиканская Республика
+                          option(value='1344') Египет
+                          option(value='1497') Заир
+                          option(value='1381') Замбия
+                          option(value='1351') Зимбабве
+                          option(value='1330') Израиль
+                          option(value='1348') Индия
+                          option(value='1353') Индонезия
+                          option(value='1329') Иордания
+                          option(value='1321') Ирак
+                          option(value='1288') Иран
+                          option(value='1297') Ирландия
+                          option(value='1346') Исландия
+                          option(value='1324') Йемен
+                          option(value='1436') Кабо-Верде
+                          option(value='1290') Казахстан
+                          option(value='1392') Камбоджа
+                          option(value='1380') Камерун
+                          option(value='1338') Канада
+                          option(value='1437') Катар
+                          option(value='1358') Кения
+                          option(value='1314') Кипр
+                          option(value='1343') Китай
+                          option(value='1408') КНДР
+                          option(value='1335') Колумбия
+                          option(value='1498') Коморские Острова
+                          option(value='1369') Конго
+                          option(value='1472') Косово
+                          option(value='1438') Коста-Рика
+                          option(value='1410') Кот-д'Ивуар
+                          option(value='1374') Куба
+                          option(value='1439') Кувейт
+                          option(value='1339') Кыргызстан
+                          option(value='1376') Лаос
+                          option(value='1331') Латвия
+                          option(value='1440') Лесото
+                          option(value='1390') Либерия
+                          option(value='1367') Ливан
+                          option(value='1325') Ливия
+                          option(value='1289') Литва
+                          option(value='1398') Лихтенштейн
+                          option(value='1388') Люксембург
+                          option(value='1441') Маврикий
+                          option(value='1442') Мавритания
+                          option(value='1328') Мадагаскар
+                          option(value='1484') Майотта
+                          option(value='1443') Макао
+                          option(value='1368') Македония
+                          option(value='1444') Малави
+                          option(value='1384') Малайзия
+                          option(value='1361') Мали
+                          option(value='1386') Мальта
+                          option(value='1313') Марокко
+                          option(value='1483') Мартиника
+                          option(value='1336') Мексика
+                          option(value='1445') Мозамбик
+                          option(value='1334') Молдавия
+                          option(value='1462') Монако
+                          option(value='1359') Монголия
+                          option(value='1366') Мьянма
+                          option(value='1375') Намибия
+                          option(value='1382') Непал
+                          option(value='1446') Нигер
+                          option(value='1303') Нигерия
+                          option(value='1492') Нидерландская Ост-Индия
+                          option(value='1355') Никарагуа
+                          option(value='1372') Новая Зеландия
+                          option(value='1465') Новая Каледония
+                          option(value='1316') Норвегия
+                          option(value='1307') ОАЭ
+                          option(value='1467') Оман
+                          option(value='1320') Пакистан
+                          option(value='1489') Палестина
+                          option(value='1447') Панама
+                          option(value='1499') Папуа-Новая Гвинея
+                          option(value='1448') Парагвай
+                          option(value='1357') Перу
+                          option(value='1399') Польша
+                          option(value='1305') Португалия
+                          option(value='1449') Пуэрто-Рико
+                          option(value='1485') Реюньон
+                          option(value='1450') Руанда
+                          option(value='1327') Румыния
+                          option(value='1474') Сальвадор
+                          option(value='1477') Самоа
+                          option(value='1466') Сан-Марино
+                          option(value='1294') Саудовская Аравия
+                          option(value='1490') Свазиленд
+                          option(value='1416') Северная Ирландия
+                          option(value='1479') Сейшельские острова
+                          option(value='1412') Сенегал
+                          option(value='1469') Сент-Винсент и Гренадины
+                          option(value='1475') Сент-Китс и Невис
+                          option(value='1404') Сербия
+                          option(value='1394') Сингапур
+                          option(value='1347') Сирия
+                          option(value='1401') Словакия
+                          option(value='1429') Словения
+                          option(value='1480') Сомали
+                          option(value='1319') СРЮ
+                          option(value='1493') СССР
+                          option(value='1451') Судан
+                          option(value='1452') Суринам
+                          option(value='1301') США
+                          option(value='1453') Сьерра-Леоне
+                          option(value='1308') Таджикистан
+                          option(value='1362') Таиланд
+                          option(value='1395') Тайвань
+                          option(value='1454') Танзания
+                          option(value='1461') Того
+                          option(value='1455') Тонга
+                          option(value='1456') Тринидад и Тобаго
+                          option(value='1405') Тунис
+                          option(value='1356') Туркмения
+                          option(value='1300') Турция
+                          option(value='1457') Уганда
+                          option(value='1298') Узбекистан
+                          option(value='1389') Уругвай
+                          option(value='1415') Уэльс
+                          option(value='1464') Фарерские острова
+                          option(value='1458') Фиджи
+                          option(value='1360') Филиппины
+                          option(value='1292') Финляндия
+                          option(value='1463') Французская Гвиана
+                          option(value='1487') Французская Полинезия
+                          option(value='1494') ФРГ
+                          option(value='1407') Хорватия
+                          option(value='1471') Центральноафриканская Республика
+                          option(value='1482') Чад
+                          option(value='1406') Черногория
+                          option(value='1400') Чехия
+                          option(value='1342') Чехословакия
+                          option(value='1340') Чили
+                          option(value='1286') Швейцария
+                          option(value='1312') Швеция
+                          option(value='1414') Шотландия
+                          option(value='1377') Шри-Ланка
+                          option(value='1352') Эквадор
+                          option(value='1468') Экваториальная Гвинея
+                          option(value='1473') Эритрея
+                          option(value='1345') Эстония
+                          option(value='1459') Эфиопия
+                          option(value='1403') ЮАР
+                          option(value='1496') Югославия
+                          option(value='1354') Южная Корея
+                          option(value='1460') Ямайка
+                          option(value='1337') Япония
+                        br.clear
+                  tr
+                    td.name-field Область
+                    td
+                      #registration-region-div
+                        select#registration_region_select(name='region_id', disabled='disabled')
+                        br.clear
+                  tr
+                    td.name-field Город
+                    td
+                      #registration-city-div
+                        select#registration_city_select(name='city_id', disabled='disabled')
+              script(type='text/javascript')
+              .col2
+                table.adv-table(cellpadding='0', cellspacing='0', border='0')
+                  tr
+                    td.name-field Возраст
+                    td
+                      input#registrationAge(type='text', name='age')
+                  tr
+                    td.name-field Пол
+                    td
+                      select#registrationSex(name='sex')
+                        option(value='2') не знаю
+                        option(value='1') мужской
+                        option(value='0') женский
+                p.descr
+                  | Закончив регистрацию, зайдите на страницу
+                  | настроек своего профиля. Вы сможете выбрать
+                  | аватар, указать дополнительные данные о себе
+                  | и настроить сайт по собственному вкусу.
+              br.clear
+          #info-reg-block.info-reg-block(style='display: none;')
+            p
+              b Персональная лента информации
+              | Мы оперативно отбираем новости из более чем
+              | 700 источников и публикуем их круглосуточно. Также для вас работают лучшие авторы
+              | и фотографы. При этом в вашу ленту попадают только интересные вам новости
+              | и тексты.
+            p
+              b Общение с единомышленниками
+              | Более 240 000 болельщиков различных клубов
+              | уже общаются на Sports.ru - у вас есть возможность сформировать свой круг благодаря
+              a(href='/tribuna/forums/') форумам
+              | ,
+              a(href='/tribuna/blogs/') блогам
+              | или
+              a(href='/tribuna/statuses.html') микроблогам
+              | .
+            p
+              b Лучшие спортивные игры
+              a(href='/fantasy/') Fantasy
+              | ,
+              a(href='/predictor/') лига прогнозов
+              | ,
+              a(href='/betgame/') виртуальный букмекер
+              | :
+              br
+              | на Sports.ru вы не только следите за спортом, но и соревнуетесь сами.
+            p
+              b Общение со звездами спорта и журналистики
+              br
+              | В
+              a(href='/conference/') конференциях
+              | ,
+              a(href='/tribuna/blogs/') блогах
+              | и
+              a(href='/tribuna/forums/') форумах
+              | .
+          p Также вы можете войти с помощью OpenID:
+          .social-login
+            a.facebook-but(href='#', onclick='SportsOAuth2.FB.registration();return false;')
+            a.vkontakte-but(href='#', onclick='SportsOAuth2.VK.registration();return false;')
+            span.openId
+              i.openId-but(onclick='$(\'registr-popup\').toggleClassName(\'openId-show\');')
+              i.openId-bg
+        #openId.openId-block
+          form.openId-form(action='/logon.html', method='post')
+            .col
+              span.corner-input
+                i.cn.tl
+                i.cn.tr
+                i.cn.bl
+                i.cn.br
+                input(type='hidden', name='control_charset', value='Контроль')
+                input(type='hidden', name='url', value='/index.html')
+                input#registrationOpenId(type='text', name='open_id', value='', onfocus='onFocusInputField(this, defaultOpenId);', onblur='onBlurInputField(this, defaultOpenId);')
+            .col
+              input#registerOpenIdSubmit.blue-button.button-login(type='submit', value='')
+          | Например: user.livejournal.com
+      #forget-popup.popupBlock(style='display: none; top: 100px;')
+        i.popup-corn
+        .popup-body
+          span#popup-close.popup-close(onclick='closePopupBlock(\'forget-popup\');')
+          h3 Забыли пароль?
+          form.forget-form(action='post')
+            .col
+              span.corner-input
+                i.cn.tl
+                i.cn.bl
+                input#autorizationBackURL(type='hidden', name='back_url', value='/index.html')
+                input#notificationEmail(type='text', name='login', value='', onfocus='onFocusInputField(this, defaultEmail);', onblur='onBlurInputField(this, defaultEmail);', onkeypress='return onFormPressEnter(event, \'restorePasswordSubmit\');')
+            .col
+              input#restorePasswordSubmit.blue-button.button-forget(type='button', value='', onclick='restorePassword();')
+      #vkontakte-info-popup.popupBlock(style='display: none; top: 155.5px;')
+        i.popup-corn
+        .popup-body.vk
+          span#popup-close.popup-close(onclick='closePopupBlock(\'vkontakte-info-popup\');')
+          h3 Авторизация
+          p
+            | Эта учетная запись Вконтакте не связана с профилем на сайте. Хотите зарегистрироваться или связать свою учетную запись с существующим профилем?
+          input.blue-button.button-yes(onclick='closePopupBlock(\'vkontakte-info-popup\');showPopup( SportsOAuth2.social + \'-ask-old-account-popup\');', value='', type='button')
+      #facebook-info-popup.popupBlock(style='display: none; top: 155.5px;')
+        i.popup-corn
+        .popup-body.fb
+          span#popup-close.popup-close(onclick='closePopupBlock(\'facebook-info-popup\');')
+          h3 Авторизация
+          p
+            | Эта учетная запись Facabook не связана с профилем на сайте. Хотите зарегистрироваться или связать свою учетную запись с существующим профилем?
+          input.blue-button.button-yes(onclick='closePopupBlock(\'facebook-info-popup\');showPopup( SportsOAuth2.social + \'-ask-old-account-popup\');', value='', type='button')
+      #vkontakte-ask-old-account-popup.popupBlock(style='display: none; top: 155.5px;')
+        i.popup-corn
+        .popup-body.vk
+          span#popup-close.popup-close(onclick='closePopupBlock(\'vkontakte-ask-old-account-popup\');')
+          h3 Авторизация
+          p У вас раньше был аккаунт на Sports.ru?
+          .buttons
+            .col
+              input.blue-button.button-yes(onclick='closePopupBlock( SportsOAuth2.social + \'-ask-old-account-popup\');showPopup(\'autoriz-old-account-popup\');', value='', type='button')
+            .col
+              input.blue-button.button-no(onclick='closePopupBlock( SportsOAuth2.social + \'-ask-old-account-popup\');showPopup(\'reg-social-account-popup\');', value='', type='button')
+      #facebook-ask-old-account-popup.popupBlock(style='display: none; top: 155.5px;')
+        i.popup-corn
+        .popup-body.fb
+          span#popup-close.popup-close(onclick='closePopupBlock(\'facebook-ask-old-account-popup\');')
+          h3 Авторизация
+          p У вас раньше был аккаунт на Sports.ru?
+          .buttons
+            .col
+              input.blue-button.button-yes(onclick='closePopupBlock( SportsOAuth2.social + \'-ask-old-account-popup\');showPopup(\'autoriz-old-account-popup\');', value='', type='button')
+            .col
+              input.blue-button.button-no(onclick='closePopupBlock( SportsOAuth2.social + \'-ask-old-account-popup\');registerSocialUser();', value='', type='button')
+      #autoriz-old-account-popup.popupBlock(style='display: none; top: 155.5px;')
+        i.popup-corn
+        .popup-body.vk
+          span#popup-close.popup-close(onclick='closePopupBlock(\'autoriz-old-account-popup\');')
+          h3 Авторизация
+          p Введите данные вашего прежнего аккаунта на Sports.ru.
+          form.autoriz-form(action='')
+            .col
+              span.corner-input
+                i.cn.tl
+                i.cn.tr
+                i.cn.bl
+                i.cn.br
+                input#autorizationLoginOld(name='login', value='Ваш e-mail', onfocus='onFocusInputField(this, defaultLogin);', onblur='onBlurInputField(this, defaultLogin);', type='text')
+            .col
+              span.corner-input
+                i.cn.tl
+                i.cn.tr
+                i.cn.bl
+                i.cn.br
+                input#autorizationPasswdOld(name='password', value='', onfocus='onFocusInputField(this, defaultPasswd);', onblur='onBlurInputField(this, defaultPasswd);', type='password')
+            .col
+              input#authorizeSubmit.blue-button.button-login(value='', onclick='return authorizeUser(0,\'Old\');', type='button')
+          span#authorizationErrorOld.error(style='display: none;') error
+      #err-account-link-popup.popupBlock(style='display: none; top: 155.5px;')
+        i.popup-corn
+        .popup-body.vk
+          span#popup-close.popup-close(onclick='closePopupBlock(\'err-account-link-popup\');')
+          h3 Авторизация
+          p
+            | Этот пользователь связан с другой учетной записью Вконтакте. Пожалуйста,
+            | введите данные другого пользователя или зарегиструйтесь, используя текущую
+            | учетную запись Вконтакте
+          .buttons
+            .col
+              input.blue-button.button-input-data(onclick='closePopupBlock(\'err-account-link-popup\');showPopup( SportsOAuth2.social + \'-ask-old-account-popup\');', value='', type='button')
+            .col
+              input.blue-button.button-registr2(onclick='closePopupBlock(\'err-account-link-popup\');showPopup(\'reg-social-account-popup\');', value='', type='button')
+      #reg-social-account-popup.popupBlock(style='display: none; top: 155.5px;')
+        i.popup-corn
+        .popup-body.vk
+          span#popup-close.popup-close(onclick='closePopupBlock(\'reg-social-account-popup\');')
+          h3 Регистрация
+          form.reg-log-form(action='')
+            .col
+              span.corner-input
+                i.cn.tl
+                i.cn.tr
+                i.cn.bl
+                i.cn.br
+                input#registrationSocialLogin(name='login', value='Ваш e-mail', onfocus='onFocusInputField(this, defaultLogin);', onblur='onBlurInputField(this, defaultLogin);', type='text')
+            .col
+              span.corner-input
+                i.cn.tl
+                i.cn.tr
+                i.cn.bl
+                i.cn.br
+                input#registrationSocialNickname(name='nick', value='', onfocus='onFocusInputField(this, defaultSocialNickname);', onblur='onBlurInputField(this, defaultSocialNickname);', type='text')
+            .col
+              input.blue-button.button-reg-log(onclick='return registerSocialUser();', value='', type='button')
+            input#registrationSocialControl(type='hidden', name='control_charset', value='Контроль')
+            input#registrationSocialBackURL(type='hidden', name='back_url', value='/index.html')
+          //
+            p style="padding:0;"><a href="#">Хотите ввести больше данных?</a> Если нет, то создать логин и ввести личные
+            данные вы сможете указать позднее.</p
+      #vkontakte-add-friend-popup.popupBlock(style='display: none; top: 155.5px;')
+        i.popup-corn
+        .popup-body.vk
+          span#popup-close.popup-close(onclick='closePopupBlock(\'vkontakte-add-friend-popup\');reloadBrowserWindow();')
+          h3 Ваши друзья Вконтакте
+          form.add-friend-form(action='')
+            #vkontakte-friend-list.friends-list
+            .buttons
+              input.blue-button.button-add-friend(onclick='return addSocialFriends();', value='', type='button')
+              label.checkBox
+                input#checked_all_friends(type='checkbox', onclick='return checkedAllFriends(this.checked);', checked='checked')
+                | Выбрать всех
+      #facebook-add-friend-popup.popupBlock(style='display: none; top: 155.5px;')
+        i.popup-corn
+        .popup-body.fb
+          span#popup-close.popup-close(onclick='closePopupBlock(\'facebook-add-friend-popup\');reloadBrowserWindow();')
+          h3 Ваши друзья Facebook
+          form.add-friend-form(action='')
+            #facebook-friend-list.friends-list
+            .buttons
+              input.blue-button.button-add-friend(onclick='return addSocialFriends();', value='', type='button')
+              label.checkBox
+                input#checked_all_friends(type='checkbox', onclick='return checkedAllFriends(this.checked);', checked='checked')
+                | Выбрать всех
+      script(language='JavaScript')
+        $('autorizationLogin').value = defaultLogin;
+        $('autorizationLoginOld').value = defaultLogin;
+        $('autorizationPasswd').value = defaultPasswd;
+        $('autorizationPasswdOld').value = defaultPasswd;
+        $('registrationLogin').value = defaultLogin;
+        $('registrationSocialLogin').value = defaultSocialLogin;
+        $('autorizationOpenId').value = defaultOpenId;
+        $('registrationOpenId').value = defaultOpenId;
+        $('notificationEmail').value = defaultEmail;
+    form.search(action='/search/', method='get', onsubmit='return (this.elements[\'text\'].value != \'\')')
+      input(name='title', type='hidden', value='')
+      input(type='hidden', name='control_charset', value='Контроль')
+      input#keyword.text(name='text')
+      input.btn(name='', type='submit', value='искать')
+    .logo
+      a(href='/', title='Sports.ru')
+        img(src='/i/logo.gif', width='199', height='47', alt='Sports.ru', title='Sports.ru')
+    br.clear
+    .s-menu.s-menu-first-tab-current
+      ul.s-menu-tabs
+        li.first.current
+          span
+            a(href='/') sports.ru
+          ins.corner.lt-corner
+          ins.corner.rt-corner
+        li
+          span
+            a(href='/tribuna/') трибуна
+          ins.corner.lt-corner
+          ins.corner.rt-corner
+        li
+          span
+            a(href='/enc/') энциклопедия
+          ins.corner.lt-corner
+          ins.corner.rt-corner
+        li
+          span
+            a(href='/fantasy/') fantasy
+          ins.corner.lt-corner
+          ins.corner.rt-corner
+        li
+          span
+            a(href='/stat/') статистика
+          ins.corner.lt-corner
+          ins.corner.rt-corner
+        li
+          span
+            a(href='/betgame/') букмекер
+          ins.corner.lt-corner
+          ins.corner.rt-corner
+        li
+          span
+            a(href='/predictor/') прогнозы
+          ins.corner.lt-corner
+          ins.corner.rt-corner
+        li
+          span
+            a(href='/tickets/') билеты
+          ins.corner.lt-corner
+          ins.corner.rt-corner
+        li
+          span
+            a(href='/tv/') трансляции
+          ins.corner.lt-corner
+          ins.corner.rt-corner
+        li
+          span
+            a(href='/video/') видео
+          ins.corner.lt-corner
+          ins.corner.rt-corner
+      .s-menu-sections
+        .lang-block
+          a.act-lang(href='/')
+            img(src='/i/rus.png', alt='')
+            | RU
+          a(href='/en/')
+            img(src='/i/eng.png', alt='')
+            | EN
+        ul
+          li.item
+            a(href='/football/') футбол
+            .s-menu-section-submenu.s-menu-section-submenu-3-columns
+              .s-menu-section-submenu-inside
+                .column.first-column
+                  ul
+                    li
+                      a(href='/football/russia/') Россия
+                    li
+                      a(href='/football/231/') Сборные
+                    li
+                      a(href='/football/league/') Лига чемпионов
+                    li
+                      a(href='/football/uefa/') Лига Европы
+                    li
+                      a(href='/football/england/') Англия
+                    li
+                      a(href='/football/spain/') Испания
+                    li
+                      a(href='/football/italy/') Италия
+                    li
+                      a(href='/football/germany/') Германия
+                    li
+                      a(href='/football/france/') Франция
+                    li
+                      a(href='/football/ukraine/') Украина
+                .column
+                  ul
+                    li
+                      a(href='/football/america/') Южная Америка
+                    li
+                      a(href='/football/holland/') Голландия
+                    li
+                      a(href='/football/portugal/') Португалия
+                    li
+                      a(href='/football/africa/') Африка
+                    li
+                      a(href='/football/amateur/') Любительский
+                    li
+                      a(href='/football/wc2018/') ЧМ-2018
+                    li
+                      a(href='/football/asia/') Азия
+                    li
+                      a(href='/football/euro2012/') Евро-2012
+                    li
+                      a(href='/football/belarus/') Беларусь
+                .column
+                  ul
+                    li
+                      a(href='/tribuna/football/') Трибуна
+                    li
+                      a(href='/conference/football/') Конференции
+                    li
+                      a(href='/news/football/') Новости
+                    li
+                      a(href='/enc/football/') Энциклопедия
+                    li
+                      a(href='/photogallery/football/') Фотогалереи
+                    li
+                      a(href='/stat/football/center/') Матч-центр
+                    li
+                      a(href='/stat/') Статистика
+                    li
+                      a(href='/fantasy/') Fantasy
+          li.item
+            a(href='/hockey/') хоккей
+            .s-menu-section-submenu.s-menu-section-submenu-2-columns
+              .s-menu-section-submenu-inside
+                .column.first-column
+                  ul
+                    li
+                      a(href='/hockey/239/') Россия
+                    li
+                      a(href='/hockey/240/') Сборные
+                    li
+                      a(href='/hockey/241/') НХЛ
+                    li
+                      a(href='/hockey/khl/') КХЛ
+                .column
+                  ul
+                    li
+                      a(href='/tribuna/hockey/') Трибуна
+                    li
+                      a(href='/conference/hockey/') Конференции
+                    li
+                      a(href='/news/hockey/') Новости
+                    li
+                      a(href='/enc/hockey/') Энциклопедия
+                    li
+                      a(href='/photogallery/hockey/') Фотогалереи
+          li.item
+            a(href='/basketball/') баскетбол
+            .s-menu-section-submenu.s-menu-section-submenu-2-columns
+              .s-menu-section-submenu-inside
+                .column.first-column
+                  ul
+                    li
+                      a(href='/basketball/242/') Россия
+                    li
+                      a(href='/basketball/243/') Сборные
+                    li
+                      a(href='/basketball/244/') НБА
+                    li
+                      a(href='/basketball/245/') Еврокубки
+                    li
+                      a(href='/basketball/246/') Еврочемпионаты
+                    li
+                      a(href='/basketball/247/') Женский баскетбол
+                .column
+                  ul
+                    li
+                      a(href='/tribuna/basketball/') Трибуна
+                    li
+                      a(href='/conference/basketball/') Конференции
+                    li
+                      a(href='/news/basketball/') Новости
+                    li
+                      a(href='/enc/basketball/') Энциклопедия
+                    li
+                      a(href='/photogallery/basketball/') Фотогалереи
+          li.item
+            a(href='/automoto/') авто/мото
+            .s-menu-section-submenu.s-menu-section-submenu-2-columns
+              .s-menu-section-submenu-inside
+                .column.first-column
+                  ul
+                    li
+                      a(href='/automoto/f1/') Формула-1
+                    li
+                      a(href='/automoto/moto/') Мото
+                    li
+                      a(href='/automoto/rally/') Ралли
+                    li
+                      a(href='/automoto/series/') Другие серии
+                .column
+                  ul
+                    li
+                      a(href='/tribuna/automoto/') Трибуна
+                    li
+                      a(href='/conference/automoto/') Конференции
+                    li
+                      a(href='/news/automoto/') Новости
+                    li
+                      a(href='/enc/automoto/') Энциклопедия
+                    li
+                      a(href='/photogallery/automoto/') Фотогалереи
+          li.item
+            a(href='/boxing/') бокс/mma
+            .s-menu-section-submenu.s-menu-section-submenu-2-columns
+              .s-menu-section-submenu-inside
+                .column.first-column
+                  ul
+                    li
+                      a(href='/boxing/254/') Профи
+                    li
+                      a(href='/boxing/255/') Любители
+                    li
+                      a(href='/boxing/womenboxing/') Женский бокс
+                    li
+                      a(href='/boxing/mma/') Смешанные единоборства
+                    li
+                      a(href='/boxing/k-1/') K-1
+                .column
+                  ul
+                    li
+                      a(href='/tribuna/boxing/') Трибуна
+                    li
+                      a(href='/conference/boxing/') Конференции
+                    li
+                      a(href='/news/boxing/') Новости
+                    li
+                      a(href='/enc/boxing/') Энциклопедия
+                    li
+                      a(href='/photogallery/boxing/') Фотогалереи
+          li.item
+            a(href='/tennis/') теннис
+            .s-menu-section-submenu.s-menu-section-submenu-2-columns
+              .s-menu-section-submenu-inside
+                .column.first-column
+                  ul
+                    li
+                      a(href='/tennis/250/') ATP
+                    li
+                      a(href='/tennis/251/') WTA
+                    li
+                      a(href='/tennis/252/') Кубок Дэвиса
+                    li
+                      a(href='/tennis/253/') Кубок Федерации
+                .column
+                  ul
+                    li
+                      a(href='/tribuna/tennis/') Трибуна
+                    li
+                      a(href='/conference/tennis/') Конференции
+                    li
+                      a(href='/news/tennis/') Новости
+                    li
+                      a(href='/enc/tennis/') Энциклопедия
+                    li
+                      a(href='/photogallery/tennis/') Фотогалереи
+          li.item
+            a(href='/biathlon/') биатлон
+            .s-menu-section-submenu.s-menu-section-submenu-1-columns
+              .s-menu-section-submenu-inside
+                .column.first-column
+                  ul
+                    li
+                      a(href='/tribuna/biathlon/') Трибуна
+                    li
+                      a(href='/conference/biathlon/') Конференции
+                    li
+                      a(href='/news/biathlon/') Новости
+                    li
+                      a(href='/enc/biathlon/') Энциклопедия
+                    li
+                      a(href='/photogallery/biathlon/') Фотогалереи
+          li.item
+            a(href='/others/') прочие
+            .s-menu-section-submenu.s-menu-section-submenu-5-columns
+              .s-menu-section-submenu-inside
+                .column.first-column
+                  ul
+                    li
+                      a(href='/others/amfootball/') Американский футбол
+                    li
+                      a(href='/others/badminton/') Бадминтон
+                    li
+                      a(href='/others/baseball/') Бейсбол
+                    li
+                      a(href='/others/billiards/') Бильярд/снукер
+                    li
+                      a(href='/others/bobsleigh/') Бобслей/сани/скелетон
+                    li
+                      a(href='/others/wrestling/') Борьба
+                    li
+                      a(href='/others/cycle-racing/') Велоспорт
+                    li
+                      a(href='/others/aquatics/') Водные виды
+                    li
+                      a(href='/others/volleyball/') Волейбол
+                .column
+                  ul
+                    li
+                      a(href='/others/handball/') Гандбол
+                    li
+                      a(href='/others/gymnastics/') Гимнастика
+                    li
+                      a(href='/others/golf/') Гольф
+                    li
+                      a(href='/others/rowing/') Гребля
+                    li
+                      a(href='/others/martialarts/') Единоборства
+                    li
+                      a(href='/others/1694594/') Керлинг
+                    li
+                      a(href='/others/cybersport/') Киберспорт
+                    li
+                      a(href='/others/equestrian/') Конный спорт
+                    li
+                      a(href='/others/skating/') Коньки/шорт-трек
+                .column
+                  ul
+                    li
+                      a(href='/others/athletics/') Легкая атлетика
+                    li
+                      a(href='/others/skiing/') Лыжные виды
+                    li
+                      a(href='/others/soccer/') Мини-футбол
+                    li
+                      a(href='/others/ping-pong/') Настольный теннис
+                    li
+                      a(href='/others/sailing/') Парусный спорт
+                    li
+                      a(href='/others/poker/') Покер
+                    li
+                      a(href='/others/rugby/') Регби
+                    li
+                      a(href='/others/pentathlon/') Современное пятиборье
+                    li
+                      a(href='/others/bet/') Ставки
+                .column
+                  ul
+                    li
+                      a(href='/others/shooting/') Стрельба
+                    li
+                      a(href='/others/heavyathletics/') Тяжелая атлетика
+                    li
+                      a(href='/others/fencing/') Фехтование
+                    li
+                      a(href='/others/figure-skating/') Фигурное катание
+                    li
+                      a(href='/others/bandy/') Хоккей с мячом
+                    li
+                      a(href='/others/chess/') Шахматы
+                    li
+                      a(href='/others/extreme/') Экстремальные виды
+                    li
+                      a(href='/others/sochi2014/') Сочи-2014
+                .column
+                  ul
+                    li
+                      a(href='/tribuna/others/') Трибуна
+                    li
+                      a(href='/conference/others/') Конференции
+                    li
+                      a(href='/news/others/') Новости
+                    li
+                      a(href='/enc/others/') Энциклопедия
+                    li
+                      a(href='/photogallery/others/') Фотогалереи
+          li.item
+            a(href='/style/') стиль
+            .s-menu-section-submenu.s-menu-section-submenu-1-columns
+              .s-menu-section-submenu-inside
+                .column.first-column
+                  ul
+                    li
+                      a(href='/tribuna/style/') Трибуна
+                    li
+                      a(href='/news/style/') Новости
+                    li
+                      a(href='/enc/style/') Энциклопедия
+                    li
+                      a(href='/photogallery/style/') Фотогалереи
+        .corner.lt-corner
+          ins
+        .corner.rt-corner
+          ins
+        .corner.rb-corner
+          ins
+        .corner.lb-corner
+          ins
+    script(type='text/javascript', src='/js/menu.js?243')
+
+
+

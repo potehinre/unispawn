@@ -44,7 +44,7 @@ class DependencyAggregator(object):
     
     def _get_content(self,urlname,url,deps):
         #Если есть зависимости , сначала ждем их
-        timeout = gevent.Timeout(1)
+        timeout = gevent.Timeout(5)
         timeout.start()
         generated_url=url
         try:
