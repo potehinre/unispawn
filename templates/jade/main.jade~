@@ -1295,13 +1295,11 @@ block middle
               img.all-arrow(src='/i/all-arrow-blue.gif')
             br.clear
         .gray
-          | {% if blogs.data.blogs %}
-          | {% for blog in blogs.data.blogs %}
-          | {% include "blog.html" %}
-          | {% endfor %}
-          | {% else %}
-          p Ошибка
-          | {% endif %}
+          if blogs.data.blogs
+            each blog in blogs.data.blogs
+                include jade/blog.jade
+          else
+            p Ошибка
         .title
           p
             a(href='/conference/', title='конференции') конференции
@@ -1311,13 +1309,11 @@ block middle
               img.all-arrow(src='/i/all-arrow-green.gif')
             br.clear
         .gray
-          | {% if conferences.data.conferences %}
-          | {% for conference in conferences.data.conferences %}
-          | {% include "conference.html" %}
-          | {% endfor %}
-          | {% else %}
-          p Ошибка
-          | {% endif %}
+          if conferences.data.conferences
+                each conference in conferences.data.conferences
+                    include jade/conference.jade
+          else
+            p Ошибка
         .title
           p
             a(href='/polls/126455528.html', title='Опрос') опрос
