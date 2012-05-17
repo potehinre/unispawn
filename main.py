@@ -101,7 +101,11 @@ def index_on_jade():
         before = time.time()
         context = aggr.collect()
         print "Collecting:",time.time() - before
-        return render_template("jade/main.jade",**context)
+        before = time.time()
+        result = render_template("jade/main.jade",**context)
+        after = time.time() - before
+        print 'Rendering:',after
+        return result
 
 @app.route("/")
 def index():
