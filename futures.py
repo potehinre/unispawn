@@ -9,7 +9,7 @@ class DependencyError(Exception):
     pass
 
 class Future(object):
-    def __init__(self,urlname,timeout,**params):
+    def __init__(self,urlname,timeout=300,**params):
         self.url = urlname
         self.timeout = timeout
         self.params = params
@@ -27,7 +27,7 @@ class Future(object):
                 return {"error":"Dependency Failed"}
             url = self.url.format(**self.params)
             response,content = htt.request(url)
-            return {"result":content}
+            return {"data":content}
         except Exception as e:
             return {"error":e.message}
         except gevent.Timeout,t:
@@ -37,13 +37,13 @@ class Future(object):
     
     def __getattr__(self,attrname):
         gevent.joinall([self.greenlet])
-        if attrname == 'result':
+        if attrname == 'data':
             return self.greenlet.value
     
     def __getitem__(self,itemname):
         gevent.joinall([self.greenlet])
-        if 'result' in self.greenlet.value:
-            return ujson.decode(self.greenlet.value['result'])[itemname]
+        if 'data' in self.greenlet.value:
+            return ujson.decode(self.greenlet.value['data'])[itemname]
         else:
             return {"error":self.greenlet.value['error']}
     
@@ -54,15 +54,15 @@ class Future(object):
 class CriticalFuture(Future):
     def __getattr__(self,attrname):
         gevent.joinall([self.greenlet])
-        if attrname == 'result' and ('result' in self.greenlet.value):
+        if attrname == 'data' and ('data' in self.greenlet.value):
             return ujson.decode(self.greenlet.value)
         else:
             raise DependencyError("Dependency Failed"+self.greenlet.value['error'])
     
     def __getitem__(self,itemname):
         gevent.joinall([self.greenlet])
-        if 'result' in self.greenlet.value:
-            return  ujson.decode(self.greenlet.value['result'])[itemname]
+        if 'data' in self.greenlet.value:
+            return  ujson.decode(self.greenlet.value['data'])[itemname]
         else:
             raise DependencyError("Dependency Failed:"+self.greenlet.value['error'])
     
@@ -73,7 +73,8 @@ def joinall(f):
         futures = None
         try:
             futures = f(*args,**kwargs)
-            return [fut.result for fut in futures.values()]
+            gevent.joinall([future.greenlet for future in futures.values() if isinstance(future,Future)])
+            return dict((name,fut.data) for name,fut in futures.items() if isinstance(fut,Future))
         except DependencyError as e:
             return "Dependency Failed"
     return wrapper
@@ -89,5 +90,5 @@ def blog_post_page():
     
     
 if __name__ == "__main__":
-    result = blog_post_page()
-    print result
+    data = blog_post_page()
+    print data

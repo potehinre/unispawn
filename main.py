@@ -4,6 +4,7 @@ import cProfile
 import time
 from markupsafe import Markup
 from gevent.wsgi import WSGIServer
+from futures import Future,joinall
 import pyjade
 
 from flask import Flask,url_for,render_template,abort
@@ -139,7 +140,51 @@ def index():
         "conferences":"http://localhost:100/conferences.json",
         "materials":"http://localhost:100/materials.json"
     }
-    return construct_page(fake_urls,name)
+    return construct_page(real_urls,name)
+
+@app.route("/futures/main")
+def futures_index():
+    name = "main"
+    @joinall
+    def construct_index():
+        main_news = Future("http://www.sports.ru/stat/export/wapsports/mainnews.json?count=6")
+        football_news = Future("http://www.sports.ru/stat/export/wapsports/news.json?category_id=208&count=6")
+        hockey_news = Future("http://www.sports.ru/stat/export/wapsports/news.json?category_id=209&count=6")
+        basket_news = Future("http://www.sports.ru/stat/export/wapsports/news.json?category_id=210&count=6")
+        automoto_news = Future("http://www.sports.ru/stat/export/wapsports/news.json?category_id=227&count=6")
+        boxing_news = Future("http://www.sports.ru/stat/export/wapsports/news.json?category_id=213&count=6")
+        tennis_news = Future("http://www.sports.ru/stat/export/wapsports/news.json?category_id=212&count=6")
+        biathlon_news = Future("http://www.sports.ru/stat/export/wapsports/news.json?category_id=225&count=6")
+        other_news = Future("http://www.sports.ru/stat/export/wapsports/news.json?category_id=256&count=6")
+        style_news = Future("http://www.sports.ru/stat/export/wapsports/news.json?category_id=111163733&count=6")
+        blogs = Future("http://www.sports.ru/stat/export/wapsports/blogs.json?count=6")
+        conferences = Future("http://www.sports.ru/stat/export/wapsports/conferences.json?count=6")
+        materials = Future("http://www.sports.ru/stat/export/wapsports/materials.json?count=6")
+        return locals()
+    before = time.time()
+    context = construct_index()
+    print 'Futures collection:',time.time() - before
+    template = jinja_template(name,context)
+    return template
+
+@app.route("/futures/tribuna/<name>/<blog_id>")
+def futures_blog(name,blog_id):
+    @joinall
+    def construct():
+      post = Future("http://www.sports.ru/stat/export/wapsports/blog_post.json?id={id}",id=id)
+      posts = Future("http://www.sports.ru/stat/export/wapsports/blog_posts.json?blog_name={blog_name}&count=10",blog_name=name)
+      blog_post_comments = Future("http://www.sports.ru/stat/export/wapsports/blog_post_comments.json?id={id}&count=10",id=blog_id)
+      category_blog_popular_posts = Future("http://www.sports.ru/stat/export/wapsports/category_blog_popular_posts.json?category_id={category_id}&count=10",category_id = post.category_id)
+      materials = Future("http://www.sports.ru/stat/export/wapsports/materials.json?category_id={category_id}&count=5",category_id=post.category_id)
+      return locals()
+    before = time.time()
+    context = construct()
+    print 'context',context
+    print 'Futures collection:',time.time() - before
+    template = jinja_template("cur_blog",context)
+    return template
+  
+
     
 
 if __name__ == "__main__":
