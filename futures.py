@@ -27,7 +27,7 @@ class Future(object):
                 return {"error":"Dependency Failed"}
             url = self.url.format(**self.params)
             response,content = htt.request(url)
-            return {"data":content}
+            return {"data":ujson.decode(content)}
         except Exception as e:
             return {"error":e.message}
         except gevent.Timeout,t:
@@ -55,7 +55,7 @@ class CriticalFuture(Future):
     def __getattr__(self,attrname):
         gevent.joinall([self.greenlet])
         if attrname == 'data' and ('data' in self.greenlet.value):
-            return ujson.decode(self.greenlet.value)
+            return self.greenlet.value
         else:
             raise DependencyError("Dependency Failed"+self.greenlet.value['error'])
     
