@@ -55,7 +55,7 @@ class CriticalFuture(Future):
     def __getattr__(self,attrname):
         gevent.joinall([self.greenlet])
         if attrname == 'result' and ('result' in self.greenlet.value):
-            return ujson.decode(self.greenlet.value['result'])
+            return ujson.decode(self.greenlet.value)
         else:
             raise DependencyError("Dependency Failed"+self.greenlet.value['error'])
     
@@ -70,14 +70,12 @@ class CriticalFuture(Future):
 def joinall(f):
     @functools.wraps(f)
     def wrapper(*args,**kwargs):
+        futures = None
         try:
             futures = f(*args,**kwargs)
             return [fut.result for fut in futures.values()]
         except DependencyError as e:
-            return "Collection Failed"
-        finally:
-            for fut in futures.values():
-                fut.kill()
+            return "Dependency Failed"
     return wrapper
 
 @joinall
