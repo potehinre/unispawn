@@ -163,6 +163,7 @@ def futures_index():
         return locals()
     before = time.time()
     context = construct_index()
+    print context['blogs']
     print 'Futures collection:',time.time() - before
     template = jinja_template(name,context)
     return template
