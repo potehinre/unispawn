@@ -44,8 +44,6 @@ class Future(object):
     def __getitem__(self,itemname):
         gevent.joinall([self.greenlet])
         if 'data' in self.greenlet.value:
-            print 'ITEMNAME',itemname
-            print 'VALUE',self.greenlet.value
             return self.greenlet.value['data'][itemname]
         else:
             return {"error":self.greenlet.value['error']}
