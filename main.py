@@ -161,8 +161,26 @@ def futures_index():
         conferences = Future("http://www.sports.ru/stat/export/wapsports/conferences.json?count=6")
         materials = Future("http://www.sports.ru/stat/export/wapsports/materials.json?count=6")
         return locals()
+    
+    @joinall
+    def construct_index_fake():
+         main_news = Future("http://localhost:100/main_news.json")
+         football_news = Future("http://localhost:100/football_news.json")
+         hockey_news = Future("http://localhost:100/hockey_news.json")
+         basket_news = Future("http://localhost:100/basket_news.json")
+         automoto_news = Future("http://localhost:100/automoto_news.json")
+         boxing_news = Future("http://localhost:100/boxing_news.json")
+         tennis_news = Future("http://localhost:100/tennis_news.json")
+         biathlon_news = Future("http://localhost:100/biathlon_news.json")
+         other_news = Future("http://localhost:100/other_news.json")
+         style_news = Future("http://localhost:100/style_news.json")
+         blogs = Future("http://localhost:100/blogs.json")
+         conferences = Future("http://localhost:100/conferences.json")
+         materials = Future("http://localhost:100/materials.json")
+         return locals()
+     
     before = time.time()
-    context = construct_index()
+    context = construct_index_fake()
     print context['blogs']
     print 'Futures collection:',time.time() - before
     template = jinja_template(name,context)
@@ -172,15 +190,16 @@ def futures_index():
 def futures_blog(name,blog_id):
     @joinall
     def construct():
-      post = Future("http://www.sports.ru/stat/export/wapsports/blog_post.json?id={id}",id=id)
+      post = Future("http://www.sports.ru/stat/export/wapsports/blog_post.json?id={id}",id=blog_id)
       posts = Future("http://www.sports.ru/stat/export/wapsports/blog_posts.json?blog_name={blog_name}&count=10",blog_name=name)
       blog_post_comments = Future("http://www.sports.ru/stat/export/wapsports/blog_post_comments.json?id={id}&count=10",id=blog_id)
-      category_blog_popular_posts = Future("http://www.sports.ru/stat/export/wapsports/category_blog_popular_posts.json?category_id={category_id}&count=10",category_id = post.category_id)
-      materials = Future("http://www.sports.ru/stat/export/wapsports/materials.json?category_id={category_id}&count=5",category_id=post.category_id)
+      category_blog_popular_posts = Future("http://www.sports.ru/stat/export/wapsports/category_blog_popular_posts.json?category_id={category_id}&count=10",category_id = post['category_id'])
+      materials = Future("http://www.sports.ru/stat/export/wapsports/materials.json?category_id={category_id}&count=5",category_id=post['category_id'])
       return locals()
+    
     before = time.time()
     context = construct()
-    print 'context',context
+    print 'context',context['post']
     print 'Futures collection:',time.time() - before
     template = jinja_template("cur_blog",context)
     return template

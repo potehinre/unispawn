@@ -29,6 +29,7 @@ class Future(object):
             response,content = htt.request(url)
             return {"data":ujson.decode(content)}
         except Exception as e:
+            print e
             return {"error":e.message}
         except gevent.Timeout,t:
             return {'error':'timeout'}
@@ -43,7 +44,9 @@ class Future(object):
     def __getitem__(self,itemname):
         gevent.joinall([self.greenlet])
         if 'data' in self.greenlet.value:
-            return ujson.decode(self.greenlet.value['data'])[itemname]
+            print 'ITEMNAME',itemname
+            print 'VALUE',self.greenlet.value
+            return self.greenlet.value['data'][itemname]
         else:
             return {"error":self.greenlet.value['error']}
     
