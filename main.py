@@ -186,9 +186,9 @@ def futures_index():
         return locals()
      
     before = time.time()
-    context = construct_index_2_futures()
+    context = construct_index()
     print 'Futures collection:',time.time() - before
-    result = {"context":context,"template":"templates/jade/example.jade"}
+    result = {"context":context,"template":"templates/jade/main.jade"}
     template = ujson.encode(result)
     return template
 

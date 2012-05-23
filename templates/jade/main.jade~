@@ -1,6 +1,6 @@
-extends jade/base.jade
+extends base
 block css
-    link(rel='stylesheet', type='text/css', href='#{url_for('static',filename='css/index.css')}')
+    link(rel='stylesheet', type='text/css', href='css/index.css')
 block middle
     .middle
       .title-page
@@ -421,7 +421,7 @@ block middle
           .news
             if main_news.data
                 each news in main_news.data.mainnews
-                    include jade/news.jade
+                    include news
             else
                 p Ошибка
           .banner
@@ -499,7 +499,7 @@ block middle
           .news
             if football_news.data
                 each news in football_news.data.news
-                    include jade/news.jade
+                    include news
             else
                 p Ошибка
           .title
@@ -513,7 +513,7 @@ block middle
           .news
             if hockey_news.data
                 each news in hockey_news.data.news
-                    include jade/news.jade
+                    include news
             else
                 p Ошибка
           .title
@@ -527,7 +527,7 @@ block middle
           .news
             if basket_news.data
                 each news in basket_news.data.news
-                    include jade/news.jade
+                    include news
             else
                 p Ошибка
           .title
@@ -541,7 +541,7 @@ block middle
           .news
             if automoto_news.data
                 each news in automoto_news.data.news
-                    include jade/news.jade
+                    include news
             else
                 p Ошибка
           .title
@@ -555,7 +555,7 @@ block middle
           .news
             if boxing_news.data
                 each news in boxing_news.data.news
-                    include jade/news.jade
+                    include news
             else
                 p Ошибка
           .title
@@ -569,7 +569,7 @@ block middle
           .news
             if tennis_news.data
                 each news in tennis_news.data.news
-                    include jade/news.jade
+                    include news
             else
                 p Ошибка
           .title
@@ -583,7 +583,7 @@ block middle
           .news
             if biathlon_news.data
                 each news in biathlon_news.data.news
-                    include jade/news.jade
+                    include news
             else
                 p Ошибка
           .title
@@ -597,7 +597,7 @@ block middle
           .news
             if other_news.data
                 each news in other_news.data.news
-                    include jade/news.jade
+                    include news
             else
                 p Ошибка
           .title
@@ -611,7 +611,7 @@ block middle
           .news
             if style_news.data
                 each news in style_news.data.news
-                    include jade/news.jade
+                    include news
             else
                 p Ошибка
           .partner-rss
@@ -1297,7 +1297,7 @@ block middle
         .gray
           if blogs.data.blogs
             each blog in blogs.data.blogs
-                include jade/blog.jade
+                include blog
           else
             p Ошибка
         .title
@@ -1311,7 +1311,7 @@ block middle
         .gray
           if conferences.data.conferences
                 each conference in conferences.data.conferences
-                    include jade/conference.jade
+                    include conference
           else
             p Ошибка
         .title

@@ -9,17 +9,17 @@ head
     meta(name='Robots', content='index, follow')
     meta(name='robots', content='all')
     link(href='http://stg.odnoklassniki.ru/share/odkl_share.css?1', rel='stylesheet')
-    link(rel='stylesheet', type='text/css', href='#{url_for('static',filename='css/parent.css')}')
-    link(rel='stylesheet', type='text/css', href='#{url_for('static',filename='css/poll_export.css')}')
-    link(rel='stylesheet', type='text/css', href='#{url_for('static',filename='css/popups.css')}')
-    link(rel='stylesheet', type='text/css', href='#{url_for('static',filename='css/search.css')}')
+    link(rel='stylesheet', type='text/css', href='css/parent.css')
+    link(rel='stylesheet', type='text/css', href='css/poll_export.css')
+    link(rel='stylesheet', type='text/css', href='css/popups.css')
+    link(rel='stylesheet', type='text/css', href='css/search.css')
     //if lte IE 7
       link(rel='stylesheet', type='text/css', href='/css/miserable-browsers/internet-explorer.css')
     //if IE 6
       link(rel='stylesheet', type='text/css', href='/css/miserable-browsers/internet-explorer-6.css')
-    link(rel='stylesheet', type='text/x-opera-css;charset=utf-8', href='#{url_for('static',filename='css/opera.css')}')
-    link(rel='stylesheet', type='text/css', href='#{url_for('static',filename='css/promo.css')}')
-    link(rel='stylesheet', type='text/css', href='#{url_for('static',filename='css/mikroblog.css')}')
+    link(rel='stylesheet', type='text/x-opera-css;charset=utf-8', href='css/opera.css')
+    link(rel='stylesheet', type='text/css', href='css/promo.css')
+    link(rel='stylesheet', type='text/css', href='css/mikroblog.css')
     block css
   body
     #vk_api_transport
@@ -65,7 +65,7 @@ head
             _uacct = "UA-3856443-1";
             urchinTracker();
           block header
-            include jade/header.jade
+            include header
           block middle
           block footer
-            include jade/footer.jade
+            include footer
