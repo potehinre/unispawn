@@ -3,7 +3,38 @@ var http = require('http'),
 	jade = require('jade'),
 	fs = require('fs');
 
+
+var TemplateCache = function()
+{
+	this.cache = {}
+}
+
+TemplateCache.prototype.compileTemplate = function(path)
+{
+	var template = fs.readFileSync(path,'utf8');
+	var fun = jade.compile(template,{filename:path,pretty:true});
+	return fun;
+}
+
+TemplateCache.prototype.add = function(path)
+{
+	console.log("Adding template to cache" + path);
+	var fun = this.compileTemplate(path);
+	this.cache[path] = fun;
+	return fun;
+}
+
+TemplateCache.prototype.getOrCreate = function(path)
+{
+	if (this.cache[path] != undefined)
+	{
+		return this.cache[path];
+	}
+	return this.add(path);
+}
+
 var aggregator = {adress:"127.0.0.1",port:"5000"};
+var templCache = new TemplateCache();
 http.createServer(function(req,resp) {
 	var options = {
 		host:aggregator.adress,
@@ -22,16 +53,23 @@ http.createServer(function(req,resp) {
 		});
 		res.on('end',function()
 		{
+			var fn;
 			if (res.statusCode == 200)
 			{
 				response = JSON.parse(data);
 				var path = response.template;
 				var context = response.context;
-				template = fs.readFileSync(path,'utf8');
-				fn = jade.compile(template,{filename:path,pretty:true});
+				fn = templCache.getOrCreate(path)
 			}
 			resp.writeHead(res.statusCode,{'Content-Type':'text/html'});
-  			resp.end(fn(context));
+			if (fn != undefined)   
+			{ 
+			 resp.end(fn(context));
+			}
+			else    
+			{ 				   
+				resp.end();
+			}
 		});
 	});
 	req.on('error',function(error)
