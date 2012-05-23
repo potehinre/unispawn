@@ -179,11 +179,17 @@ def futures_index():
          materials = Future("http://localhost:100/materials.json")
          return locals()
      
+    @joinall
+    def construct_index_2_futures():
+        main_news = Future("http://www.sports.ru/stat/export/wapsports/mainnews.json?count=1")
+        football_news = Future("http://www.sports.ru/stat/export/wapsports/news.json?category_id=208&count=1")
+        return locals()
+     
     before = time.time()
-    context = construct_index_fake()
-    print context['blogs']
+    context = construct_index_2_futures()
     print 'Futures collection:',time.time() - before
-    template = jinja_template(name,context)
+    result = {"context":context,"template":"templates/jade/example.jade"}
+    template = ujson.encode(result)
     return template
 
 @app.route("/futures/tribuna/<name>/<blog_id>")
