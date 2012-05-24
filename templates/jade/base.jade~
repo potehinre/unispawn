@@ -9,10 +9,10 @@ head
     meta(name='Robots', content='index, follow')
     meta(name='robots', content='all')
     link(href='http://stg.odnoklassniki.ru/share/odkl_share.css?1', rel='stylesheet')
-    link(rel='stylesheet', type='text/css', href='css/parent.css')
-    link(rel='stylesheet', type='text/css', href='css/poll_export.css')
-    link(rel='stylesheet', type='text/css', href='css/popups.css')
-    link(rel='stylesheet', type='text/css', href='css/search.css')
+    link(rel='stylesheet', type='text/css', href='/css/parent.css')
+    link(rel='stylesheet', type='text/css', href='/css/poll_export.css')
+    link(rel='stylesheet', type='text/css', href='/css/popups.css')
+    link(rel='stylesheet', type='text/css', href='/css/search.css')
     //if lte IE 7
       link(rel='stylesheet', type='text/css', href='/css/miserable-browsers/internet-explorer.css')
     //if IE 6

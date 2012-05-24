@@ -1,8 +1,8 @@
 p
     span #{news.posted_time}
-      a.txt(href='/hockey/#{news.id}.html', title='{{news.title}}') {{news.title|safe}}
+      a.txt(href='/hockey/#{news.id}.html', title='#{news.title}') #{news.title}
       | (
-      a(href='/hockey/#{news.id}.html?comments=1#comments', title='Комментарии к новости') {{news.comment_count}}
+      a(href='/hockey/#{news.id}.html?comments=1#comments', title='Комментарии к новости') #{news.comment_count}
       | )
       span |
       a(href='/hockey/', title='Хоккей') хоккей

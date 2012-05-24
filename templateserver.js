@@ -56,12 +56,20 @@ http.createServer(function(req,resp) {
 			var fn;
 			if (res.statusCode == 200)
 			{
-				response = JSON.parse(data);
-				var path = response.template;
-				var context = response.context;
-				fn = templCache.getOrCreate(path)
+                try
+                {
+				    response = JSON.parse(data);
+				    var path = response.template;
+				    var context = response.context;
+				    fn = templCache.getOrCreate(path);
+                }
+                catch(e)
+                {
+                    console.log(e);
+                }
+            
 			}
-			resp.writeHead(res.statusCode,{'Content-Type':'text/html'});
+			resp.writeHead(res.statusCode,{'Content-Type':'text/html;charset=utf-8'});
 			if (fn != undefined)   
 			{ 
 			 resp.end(fn(context));

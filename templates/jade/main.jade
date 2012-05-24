@@ -737,9 +737,11 @@ block middle
                 | Остальные новости партнеров читайте в
                 a(href='/my/news/') ленте ваших новостей
         .center
-          | {% for material in materials.data.materials %}
-          | {% include "material.html" %}
-          | {% endfor %}
+          if materials.data
+                each material in materials.data.materials
+                    include material
+          else
+                p Ошибка
           .banner
             img(src='/i/alcohol-warning.jpg')
           .public

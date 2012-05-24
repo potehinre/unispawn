@@ -1,0 +1,25 @@
+.public
+    a(href='/football/#{material.id}.html', title='#{material.title}')
+        img(src='/images/object_90.1317579459.66344.jpg', alt='премьер-лига, Спартак, Зенит', title='')
+      .text
+        h1
+          a(href='/football/#{material.id}.html', title='#{material.title}') #{material.title}
+        p #{material.content}
+      .themes
+        p
+          | комментарии:
+          a(href='/football/126455586.html?comments=1#comments') 64
+          p
+            | теги:
+            a(href='/tags/1044511.html') Спартак
+            | |
+            a(href='/tags/1044514.html') Зенит
+      .materials
+        p материалы по теме:
+        ul
+          li
+            a.txt(href='/photogallery/126405166.html') Дерби красного цвета
+            | (
+            a(href='/photogallery/126405166.html?comments=1#comments', title='12') 12
+            | )
+            span | 2 октября 17:56
