@@ -186,7 +186,7 @@ def futures_index():
         return locals()
      
     before = time.time()
-    context = construct_index()
+    context = construct_index_fake()
     print 'Futures collection:',time.time() - before
     result = {"context":context,"template":"templates/jade/main.jade"}
     template = ujson.encode(result)
@@ -214,8 +214,8 @@ def futures_blog(name,blog_id):
     
 
 if __name__ == "__main__":
-    #http_server = WSGIServer(('',5000),app)
-    #http_server.serve_forever()
-    app.jinja_env.add_extension('pyjade.ext.jinja.PyJadeExtension')
-    app.debug = True
-    app.run()
+    http_server = WSGIServer(('',5000),app)
+    http_server.serve_forever()
+    #app.jinja_env.add_extension('pyjade.ext.jinja.PyJadeExtension')
+    #app.debug = True
+    #app.run()

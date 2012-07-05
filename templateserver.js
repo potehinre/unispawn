@@ -4,7 +4,7 @@ var http = require('http'),
 	fs = require('fs'),
     cluster = require('cluster');
 
-var numCPUs = require('os').cpus().length;
+var numCPUs = 4;
 
 
 var TemplateCache = function()
@@ -74,7 +74,10 @@ else
 			    {
                     try
                     {
+                        var timeBefore = new Date().getTime();
+                        console.time("jsoning");
 				        response = JSON.parse(data);
+                        console.timeEnd("jsoning");
 				        var path = response.template;
 				        var context = response.context;
 				        fn = templCache.getOrCreate(path);
@@ -88,7 +91,10 @@ else
 			    resp.writeHead(res.statusCode,{'Content-Type':'text/html;charset=utf-8'});
 			    if (fn != undefined)   
 			    { 
-			     resp.end(fn(context));
+                 console.time("templating");
+                 var template = fn(context);
+                 console.timeEnd("templating");
+			     resp.end(template);
 			    }
 			    else    
 			    { 				   

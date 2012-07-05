@@ -4,6 +4,7 @@ import ujson
 import functools
 from gevent import monkey
 monkey.patch_all()
+import re
 
 class DependencyError(Exception):
     pass
@@ -27,6 +28,7 @@ class Future(object):
                 return {"error":"Dependency Failed"}
             url = self.url.format(**self.params)
             response,content = htt.request(url)
+            content = ssi(content)
             return {"data":ujson.decode(content)}
         except Exception as e:
             print e
@@ -61,6 +63,7 @@ class CriticalFuture(Future):
             raise DependencyError("Dependency Failed"+self.greenlet.value['error'])
     
     def __getitem__(self,itemname):
+        print 'collector ',self.urlname,' joining ',itemname
         gevent.joinall([self.greenlet])
         if 'data' in self.greenlet.value:
             return  ujson.decode(self.greenlet.value['data'])[itemname]
@@ -80,12 +83,27 @@ def joinall(f):
             return "Dependency Failed"
     return wrapper
 
+def ssi(text):
+    pattern = "<!--#include virtual=(.*?)-->"
+    repl_pattern = "<!--#include virtual=%s-->"
+    urls = re.findall(pattern,text)
+    print urls
+    replacements = dict.fromkeys(urls)
+    for url in urls:
+        htt = httplib2.Http()
+        response,content = htt.request(url)
+        if response['status'] == "200":
+            replacements[url] = content
+    new_text = text
+    for url,replacement in replacements.items():
+        new_text = new_text.replace(repl_pattern%(url,),replacement)
+    return new_text
+        
+
 @joinall
 def blog_post_page():
-    haha = Future("http://www.dsjajdf.ru?id={id}",timeout=10,id=234)
     post = Future("http://www.sports.ru/stat/export/wapsports/blog_post.json?id={id}",timeout=10,id=326627)
-    category_posts = Future("http://www.sports.ru/stat/export/wapsports/category_blog_popular_posts.json?category_id={post_category_id}&count=10",
-                            timeout=10,post_category_id=haha['blog_id'])
+    ssi  = Future("http://localhost:100/ssi_document.json")
     return locals()
         
     
@@ -93,3 +111,4 @@ def blog_post_page():
 if __name__ == "__main__":
     data = blog_post_page()
     print data
+    #print data
