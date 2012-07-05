@@ -1,3 +1,4 @@
+#-*- coding:utf-8 -*-
 import gevent
 import httplib2
 import ujson
@@ -84,10 +85,9 @@ def joinall(f):
     return wrapper
 
 def ssi(text):
-    pattern = "<!--#include virtual=(.*?)-->"
-    repl_pattern = "<!--#include virtual=%s-->"
+    pattern = r"<!--#include virtual=(.*?)-->"
+    repl_pattern = r"<!--#include virtual=%s-->"
     urls = re.findall(pattern,text)
-    print urls
     replacements = dict.fromkeys(urls)
     for url in urls:
         htt = httplib2.Http()
@@ -98,10 +98,54 @@ def ssi(text):
     for url,replacement in replacements.items():
         new_text = new_text.replace(repl_pattern%(url,),replacement)
     return new_text
-        
 
+
+def get_json(url):
+    """
+      Запрашивает по урлу JSON и десереализует его
+    """
+    htt = httplib2.Http()
+    response,content = htt.request(url)
+    return ujson.decode(content)
+
+def json_ssi(element):
+    split_regex = r"(<!--#json include=.*?-->)" 
+    url_regex = r"<!--#json include=(.*?)-->"
+    result = re.split(split_regex,element)
+    if len(result) == 1:
+        return result[0]
+    else:
+        for i in range(len(result)):
+            url = re.match(url_regex,result[i])
+            if url:
+                result[i] = get_json(url.groups()[0])
+    return result
+
+def walk_recursive(element,f):
+    """
+    Рекурсивно обходит дерево преобразуя все встреченые строки 
+    функцией f
+    """
+    if isinstance(element,list):
+        for i,el in enumerate(element):
+            if isinstance(el,str):
+                element[i] = f(el)
+            else:
+                walk_recursive(el,f)
+    elif isinstance(element,dict):
+        for key,item in element.items():
+            if isinstance(item,str):
+                element[key] = f(item)
+            else:
+                walk_recursive(item,f)
+    return element
+                
+                
 @joinall
 def blog_post_page():
+#    test_dict = {"key":["one","two","three",1],"key2":{"key3":"four <!--#json include=http://localhost:100/json1.json--> trhee <!--#json include=http://localhost:100/json2.json--> lol",
+#                                                       "key4":["six","seven","eight"]}}
+#    print walk_recursive(test_dict,json_ssi)
     post = Future("http://www.sports.ru/stat/export/wapsports/blog_post.json?id={id}",timeout=10,id=326627)
     ssi  = Future("http://localhost:100/ssi_document.json")
     return locals()
