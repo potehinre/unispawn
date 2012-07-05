@@ -11,10 +11,12 @@ class DependencyError(Exception):
     pass
 
 class Future(object):
-    def __init__(self,urlname,timeout=300,**params):
+    def __init__(self,urlname,timeout=300,text_replacer=None,json_replacer=None,**params):
         self.url = urlname
         self.timeout = timeout
         self.params = params
+        self.text_replacer=text_replacer
+        self.json_replacer=json_replacer
         self.greenlet = gevent.Greenlet(self._do_work)
         self.greenlet.start()
         
@@ -29,8 +31,9 @@ class Future(object):
                 return {"error":"Dependency Failed"}
             url = self.url.format(**self.params)
             response,content = htt.request(url)
-            content = ssi(content)
-            return {"data":ujson.decode(content)}
+            if self.text_replacer:
+                content = self.text_replacer(content)
+            return {"data":(ujson.decode(content) if not self.json_replacer else walk_recursive(ujson.decode(content),self.json_replacer))}
         except Exception as e:
             print e
             return {"error":e.message}
@@ -84,7 +87,7 @@ def joinall(f):
             return "Dependency Failed"
     return wrapper
 
-def ssi(text):
+def nginx_ssi(text):
     pattern = r"<!--#include virtual=(.*?)-->"
     repl_pattern = r"<!--#include virtual=%s-->"
     urls = re.findall(pattern,text)
@@ -116,9 +119,9 @@ def json_ssi(element):
         return result[0]
     else:
         for i in range(len(result)):
-            url = re.match(url_regex,result[i])
-            if url:
-                result[i] = get_json(url.groups()[0])
+            urls = re.findall(url_regex,result[i])
+            for url in urls:
+                result[i] = get_json(url)
     return result
 
 def walk_recursive(element,f):
@@ -128,13 +131,13 @@ def walk_recursive(element,f):
     """
     if isinstance(element,list):
         for i,el in enumerate(element):
-            if isinstance(el,str):
+            if isinstance(el,str) or isinstance(el,unicode):
                 element[i] = f(el)
             else:
                 walk_recursive(el,f)
     elif isinstance(element,dict):
         for key,item in element.items():
-            if isinstance(item,str):
+            if isinstance(item,str) or isinstance(item,unicode):
                 element[key] = f(item)
             else:
                 walk_recursive(item,f)
@@ -143,11 +146,9 @@ def walk_recursive(element,f):
                 
 @joinall
 def blog_post_page():
-#    test_dict = {"key":["one","two","three",1],"key2":{"key3":"four <!--#json include=http://localhost:100/json1.json--> trhee <!--#json include=http://localhost:100/json2.json--> lol",
-#                                                       "key4":["six","seven","eight"]}}
-#    print walk_recursive(test_dict,json_ssi)
     post = Future("http://www.sports.ru/stat/export/wapsports/blog_post.json?id={id}",timeout=10,id=326627)
-    ssi  = Future("http://localhost:100/ssi_document.json")
+    ssi  = Future("http://localhost:100/ssi_document.json",text_replacer=nginx_ssi)
+    jssi = Future("http://localhost:100/ssi_json.json",json_replacer=json_ssi)
     return locals()
         
     
