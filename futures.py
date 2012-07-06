@@ -73,6 +73,21 @@ class CriticalFuture(Future):
             return  ujson.decode(self.greenlet.value['data'])[itemname]
         else:
             raise DependencyError("Dependency Failed:"+self.greenlet.value['error'])
+        
+class Group(Future):
+    def __init__(self,url,ids):
+        self.url = url
+        self.ids = ids
+        jobs = [gevent.spawn(get_json,self.url.format(id=val)) for val in self.ids]
+        gevent.joinall(jobs)
+        
+        #хак для совместимости с joinall(декоратором)
+        self.greenlet = gevent.Greenlet(lambda :1)
+        self.greenlet.start()
+        self.greenlet.join()
+    
+        self.greenlet.value = {"data":[job.value for job in jobs]}
+        
     
 
 def joinall(f):
@@ -149,6 +164,8 @@ def blog_post_page():
     post = Future("http://www.sports.ru/stat/export/wapsports/blog_post.json?id={id}",timeout=10,id=326627)
     ssi  = Future("http://localhost:100/ssi_document.json",text_replacer=nginx_ssi)
     jssi = Future("http://localhost:100/ssi_json.json",json_replacer=json_ssi)
+    users = Future("http://localhost:100/userids.json")
+    user_info = Group("http://localhost:100/user{id}.json",ids=users['ids'])
     return locals()
         
     
