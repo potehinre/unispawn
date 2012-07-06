@@ -1,0 +1,2 @@
+{"key":"value",
+ "another_key":{"values":["one <!--#json include=http://localhost:100/json1.json--> two <!--#json include=http://localhost:100/json2.json-->"]}}

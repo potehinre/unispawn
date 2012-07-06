@@ -1,0 +1,2 @@
+{"text":"<!--#include virtual=http://localhost:100/text1.json--> and <!--#include virtual=http://localhost:100/text2.json-->",
+ "other":3}
