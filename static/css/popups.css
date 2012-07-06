@@ -1,0 +1,93 @@
+.overlay { background: #7f7f7f; opacity: 0.6; display: block; height: 100%; left: 0; position: fixed; top: 0; width: 100%; z-index: 10000; filter: alpha(opacity=60); }
+
+.popupBlock, .popup-corn { background-image: url(/i/popups-corners.png); background-repeat: no-repeat; }
+.popupBlock { width: 560px; padding: 0 0 7px; background-position: 0 100%; font: normal 12px/14px Verdana; position: absolute; left: 50%; margin-left: -280px; z-index: 10001; display: block; }
+.openId-show { background-position: -1140px 100%; }
+.popup-corn { background-position: -570px 0; display: block; font-size: 1px; height: 7px; }
+.popup-body { background: #fff; padding: 12px 30px 20px; /*position: relative;*/ }
+.popup-body span.error { color: #f00; }
+.popup-close { background: url(/i/popups-close.png) no-repeat 0 0; width: 30px; height: 30px; display: block;  margin: -19px -30px 0 0; float: right; cursor: pointer; }
+.popupBlock h3 { font: normal 21px tahoma; margin: 0 0 17px; }
+.popupBlock p { line-height: 16px; margin-right: -10px; padding: 0 0 17px; }
+.popupBlock .descr { color: #7f7f7f; font: normal 11px/15px tahoma; padding: 15px 0 0; }
+.popupBlock .col { float: left; }
+.popupBlock .col2 { margin-left: 250px; }
+
+.corner-input { display: block; position: relative; background: #ededed; padding: 10px; height: 17px; }
+.corner-input input { font: normal 14px verdana; background: none; border: 0; color: #767676; width: 100%; /*height: 17px;*/ outline: none; }
+.corner-input .cn { background: url(/i/popups-white-star.png) no-repeat 0 0; width: 5px; height: 5px; position: absolute;}
+.corner-input .cn.tl { top: 0; left: 0; background-position: -5px -5px; }
+.corner-input .cn.tr { top: 0; right: 0; background-position: 0 -5px; }
+.corner-input .cn.bl { bottom: 0; left: 0; background-position: -5px 0; }
+.corner-input .cn.br { bottom: 0; right: 0; background-position: 0 0; }
+
+.buttons {overflow:hidden;}
+.buttons .col {margin:0 10px 0 0;}
+.blue-button { background: url(/i/popups-buttons.png) no-repeat 0 0; height: 37px; border: 0; cursor: pointer; }
+.button-login { width: 100px; background-position: -240px 0; }
+.button-registr { width: 225px; }
+.button-forget { width: 225px; background-position: -355px 0; }
+.button-yes, .button-no  {width:80px; background-position: -595px 0;}
+.button-no {background-position: -690px 0;}
+.button-input-data {width:210px; background-position: -785px 0;}
+.button-registr2 {width:189px; background-position: -1010px 0;}
+.button-reg-log {width:315px; background-position: -1214px 0;}
+.button-add-friend {width:301px; background-position:-1544px 0;}
+
+.autoriz-form  { overflow: hidden; margin: 0 0 20px; }
+.autoriz-form .corner-input { width:170px; margin: 0 10px 10px 0; }
+.autoriz-form .checkBox {}
+.autoriz-form .checkBox input { margin: 0 6px 0 0; width: 15px; height: 15px; vertical-align: top; }
+.vk .autoriz-form {margin:0;}
+.vk .autoriz-form .corner-input {margin-bottom:0;}
+
+.reg-log-form {overflow:hidden; margin:0 0 15px;}
+.reg-log-form .corner-input {width:170px; margin: 0 10px 15px 0; }
+.registr-form .overBox { overflow: hidden; margin: 0 0 10px; }
+.registr-form .corner-input, .forget-form .corner-input { width: 255px; }
+
+.forget-form { overflow: hidden; padding: 0 0 4px; }
+
+.add-friend-form .blue-button {float:right;}
+.add-friend-form .checkBox {padding:10px 0 0; display:inline-block;}
+.add-friend-form .checkBox input { margin: 0 6px 0 0; width: 15px; height: 15px; vertical-align: top; }
+
+.friends-list {width:100%; height:180px; overflow:auto; margin:0 0 5px -5px;}
+.friends-list .item {width:50%; height:50px; float:left; padding:5px 0;}
+*+html .friends-list .item {width:48%;}
+.friends-list .item .body { height:50px; background:#ededed; margin:0 5px;}
+.friends-list .imgBox {float:left; margin:0 10px 0 0;}
+.friends-list .imgBox IMG {display:block;}
+.friends-list .item LABEL {display:block; overflow:hidden; padding:10px 10px 0 0; font:normal 10px/11px tahoma; color:#7d7d7d;}
+.friends-list .item INPUT {display:block; width:15px; height:15px; vertical-align:top; float:left;}
+.friends-list .item .friend-name {display:block; vertical-align:top; margin-left:23px;}
+.friends-list .item .nickname {display:block; color:#2d78c4; text-decoration:none;}
+
+.what-give-registr { padding: 0 0 20px 28px; background: url(/i/popups-question-sign.png) no-repeat 0 0; line-height: 23px; height: 23px; cursor: pointer; display: inline-block; color: #c0c0c0; }
+.what-give-registr span { color: #2d78c4; font-size: 12px; border-bottom: 1px dotted #2d78c4; display: inline-block; line-height: 19px; margin: 0 5px; }
+.info-reg-block { margin: 0 0 20px; }
+.advance-data-block { margin: 0 0 34px; }
+.advance-data-block span.error { color: #f00; font-size: 11px; }
+.advance-data-block .col { width: 220px; }
+.adv-table td { vertical-align: top; padding: 5px 0; }
+.adv-table .name-field { padding-right: 5px; vertical-align: middle; }
+.adv-table .input-line { position: relative; }
+.adv-table .input-line .error { position: absolute; color: #f00; font-size: 11px; left: 4px; top: -17px; }
+.adv-table input, .adv-table select { font-size: 11px; }
+.adv-table input { width: 106px; padding: 1px 0 2px; }
+.adv-table select { width: 110px; padding: 1px 0; }
+
+
+.social-login { line-height: 26px; height: 26px; vertical-align: middle; }
+.facebook-but, .vkontakte-but, .openId, .openId-but { width: 89px; height: 21px; display: inline-block; margin: 0 10px 0 0; vertical-align: bottom; cursor: pointer; }
+.facebook-but { background: url(/i/popups-facebook.gif) no-repeat 0 0; }
+.vkontakte-but { background: url(/i/popups-vkontakte.gif) no-repeat 0 0; }
+.openId { display: inline-block; position: relative; width: 26px; height: 26px; cursor: default; }
+.openId .openId-but { background: url(/i/popups-openId.png) no-repeat 0 0; width: 26px; height: 26px; position: absolute; left: 0; top: 0; z-index: 10; }
+.openId .openId-bg { display: none; background: url(/i/popups-openId-bg.png) no-repeat 0 0; width: 26px; height: 34px; position: absolute; left: 0; top: 12px; z-index: 9; }
+
+.openId-block { display: none; padding: 20px 30px 13px 30px; background: #ededed; }
+.openId-show .openId-block, .openId-show .openId .openId-bg { display: block; }
+.openId-form { overflow: hidden; margin: 0 0 5px; }
+.openId-form .corner-input { background: #fff; width: 370px; margin: 0 10px 0 0; }
+.openId-form .corner-input .cn { background-image: url(/i/popups-gray-star.png); }

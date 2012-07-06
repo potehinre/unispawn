@@ -1,0 +1,265 @@
+/*common promo layout*/
+.branding #affs_content{ background: url("/i/bg/default-tape-top.png") no-repeat center 192px; } 
+.branding #basis { padding-top: 10px; top: 200px; }
+
+/*
+#user_menu { font: 11px/13px Tahoma; height: 13px; position: absolute; top: -200px; width: 100%; }
+#user_menu.top-links span.tape { background-color: #fff; background: url('/i/bg/bg-efes-pilsener-2010-top-line.png') repeat 0 0; }
+#user_menu, #user_menu a { color: #fff; }
+#user_menu.top-links span.tape a { color: #0065b2; }
+#user_menu .tape-left, #user_menu .tape-right { width: 8px; }
+#user_menu .tape-left { background: transparent url("/i/bg/bg-efes-pilsener-2010-top-left.png") no-repeat 0 0; }
+#user_menu .tape-right { background: transparent url("/i/bg/bg-efes-pilsener-2010-top-right.png") no-repeat right 0; }
+*/
+.branding  #user_menu { font: 11px/13px Tahoma; height: 13px; position: absolute; top: -200px; width: 100%; }
+.branding #user_menu, .branding #user_menu a { color: #fff; }
+
+.branding .promo-link { background-color: transparent; display: block !important; left: 0; height: 2000px; position: absolute; text-decoration: none !important; top: 0; width: 100%; }
+.branding .theme-link { display: block; position: absolute; }
+.branding .promo-movie { height: 90px; width: 780px; }
+
+/*backgrounds*/
+
+/* Efes for backetball World Cup 2010 */
+.efes2010 { background: #000c1b url('/i/bg/bg-efes-pilsener-2010-bg.jpg') no-repeat center 0; }
+
+/* VolksWagen */
+.vw2010 { background: #201614 url('/i/bg/bg-volkswagen-bg-grad.png') repeat-x 0 0; }
+.vw2010 #overall-div { background:url('/i/bg/bg-volkswagen-logo-bg.png') repeat 0 0; }
+.vw2010 #overall-div2 { background:url('/i/bg/bg-volkswagen-main-bg.jpg') no-repeat center 0; }
+.vw2010 #affs_content { background-position: center 292px; }
+.vw2010 #user_menu { top: -300px; }
+.vw2010 #basis { top: 300px; }
+.vw2010 .promo-link { height: 300px; }
+.vw2010 .vw-car { display: block; position: absolute; }
+.vw2010 .vw-car-1 { height: 130px; left: 12px; top: -254px; width: 217px; }
+.vw2010 .vw-car-2 { height: 158px; left: 225px; top: -223px; width: 186px; }
+.vw2010 .vw-car-3 { height: 106px; left: 501px; top: -228px; width: 119px; }
+
+.vw2010 { background:#000 url('/i/bg/bg-volkswagen-main-bg.jpg') no-repeat center 0; }
+.vw2010 #affs_content { background-position: center 224px; }
+.vw2010 #user_menu { top: -232px; }
+.vw2010 #basis { top: 232px; }
+.vw2010 .vw-car { display: block; position: absolute; }
+.vw2010 .vw-car-1 { height: 130px; left: 12px; top: -189px; width: 217px; z-index: 1002; }
+.vw2010 .vw-car-2 { height: 158px; left: 225px; top: -169px; width: 186px; z-index: 1003; }
+.vw2010 .vw-car-3 { height: 106px; left: 431px; top: -166px; width: 190px; z-index: 1004; }
+
+.vw2012 { background:#277b21 url('/i/bg/bg-volkswagen-grass.png') repeat 0 0; }
+.vw2012 #overall { background:url('/i/bg/bg-volkswagen-top.jpg') no-repeat center 0; }
+.vw2012 #affs_content { background-position: center 282px; }
+.vw2012 #basis { top: 290px; }
+.vw2012 #user_menu { color: #000; top: -290px; }
+.vw2012 #user_menu a { color: #0565b2; }
+.vw2012 #user_menu .tape-left, .vw2012 #user_menu .tape-right, .vw2012 #user_menu.top-links span.tape { background: #f4f4f4; }
+.vw2012 .vw-car-1 { height: 113px; right: 248px; top: -174px; width: 162px; }
+.vw2012 .vw-car-2 { height: 113px; right: 71px; top: -136px; width: 186px; }
+.vw2012 .vw-car-3 { height: 87px; right: -63px; top: -142px; width: 114px; }
+.vw2012 .promo-text { background: #fff url('/i/bg/bg-volkswagen-text.jpg') no-repeat center 39px; height: 90px; left: 0; position: absolute; top: 0; width: 100%; }
+.vw2012 .promo-link, .vw2012 .e2012-link { background: url('http://ads.adfox.ru/6902/getCode?p1=cbvm&p2=v&pe=b&pfc=hkrb&pfb=stzi&pr=eeanlet') repeat 0 0; height:90px; }
+.vw2012 .e2012-link { height: 190px; left: 50px; position: absolute; top: -200px; width: 380px; }
+
+.vw2011 { background: #277b21 url('/i/promo/volkswagen/grass-pattern.jpg') repeat 0 0; }
+.vw2011 .promo-link { background: url('/i/promo/volkswagen/top-june-2011.png') no-repeat center 0; }
+.vw2011 #affs_content { background-position: center 240px; }
+.vw2011 #basis { top: 248px; }
+.vw2011 #user_menu { top: -253px; z-index: 3;}
+
+/* Lilly */
+.lilly2010new { background: #efefef url('/i/bg/bg-lilly-2010-main.jpg') no-repeat center 0; }
+.lilly2010new #affs_content { background-position: center 234px; }
+.lilly2010new #basis { top: 242px; }
+.lilly2010new #user_menu { color: #000; top: -242px; }
+.lilly2010new #user_menu a { color: #0565b2; }
+.lilly2010new .promo-link { background: url('http://ad.adriver.ru/cgi-bin/rle.cgi?sid=1&bt=21&ad=245635&pid=513160&bid=955097&bn=955097&rnd=284212281') repeat 0 0; }
+
+/* Range Rover */
+.rr2010 { background: #000 url('/i/bg/bg-range-rover-2010-bg.jpg') no-repeat center 0; }
+.rr2010 .promo-link { background: url('http://ad.adriver.ru/cgi-bin/rle.cgi?sid=1&bt=21&ad=251778&pid=514534&bid=957018&bn=957018&rnd=1626761657') repeat 0 0; }
+.rr2010 .promo-movie { left: 31px; position: absolute; top: -161px; }
+
+.rr2011 { background: #000 url('/i/promo/rangerover/main-background-2011-4.jpg') no-repeat center 0; }
+.rr2011 .promo-link { background-image: url('http://ads.adfox.ru/6902/getCode?p1=duvh&p2=v&pe=b&pfc=hyph&pfb=urmo&pr=effsmfb'); }
+
+/* bud */
+.bud2010 { background: #b80001 url('/i/bg/bg-bud-2010-bg-2.jpg') no-repeat center 0; }
+.bud2010 .promo-link { background: url('http://ads.adfox.ru/6902/getCode?p1=cefh&p2=v&pe=b&pfc=hobz&pfb=tgex&pr=eegujiq') repeat 0 0; height:200px; }
+
+/* maa promo */
+.maa2010 { background: url('/i/promo/maalox/bg-grass.jpg') repeat 0 0; }
+.maa2010 #overall { background: url('/i/promo/maalox/bg-for-blog.jpg') no-repeat center 0; }
+
+/* jackass promo */
+.jackass2010 { background: #383838 url('/i/promo/jackass/line.jpg') repeat-x 0 0; }
+.jackass2010 #overall { background: url('/i/promo/jackass/main.jpg') no-repeat center 0; }
+.jackass2010 #affs_content { background-position: center 272px; }
+.jackass2010 #basis { top: 280px; }
+.jackass2010 #user_menu { top: -280px; }
+.jackass2010 .promo-link { background-image: url('http://ads.adfox.ru/6902/getCode?p1=chgv&p2=v&pe=b&pfc=htnm&pfb=txzd&pr=eeregth'); height: 280px; }
+
+/* supra promo */
+.supra2011 { background: #cf0505 url('/i/promo/supra/supra2011-04.jpg') no-repeat fixed center 0; }
+.supra2011 .promo-link {background-image: url('http://ads.adfox.ru/6902/getCode?p1=cklk&p2=v&pe=b&pfc=hxdj&pfb=umch&pr=efcnyge'); }
+
+
+/* Nivea 2011 */
+.nivea2011 { background: #0d0d0d url('/i/promo/nivea/nivea-fon.jpg') no-repeat fixed 50% 0; }
+.nivea2011 .promo-link { background-image: url('http://ads.adfox.ru/6902/getCode?p1=duvh&p2=v&pe=b&pfc=hyph&pfb=urmo&pr=effsmfb'); }
+.nivea2011 .nivea-promo { display:block !important; background: url(/i/promo/nivea/bottles.png) no-repeat 0 0; width: 940px; height: 230px; position: absolute; top: -250px; left: 0; z-index: 1; }
+.nivea2011 #affs_content { background-position: center 242px; }
+.nivea2011 #basis { top: 250px; }
+.nivea2011 #user_menu { top: -250px; z-index: 3; }
+
+/* Skoda 2011 */
+.skoda2011 { background: #edece7 url('/i/promo/skoda/skoda_bg.jpg') no-repeat fixed 50% 0; }
+.skoda2011 .promo-link { background-image: url('http://ads.adfox.ru/6902/getCode?p1=duvh&p2=v&pe=b&pfc=hyph&pfb=urmo&pr=effsmfb'); }
+.skoda2011 #affs_content { background-position: center 242px; }
+.skoda2011 #basis { top: 250px; }
+.skoda2011 #user_menu { top: -250px; z-index: 3; color: #333;}
+.skoda2011 #user_menu a { color: #0565B2; }
+
+/* Bet-at-home 2011 */
+.bet2011 { background: #000 url('/i/promo/bet_at_home/bet-bg.jpg') no-repeat fixed 50% 0; }
+.bet2011 .promo-link { background-image: url('http://ads.adfox.ru/6902/getCode?p1=duvh&p2=v&pe=b&pfc=hyph&pfb=urmo&pr=effsmfb'); }
+.bet2011 #affs_content { background-position: center 232px; }
+.bet2011 #basis { top: 240px; }
+.bet2011 #user_menu { top: -240px; z-index: 3;}
+
+/* Sony Vaio 2011 */
+.sony2011 { background: #003460 url('/i/promo/sony/sony-bg.jpg') no-repeat 50% 0; }
+.sony2011 .promo-link { background-image: url('http://ads.adfox.ru/6902/getCode?p1=duvh&p2=v&pe=b&pfc=hyph&pfb=urmo&pr=effsmfb'); }
+.sony2011 #affs_content { background-position: center 292px; }
+.sony2011 #basis { top: 300px; }
+.sony2011 #user_menu { top: -300px; z-index: 3; }
+
+/* Fast and Furious 5 2011 */
+.fastfive2011 { background: #21111f url('/i/promo/fast_and_furious/fastfive-bg.jpg') no-repeat fixed 50% 0; }
+.fastfive2011 .promo-link { background-image: url('http://ads.adfox.ru/6902/getCode?p1=duvh&p2=v&pe=b&pfc=hyph&pfb=urmo&pr=effsmfb'); width: 890px; height: 220px; left: 50%; margin-left: -445px; }
+.fastfive2011 #affs_content { background-position: center 220px; }
+.fastfive2011 #basis { top: 228px; }
+.fastfive2011 #user_menu { top: -228px; z-index: 3;}
+
+/* Kirieshki 2011 */
+.kirieshki2011 { background: #fff url('/i/promo/kirieshki/kiri-bg.jpg') no-repeat fixed 50% 0; }
+.kirieshki2011 .promo-link { background-image: url('http://ads.adfox.ru/6902/getCode?p1=duvh&p2=v&pe=b&pfc=hyph&pfb=urmo&pr=effsmfb'); }
+.kirieshki2011 #affs_content { background-position: center 230px; }
+.kirieshki2011 #basis { top: 238px; }
+.kirieshki2011 #user_menu { top: -238px; z-index: 3;}
+
+/* Betfair */
+.betfair2011 { background: #fdb73b url('/i/promo/betfair/background-pattern-may-2011.gif') repeat 0 0; }
+.betfair2011 .promo-link { width: 890px; height: 220px; left: 50%; margin-left: -445px; }
+.betfair2011 #affs_content { background-position: center 202px; }
+.betfair2011 #basis { top: 210px; }
+.betfair2011 #user_menu { top: -210px; z-index: 3;}
+
+/* REXAM 2011 */
+.rexam2011 { background: #aaa url('/i/promo/rexam/rexam-bg.jpg') repeat 50% 0; }
+.rexam2011 .promo-link { background-image: url('http://ads.adfox.ru/6902/getCode?p1=duvh&p2=v&pe=b&pfc=hyph&pfb=urmo&pr=effsmfb'); }
+.rexam2011 #affs_content { background-position: center 272px; }
+.rexam2011 #basis { top: 280px; }
+.rexam2011 #user_menu { top: -280px; z-index: 3;}
+
+/* Adidas */
+.adidas-contest { background: #000 url(/i/promo/adidas/background2011.jpg) repeat 0 0; }
+.adidas-contest .promo-link { background-image: url('http://ads.adfox.ru/6902/getCode?p1=duvh&p2=v&pe=b&pfc=hyph&pfb=urmo&pr=effsmfb'); }
+.adidas-contest .adidas-promo { display: block !important; background: url(/i/promo/adidas/header2011.png) no-repeat 0 0; width: 1090px; height: 240px; position: absolute; top: -249px; left: -100px; z-index: 1; }
+.top-content-corners { width: 890px; height: 8px; position:absolute; background: url(http://www.sports.ru/i/bg/default-tape-top.png) no-repeat 0 0; top: -8px; left: 0; }
+.adidas-contest #affs_content { background: none; }
+.adidas-contest #basis { top: 249px; }
+.adidas-contest #user_menu .tape-left, .adidas-contest #user_menu .tape-right, .adidas-contest #user_menu.top-links span.tape { background: #00b9e7; }
+.adidas-contest #user_menu  { top: -249px; z-index: 3; }
+
+/* blog-football */
+.blog-football { background: #808179 url(/i/promo/football-magazine/background2011.jpg) no-repeat 50% 0; }
+.top-content-corners { width:890px; height: 8px; position: absolute; background: url(/i/bg/default-tape-top.png) no-repeat 0 0; top: -8px; left: 0; }
+.blog-football #affs_content { background-position: center 260px; }
+.blog-football #basis { top: 268px; }
+.blog-football #user_menu { top: -275px; z-index: 3; }
+.blog-football #user_menu .tape a { color: #0065B2; }
+.blog-football #user_menu .tape-left { background: url(/i/bg/default-tape-left.png) no-repeat scroll 0 0 transparent; }
+.blog-football #user_menu .tape-right { background: url(/i/bg/default-tape-right.png) no-repeat scroll right 0 transparent; }
+.blog-football #user_menu.top-links span.tape { background-color: #fff; background: url(/i/bg/default-tape-line.png) repeat 0 0; }
+.blog-football .top-links span { color: #000; }
+
+/* Melnik */
+.st-melnik { background: fixed url(/i/promo/melnik/background2011.jpg) no-repeat 50% 0; }
+.st-melnik .promo-link { background-image: url('http://ad.adriver.ru/cgi-bin/click.cgi?sid=1&bt=21&ad=289708&pid=642831&bid=1255818&bn=1255818&rnd=199590313'); }
+.st-melnik .adidas-promo { display: block !important; background: url(i/promo/header.png) no-repeat 0 0; width: 1090px; height: 240px; position: absolute; top: -249px; left: -100px; z-index: 1; }
+.st-melnik .top-content-corners { display: none; }
+.st-melnik #affs_content { background: none; }
+.st-melnik #basis { top: 0; padding-top: 0; }
+.st-melnik #user_menu  { position: static; color: #333; width: auto; }
+.st-melnik #user_menu a { color: #0565B2; }
+
+/* Volkswagen */
+.vw-2011 { background: #2c8142 url(/i/bg/bg-volkswagen-grass.png) repeat 0 0; }
+.top-content-corners { width: 890px; height: 8px; position: absolute; background: url(/i/bg/default-tape-top.png) no-repeat 0 0; top: -8px; left: 0; }
+.vw-2011 #affs_content { background: url(/i/promo/volkswagen/vw-top.png) no-repeat 50% 0; }
+.vw-2011 #basis { top: 258px; }
+.vw-2011 #user_menu { top: -265px; z-index: 3; }
+.vw-2011 #user_menu .tape a { color: #0065B2; }
+.vw-2011 #user_menu .tape-left { background: url(/i/bg/default-tape-left.png) no-repeat scroll 0 0 transparent; }
+.vw-2011 #user_menu .tape-right { background: url(/i/bg/default-tape-right.png) no-repeat scroll right 0 transparent; }
+.vw-2011 #user_menu.top-links span.tape { background-color: #fff; background: url(/i/bg/default-tape-line.png) repeat 0 0; }
+.vw-2011 .top-links span { color: #000; }
+
+/* Nokia */
+.nokia { background: #0b2983 url(/i/promo/nokia/nokia-bg.jpg) no-repeat 50% 0; }
+.top-content-corners { width: 890px; height: 8px; position: absolute; background: url(/i/bg/default-tape-top.png) no-repeat 0 0; top: -8px; left: 0; }
+.nokia #affs_content { background: none; }
+.nokia #basis { top: 318px; }
+.nokia #user_menu { top: -330px; z-index: 3; }
+.nokia #user_menu .tape a { color: #0065B2; }
+.nokia #user_menu .tape-left, .nokia #user_menu .tape-right { height: 27px; display: inline-block; padding: 0; vertical-align: middle; }
+.nokia #user_menu .tape-left { background: url(/i/promo/nokia/tape-left.png) no-repeat 0 0; }
+.nokia #user_menu .tape-right { background: url(/i/promo/nokia/tape-right.png) no-repeat right 0; }
+.nokia #user_menu.top-links span.tape { background-color: #fff; display: inline-block; padding: 0; height: 27px; line-height: 24px; color: #000; vertical-align: middle; }
+.nokia .top-links span { color: #0277bc; }
+.nokia .top-links span span { color: #c6c6c6; }
+.nokia-n8, .nokia-c6, .nokia-c7 { display: block; position: absolute; width: 130px; height: 245px; top: -270px; }
+.nokia-n8 { left: 270px; }
+.nokia-c6 { left: 430px; }
+.nokia-c7 { left: 585px; }
+
+.app-ting, .app-angry, .app-skype, .app-shop, .app-vk, .app-brush, .app-molo { display: block; position: absolute; width: 70px; height: 70px; right: -75px; top: -83px; }
+.app-ting { right: 0; }
+.app-angry {}
+.app-skype { top: -8px; }
+.app-shop { top: 67px; }
+.app-vk { top: 142px; }
+.app-brush { top: 217px; }
+.app-molo { top: 292px; }
+
+.symbian-anna { display: block; top: -279px; left: -70px; width: 170px; height: 92px; position: absolute; }
+.best-app { display: block; top: -158px; right: -75px; width: 146px; height: 70px; position: absolute; }
+
+
+/* Clear */
+.ronaldo { background: #000 url(/i/promo/clear/ronaldo-bg.jpg) no-repeat 50% 0; }
+.top-content-corners { width: 890px; height: 8px; position: absolute; background: url(/i/bg/default-tape-top.png) no-repeat 0 0; top: -8px; left: 0; }
+.ronaldo #affs_content { background: none; }
+.ronaldo #basis { top: 308px; }
+.ronaldo .ronaldo-comments { background: url(/i/promo/clear/ronaldo-comments.png) no-repeat 0 0; width: 75px; height: 110px; position: absolute; right: -96px; bottom: 20px; }
+.ronaldo #user_menu { top: -320px; z-index: 3; }
+.ronaldo #user_menu .tape a { color: #0065B2; }
+.ronaldo #user_menu .tape-left, .ronaldo #user_menu .tape-right { height: 27px; display: inline-block; padding: 0; vertical-align: middle; }
+.ronaldo #user_menu .tape-left { background: url(/i/bg/white-tape-left.png) no-repeat 0 0; }
+.ronaldo #user_menu .tape-right { background: url(/i/bg/white-tape-right.png) no-repeat right 0; }
+.ronaldo #user_menu.top-links span.tape { background-color: #fff; display: inline-block; padding: 6px 5px 8px; color: #000; vertical-align: middle; }
+.ronaldo .top-links span { color: #c6c6c6; }
+.ronaldo .top-links span span { color: #c6c6c6; }
+
+/* Zerkalochka */
+.zerkalochka { background:#e3e7eb url(/i/promo/zerkalochka/zerkal-bg.jpg) no-repeat 50% 0; }
+.top-content-corners { width:890px; height: 8px; position: absolute; background: url(/i/bg/default-tape-top.png) no-repeat 0 0; top: -8px; left: 0; }
+.zerkalochka #affs_content {background:none;}
+.zerkalochka #basis { top: 308px; }
+.zerkalochka #user_menu { top:-322px; z-index: 3; color:#89929b;}
+.zerkalochka #user_menu span.tape a { color: #0565b2; }
+.zerkalochka #user_menu .tape-left, .zerkalochka #user_menu .tape-right {height:27px; display:inline-block; padding:0; vertical-align:middle;}
+.zerkalochka #user_menu .tape-left { background: url(/i/promo/zerkalochka/default-tape-left.png) no-repeat 0 0; }
+.zerkalochka #user_menu .tape-right { background: url(/i/promo/zerkalochka/default-tape-right.png) no-repeat right 0; }
+.zerkalochka #user_menu.top-links span.tape {background-color:#fff; display:inline-block; padding:0; height:27px; line-height:24px; color:#000; vertical-align:middle;}
+.zerkalochka .top-links span { color: #89929b; }
+.zerkalochka .top-links span span {color:#c6c6c6;}

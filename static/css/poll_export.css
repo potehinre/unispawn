@@ -1,0 +1,43 @@
+.sports * { margin:0 !important; padding:0 !important; }
+.sports { position:relative !important; width:240px !important; font:normal 10px Verdana, Arial, Helvetica, sans-serif !important; color:#000 !important; background:#e1e1e1 !important; }
+.sports a { color:#0565b2 !important; text-decoration:none !important; }
+.sports a:hover { text-decoration:underline !important; }
+.sports :-moz-any-link:focus { outline:none !important; }
+.sports img { border:0 !important; }
+
+.sports br.clear { display:block; clear:both; float:none !important; height:1px !important; font-size:1px !important; border:none; margin:0 !important; padding:0 !important; background:transparent !important; visibility:hidden !important; }
+
+.sports .title { position:relative !important; padding:5px 10px !important; font:10px Tahoma !important; margin-bottom:0px !important; color:#fff !important; width:220px !important; background:#00aa32 url(http://sports.ru/i/bg/bg-title-green-240.gif) no-repeat !important; border-bottom:2px solid #00902a !important; }
+.sports .title a { color:#fff !important; }
+.sports .title p { padding:0 !important; }
+.sports .title p.lnk { position:absolute !important; top:5px !important; right:9px !important; color:#00902a !important; }
+.sports .title p.lnk a { display:block !important; float:left !important; }
+
+.sports .gray { margin-bottom:10px !important; padding:16px 10px 12px 10px !important; background:#f5f5f5 url(http://sports.ru/i/bg/bg-gray-240.gif) no-repeat 0 100% !important; }
+
+.sports p.phead { font-weight:bold !important; margin-bottom:16px !important; padding-bottom:0 !important; }
+.sports .percent { float:left !important; font-weight:bold !important; margin-right:7px !important; width:27px !important; padding-bottom:0 !important; }
+.sports .grp { float:left !important; height:16px !important; background:url(http://sports.ru/i/bg/bg-poll-grp.gif) repeat-x !important; margin-right:7px !important; }
+.sports .grp span { height:16px !important; background:url(http://sports.ru/i/bg/bg-poll-span.gif) no-repeat right !important; display:block !important; }
+.sports .grp-name { float:left !important; padding-bottom:0 !important; }
+.sports .grp-name1 { }
+.sports .graph1 { margin-bottom:1px !important; }
+.sports .graph { padding-bottom:7px !important; }
+
+.sports p.phead { font:bold Tahoma !important; }
+.sports .graph1 { margin-bottom:3px !important; }
+.sports .grp-name { float:none !important; }
+.sports .graph1 { font-family:Tahoma !important; }
+.sports .row { font-family:Tahoma !important; text-align:left !important; }
+.sports .graph { font-size:11px Tahoma !important; }
+
+.sports #poll { margin-top:-11px !important; border:0 !important; }
+.sports #poll p { padding:0 0 13px 2px !important; font:bold 1.1em/1.5 Tahoma !important; }
+.sports #poll .row { padding-bottom:1px !important; }
+.sports #poll input { display:block !important; float:left !important; margin-top:2px !important; }
+.sports #poll label { display:block !important; float:left !important; width:200px !important; padding-left:3px !important; font:1.1em/1.4 Tahoma !important; }
+.sports #poll input.btn { width:63px !important; height:20px !important; float:none !important; margin:19px 0 0 157px !important; padding:0 0 5px 0 !important; font:1.1em Tahoma !important; text-align:center !important; cursor:pointer !important; }
+
+.sports #poll .poll-captcha { margin:10px 0 0 0 !important; }
+.sports #poll .poll-captcha img { display:block !important; float:right !important; margin:0 !important; }
+.sports #poll .poll-captcha input.captcha { width:50px !important; height:15px !important; margin:15px 20px 0 0 !important; font:1.1em/1.4 Tahoma !important; }

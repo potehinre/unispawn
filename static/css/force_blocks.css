@@ -1,0 +1,28 @@
+.corner-blue {display:block; width:10px; height:10px; position:absolute; background:url(/i/stub/white-star.png) no-repeat 0 0 !important;}
+.corner-blue.tl {top:-5px; left:-5px;}
+.corner-blue.tr {top:-5px; right:-5px;}
+.corner-blue.bl {bottom:-5px; left:-5px;}
+.corner-blue.br {bottom:-5px; right:-5px;}
+.close-reg-block {display:block; width:9px; height:9px; position:absolute; right:10px; top:10px; background:url(/i/ico/close9x9.gif) no-repeat 0 0; cursor:pointer;}
+
+.s-login-block {background:#c6e0e6; font-size:1.2em; padding:20px 30px 15px; width:100%; margin-left:-30px; margin-bottom:-20px;}
+.regBlock .social-login {width:210px; float:left;}
+
+.microblog-notice {padding:17px 20px 20px !important; background:#d7eaee !important;}
+.microblog-notice p {padding:0 0 15px; font-size:1.2em;}
+
+.microblog-notice .micro-blog-box { position: relative; font:normal 1.1em tahoma;} /* edit line  */
+.microblog-notice .micro-blog-text span {color: #000; font-weight: bold;}
+.microblog-notice .micro-blog-text #mikroBlogText a {font-weight: normal; text-decoration: underline;}
+.microblog-notice .micro-blog-text span a, .microblog-notice .micro-blog-text .edit-status {color:#0565B2;} /* new line */
+.microblog-notice .statusCount { position: absolute; left: 360px; top: -15px; color: #000; width: 20px; text-align: right; font:normal 11px tahoma;}
+
+.microblog-notice input.micro-blog-input { display: inline-block; color: #000; width: 370px; padding: 2px 5px; height: 16px; font:normal 11px tahoma; background: #fff; border-radius: 3px; -moz-border-radius: 3px; -webkit-border-radius: 3px; vertical-align: middle; border: 0 none; }
+
+.microblog-notice .status-but { width: 20px; height: 20px; background: url(/i/ico/ico-mikroblog-status.png) no-repeat 0 0; border: 0 none; vertical-align: middle;}
+*+HTML .microblog-notice .status-but {margin-left:-3px;}
+.microblog-notice .statOk { background-position: -22px 0; cursor: pointer; }
+.microblog-notice .statClose { background-position: -44px 0; cursor: pointer; }
+
+.error {color: #f00; font-size: 11px;}
+

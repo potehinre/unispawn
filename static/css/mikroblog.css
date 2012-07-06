@@ -1,0 +1,91 @@
+.dark-blue-top { background: #007cd2 url(/i/bg/bg-title-blue-dark-620.gif) no-repeat 0 0 !important; }
+.dark-blue-bottom { background: #00a0f0 url(/i/bg/bg-title-bottom-blue-dark-620.gif) no-repeat 0 100% !important; }
+.userInfoBlock {}
+.userInfoBlock td { float: none !important; margin: 0; vertical-align: middle; }
+.userInfoBlock .info { padding-left: 8px; }
+.userInfoBlock .info h1 {padding-top: 0 !important; }
+.micro-blog-box { position: relative; }
+.statusCount { position: absolute; left: 360px; top: -15px; color: #fff; width: 20px; text-align: right; }
+
+div.micro-blog-input { display: inline-block; color: #a1a1a1; width: 370px; padding: 0 5px; height: 20px; line-height: 19px; font-size: 11px; background: #fff; border-radius: 3px; -moz-border-radius: 3px; -webkit-border-radius: 3px; vertical-align: middle; }
+input.micro-blog-input { display: inline-block; color: #a1a1a1; width: 370px; padding: 2px 5px; height: 16px; font-size: 11px; background: #fff; border-radius: 3px; -moz-border-radius: 3px; -webkit-border-radius: 3px; vertical-align: middle; border: 0 none; }
+
+.micro-blog-input .error-word { color: #f00; }
+.status-but { width: 20px; height: 20px; background: url(/i/ico/icons-mikroblog-status.gif) no-repeat 0 0; border: 0 none; vertical-align: middle; }
+.statOk { background-position: -22px 0; cursor: pointer; }
+.statClose { background-position: -44px 0; cursor: pointer; }
+.micro-blog-text { color: #00a0f0; width:380px;}
+.micro-blog-text span, .micro-blog-text .edit-status { color: #fff; }
+.micro-blog-text span a { color: white; font-weight: bold; }
+.micro-blog-text #mikroBlogText A { font-weight: normal; text-decoration:underline; }
+
+.main-status {padding-bottom:10px;} 
+.comment .light-grey-round .comment-date, .statusesLine .title-white .comment-date{ width: auto !important; float:left;} 
+.comment .light-grey-round .comment-rate,  .statusesLine .title-white .comment-rate{ width: auto !important; float: none; text-align:right;} 
+.statusesLine .title-white .light-grey-round .comment-rate .r-tape { margin: 0 10px 0 0; }
+.comment .light-grey-round .comment-rate #r_message, .statusesLine .title-white .comment-rate #r_message { margin: 0 !important; }
+.comment .comment-count { float: right; text-align: right; padding-right: 27px; padding-left:7px;} 
+
+.icon-blockClose, .icon-blockOpen { display: block; position: absolute; top: -6px; right: -10px; width: 28px; height: 28px; border-left: 1px solid #fff; cursor: pointer; }
+.icon-blockClose { background: url(/i/ico/ico-mikroblog-close.gif) no-repeat 50% 50%; }
+.icon-blockOpen { background: url(/i/ico/ico-mikroblog-open.gif) no-repeat 50% 50%; }
+.comments .text p.control { color: #c2c2c2; padding: 3px 0 8px; font: normal 0.9em tahoma; }
+.comments .text .answer, .status .text p.control { margin-right: 2px; }
+.answer-line {font-size: 1.1em; padding: 3px 0 6px 8px; }
+.comments .text a.answer-link, .status .text p.control { cursor: pointer; }
+.comments .text a.admin, .status .text p.control { color: #F50046; font: 1.0em tahoma; }
+.comments .text .addStatusSelf, .status .text p.control .addStatusSelf { cursor: pointer; padding: 0 0 0 12px; background: url(/i/ico/ico-retweet-arrow.gif) no-repeat 0 3px; margin-left: 3px; }
+.commentsLine .comment .light-grey-round {margin:0 0 5px;} 
+.commentsLine .comments .light-grey-round {margin:0 0 10px;}
+.commentsLine .comments, .commentsLine .paginator { margin-left: 50px; }
+.commentsLine .comments .comments {margin-left:0}
+.comments .comment .author .info { width: 495px; }
+.commentsLine .comments .author .info { width: 498px; }
+.commentsLine #add-comment, .statusesLine #add-comment { margin: 0 0 15px; }
+.commentsLine #add-comment .title, .commentsLine #add-comment .form, .statusesLine #add-comment .title { position: relative; }
+.commentsLine #add-comment .form LABEL, .statusesLine #add-comment .form LABEL {font-size:11px;}
+.commentsLine #add-comment .form input.txt, .statusesLine #add-comment .form input.txt { width: 209px; margin-right:13px; }
+.commentsLine #add-comment .form input.chb, .statusesLine #add-comment .form input.chb { width: 10px; margin: 2px 5px 0pt 0pt; }
+.commentsLine #add-comment .cornRight, .statusesLine #add-comment .cornRight { display: block; width: 5px; height: 5px; position: absolute; right: 0; }
+.commentsLine #add-comment .title .cornRight, .statusesLine #add-comment .title .cornRight { background: url(/i/bg/bg-title-blue-620.gif) no-repeat 100% 0; top: 0; }
+.commentsLine #add-comment .form .cornRight, .statusesLine #add-comment .form .cornRight { background: url(/i/bg/bg-gray-bottom-620.gif) no-repeat 100% 100%; bottom: 0; }
+.commentsLine #add-comment textarea { width: 539px; }
+.commentsLine #add-comment input.btn, .statusesLine #add-comment input.btn { margin-left: 476px; }
+.commentsLine #add-comment .form p, .statusesLine #add-comment .form p { color: #ababab; margin-top: 10px; float: left; }
+.commentsLine .lt-star, .commentsLine .lb-star, .commentsLine .rt-star, .commentsLine .rb-star, .statusesLine .lt-star, .statusesLine .lb-star, .statusesLine .rt-star, .statusesLine .rb-star { background-image: url(/i/stub/white-star.png); }
+.commentsLine .paginator { position: relative; }
+
+.statusHoverBlock { position: absolute; z-index: 100; left: 57px; width: 165px; background: #2d2c2c; border-radius: 5px; -moz-border-radius: 5px; -webkit-border-radius: 5px; color: #fff; font: normal 11px tahoma; word-wrap: break-word;}
+.statusHoverBlock .inner { padding: 7px 10px; }
+.statusHoverBlock .inner p a { color: #FFFFFF; font-weight:bold; }
+.statusHoverBlock .inner p .user-status-text a { font-weight: normal; text-decoration:underline; }
+
+.statusHoverBlock .black-arr { display: block; position: absolute; left: -3px; top: 50%; margin-top: -3px; background: #000; border: 3px solid #f5f5f5; border-right-color: #000; border-left: 0; font-size: 0; }
+.statusHoverBlock .links {border-top:1px solid #808080; padding:8px 0 0; margin:8px 0 0; list-style:none;}
+.statusHoverBlock .links li { list-style: none; padding: 0 0 2px; }
+.statusHoverBlock .links a { background: url(/i/ico/icons-mikroblog-status-small.gif) no-repeat 0 0; color: #fff; padding-left: 15px; }
+.statusHoverBlock .links a:hover { text-decoration: none; }
+.statusHoverBlock .links .replyLink { background-position: 0 3px; }
+.statusHoverBlock .links .addStatusSelfLink { background-position: 0 -12px; }
+.statusHoverBlock .links .addFriendLink { background-position: 0 -27px; }
+
+.settings_block div.admin input { height:25px; padding: 0; }
+
+.statusesLine .comments { margin-left: 50px; }
+/* .statusesLine .comments .title-white a { color: #AFAFAF } */
+.statusesLine .status .title-white { position: relative; padding: 5px 9px 4px 9px; font: 1.1em Tahoma; color: #afafaf; }
+.statusesLine .status .text { padding-left: 9px; font: 1.2em/1.3 Verdana; overflow: hidden; }
+.statusesLine .status .text p.control { color: #c2c2c2; padding: 3px 0 8px; font: normal 0.9em tahoma; }
+.statusesLine .status .author { margin-bottom: 7px; padding: 7px 0 9px 9px; background: #f5f5f5 url(/i/bg/bg-gray-bottom-620.gif) no-repeat 0 100%; }
+.statusesLine .status .author .avatar { width: 50px; height: 50px; float: left; padding: 2px 0 0 2px; margin-right: 10px; background: url(/i/bg/bg-avatar-gray.gif) no-repeat; }
+.statusesLine .status .author .info { float: left; width: 545px; padding-top: 3px; font: 1.1em Tahoma; color: #afafaf; }
+.statusesLine .status .author .info a { font-weight: bold; }
+.statusesLine .status .author .info p { padding-bottom: 3px; }
+.statusesLine .status .author .info a.geo { font-weight: normal; }
+
+.statusesLine #add-comment .form { padding: 10px 0 10px 10px; background: url("/i/bg/bg-gray-bottom-620.gif") no-repeat scroll 0 100% #F5F5F5; }
+.statusesLine fieldset#add-comment { border: none; }
+.statusesLine #add-comment .title p.close { position: relative; display: block; float: right; }
+.statusesLine #add-comment .title p.close a { color: #FFF; padding-right: 14px; padding-bottom: 1px; background: url(/i/answer-cross-blue.gif) no-repeat right; }
+.statusesLine #add-comment input.btn { width: 73px; height: 20px; float: none; margin-top: 11px; padding: 0 0 5px 0; font:1.1em Tahoma; text-align: center; cursor: pointer; }
+.statusesLine #add-comment textarea { display: block; width: 539px; height: 112px; padding: 2px 3px; font: 1.1em Tahoma; }

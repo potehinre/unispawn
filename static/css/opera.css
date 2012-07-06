@@ -1,0 +1,57 @@
+/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Project: http://sports.ru
+Date: October 2007
+CSS: Styles for Opera
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+#find input { padding:0 6px 1px 6px; }
+.footer .links { margin-bottom:18px; }
+.menu { margin-bottom:0; }
+
+#poll p { padding-bottom:8px; }
+#poll input { width:auto; height:auto; }
+#poll input.btn { padding-bottom:3px; }
+#poll label { padding:3px 0 0 3px; }
+
+#add-comment textarea { height:115px; }
+#add-comment input.btn { margin-top:11px; }
+#add-comment input.btn-cancel { margin-right:5px; }
+#add-comment input.check { margin:2px 0 0 -1px; }
+#comment label.zap { padding-left:0; }
+
+.poll input.sbm { padding-bottom:3px; }
+.poll .row { width:auto; height:auto; padding-bottom:2px; }
+
+#subcalendar td { border-left:none; border-bottom:none; }
+
+#inf .info3 .chk label { margin-top:0; }
+#inf input, #inf select { padding:1px 4px 1px 4px; }
+#inf input.sbm { padding-bottom:1px; }
+
+.title span.tour select { height:20px; }
+.title span.player select { height:20px; }
+
+.profile .season select { height:20px; }
+.profile p { padding-top:2px; }
+.profile .summary { padding:0; margin:0 0 10px 0; }
+.profile img.flag { padding-left:3px; }
+.profile span.flag { padding-left:24px; }
+
+#find2 .row select { height:22px; }
+
+.right .title-profile table.text { margin-top:0; }
+.right .title-profile-bottom { padding-top:7px; }
+.right .title-profile { padding-bottom:3px; }
+
+#europhotos a { margin-bottom:0; }
+#photojournal a { margin-bottom:2px; }
+
+#olympics { margin-left:0; }
+
+.selection select {height:20px;}
+
+.sports-begun { padding-top:0; margin-top:-12px; padding-bottom:8px; }
+.sports-begun-news { padding-top:0; margin-top:-12px; padding-bottom:8px; }
+
+/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+   End
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */

@@ -1,0 +1,91 @@
+/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Project: http://sports.ru
+Date: October 2007
+CSS: Styles for pages ?search?
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+.title-page { padding-bottom:20px; }
+.right { padding-top:0; }
+
+#find2 {background:#00aa32 url(http://www.sports.ru/i/bg/bg-title-green-620.gif) no-repeat; border:0; }
+#find2 .find3 { padding:10px 5px 9px 9px; background:url(http://www.sports.ru/i/bg/bg-title-green-bottom-620.gif) no-repeat 0 100%; }
+#find2 .row { padding-bottom:8px; margin:0 !important;}
+#find2 label { display:block; float:left; width:150px; padding:0; font:normal 1.1em Tahoma; color:#fff; } /* by Inna : edit line 17.02.11 */
+#find2 input.check { width:13px; height:13px; margin:0 5px 0 0; }
+#find2 input { display:block; float:left; width:517px; margin-right:5px; padding:2px 3px 3px 3px; font:11px Tahoma; color:#333; }
+#find2 select { width:359px; }
+#find2 input.btn { width:63px; height:20px; float:right; margin-top:1px; padding:0 0 4px 0; text-align:center; cursor:pointer; }
+#find2 p { padding-left:1px; font:1.1em Tahoma; color:#fff; }
+#find2 .row select { font:11px Tahoma; height:20px; margin:0;}
+
+/* by Inna : commented 17.02.10 
+.result p.sort span { color:#333; }
+
+.sort, .tags {margin-left: 36px; font:1.1em Tahoma;}
+.tags img {vertical-align: bottom;}
+.tags a {font-weight: bold;}
+.tags p { padding-top:3px; padding-left:5px; }
+
+.tags, .order, .sort {margin-top: 17px; color: #9a989b;}
+
+.result ol { margin-left:40px; margin-top: 17px;}
+.result li { padding-bottom:16px; font:1.2em/1.3 Verdana; color:#333; }
+.result li a { font-weight:bold; }
+.result li span { font:0.92em Tahoma; color:#afafaf; }
+*/
+.right .title { position:relative; padding:5px 10px; font:1.1em Tahoma; color:#fff; background:#00aa32 url(http://www.sports.ru/i/bg/bg-title-green-240.gif) no-repeat; border-bottom:2px solid #00902a; }
+
+/* by Inna : new css block 17.02.11 */
+.indent10 {padding-left:10px !important;}
+.result-header {overflow:hidden; zoom:1; margin:20px 0 15px;}
+.result-header .avatar {float:left; width:48px;}
+.result-header .avatar img {display:block;}
+.result-header .info {margin-left:58px;}
+.result-header .info h1 {font:normal 2.1em Tahoma; margin:0 0 6px;}
+.result-header .menu-list {  overflow:hidden; zoom:1;}
+.result-header .menu-list li { float:left; padding-right:3px; font:normal 1.1em Tahoma; color:#bfbfbf; list-style:none; }
+.result-header .menu-list li a {  }
+.result-header .menu-list li span a {}
+
+.for_theme {font:normal 1.1em Tahoma; padding:0 0 3px; color:#ababab;}
+.day { padding:0 0 16px; font:normal 1.1em Tahoma; color:#000; }
+.day span { color:#ababab; }
+.day li { padding:0 0 3px; list-style:none; }
+.day li a.txt { color:#000; }
+
+.photo-gallery p {padding-bottom:12px;}
+.paginator2 {color:#ababab;}
+
+.tags-block, .user-block {padding:0 0 20px;}
+.tags-block .tag-item:first-child, .user-block .tag-item:first-child {margin-left:0;}
+.tags-block .box {overflow:visible;}
+.tag-item {display:block; float:left; width:190px; margin:10px 0 10px 20px;}
+.tag-item .avatar {display:block; float:left;}
+.tag-item .avatar IMG {display:block;}
+.tag-item .info {display:block; margin-left:58px; font:normal 11px tahoma;}
+.tag-item .info SPAN {display:block;}
+.tag-item .name {padding: 3px 0 2px; color: #0565b2; margin-bottom: 0; font: 11px Tahoma; background: none;}
+.tag-item .flag {vertical-align:bottom; padding:0 3px 0 0; position:static;}
+.user-block .tag-item .name {padding:10px 0 0;}
+.tag-item .hidden-links {position:absolute; z-index:-1; top:-10px; left:-10px; border:1px solid #c0c0c0; width:198px; height:86px; display:none; -moz-border-radius:4px; -webkit-border-radius:4px; border-radius:4px;}
+.user-block .tag-item .hidden-links {width:207px;}
+.user-block .box {overflow:visible;}
+.tag-item .hidden-links .links {display:block; margin:58px 2px 0; background:#fff; padding:6px 0 0 8px; height:22px; font:normal 11px tahoma; color:#ababab; white-space:nowrap;}
+.tag-item:hover { position:relative; z-index:99;}
+.tag-item:hover .hidden-links {display:block; }
+.tags-block .view-all, .user-block .view-all {padding-top:5px;}
+
+.view-all {color:#000; font:normal 1.1em tahoma;}
+.view-all SPAN {color:#0565b2; border-bottom:1px dotted #0565b2;}
+.view-all SPAN:hover {border-bottom:0; text-decoration:none;}
+
+
+.suggest {position:absolute; z-index:1000; /*width:178px;*/ padding:5px 10px 10px; border:1px solid #c0c0c0; background:#fff;}
+.suggest .tag-item {float:none; width:auto; margin:0; border-bottom:1px solid #ececec; padding:5px 2px 5px 0; overflow:hidden; zoom:1;}
+.suggest .tag-item:hover {background:#f5f5f5; text-decoration:none;}
+.suggest .tag-item .info SPAN {color:#000;}
+.suggest .tag-item .info .name {color:#0565b2;}
+.suggest .all {font:normal 11px tahoma; padding:7px 0 0;}
+.preload {background:#dfdfdf url(http://www.sports.ru/i/preload.gif) no-repeat 50% 50%; filter:alpha(opacity=60); opacity:0.6; position:absolute; top:0; left:0; display:none; z-index:1000;}
+/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+   End
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */

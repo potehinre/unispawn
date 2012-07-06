@@ -1,4 +1,3 @@
 *.beam
-static
 *.pyc
 *.*~
